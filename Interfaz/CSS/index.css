@@ -1,4 +1,15 @@
-﻿@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+﻿@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow';
+}
+
+html {
+    scroll-behavior: smooth;
+}
 
 * {
     box-sizing: border-box;
@@ -7,27 +18,31 @@
 }
 
 body {
+    background-color: #FFFFFF;
     padding: 0;
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    
 }
 
 nav {
-    padding: 5px 5%;
+    position: relative;
+    padding: 3px 2%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     z-index: 1;
-
+    font-family: "Poppins", sans-serif;
 }
+
     nav ul {
         list-style: none;
         display: flex;
+    
     }
-
         nav ul li {
             margin-left: 1.5rem;
+           
         }
 
             nav ul li a {
@@ -37,10 +52,12 @@ nav {
                 font-weight: 400;
                 padding: 4px 8px;
                 border-radius: 5px;
+                font-family: "Poppins", sans-serif;
             }
 
                 nav ul li a:hover {
                     background-color: #f5f5f5;
+                   
                 }
 
 .hamburger {
@@ -93,6 +110,7 @@ nav {
     background: rgba(255, 255, 255);
     transition: all 0.5s ease-in;
     z-index: 2;
+
 }
 
 .active {
@@ -116,6 +134,7 @@ nav {
             font-weight: 400;
             padding: 5px 10px;
             border-radius: 5px;
+
         }
 
             .menubar ul li a:hover {
@@ -131,6 +150,7 @@ nav {
         display: none;
     }
 }
+
 .mini-nav {
     background-color: #0086EE;
     border-radius: 10px;
@@ -138,13 +158,17 @@ nav {
     color: white;
     display: flex;
     align-items: center;
-
 }
 
     .mini-nav img {
         width: 100px;
         height: 80px;
     }
+
 .text-container p {
     margin: 5px 0;
+}
+
+.footer-container {
+    background-color: #f0f0f0;
 }
