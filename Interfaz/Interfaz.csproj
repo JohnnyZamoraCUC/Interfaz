@@ -182,6 +182,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="usr\home.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="usr\Aterrizaje\Aterrizaje.html" />
     <Content Include="usr\Aterrizaje\Menu-Aterrizaje.html" />
@@ -223,7 +224,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Components\pub\" />
     <Folder Include="Components\usr\" />
-    <Folder Include="Videos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

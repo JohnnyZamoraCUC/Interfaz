@@ -193,7 +193,7 @@
                             <label for="token" class="form-label">Token</label>
                             <input type="text" class="form-control" id="token" placeholder="Ingresa tu token">
                         </div>
-                        <button type="button" class="btn btn-primary">Aceptar</button>
+                        <button type="submit" class="btn btn-primary">Aceptar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </form>
                 </div>
@@ -261,20 +261,26 @@
         </footer>
     </div>
     <script>
-        document.getElementById("loginForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Evitar que el formulario se envíe de forma convencional
+        function guardarCorreo(email) {
+            localStorage.setItem('correo', email);
+        }
 
-            // Obtener los valores de correo electrónico y contraseña del formulario
+        // Función para obtener el correo electrónico del almacenamiento local
+        function obtenerCorreo() {
+            return localStorage.getItem('correo');
+        }
+
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); 
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
 
-            // Construir el objeto JSON con los datos del formulario
             var formData = {
                 "Correo": email,
                 "Contrasena": password
             };
+            guardarCorreo(email);
 
-            // Enviar la solicitud POST al API
             fetch("https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/Login", {
                 method: "POST",
                 headers: {
@@ -283,32 +289,50 @@
                 body: JSON.stringify(formData)
             })
                 .then(function (response) {
-                    if (response.ok) {
-                        // Si la solicitud es exitosa, mostrar mensaje de éxito o redireccionar a otra página
-                        console.log("Inicio de sesión exitoso");
-                        // Puedes redireccionar a otra página aquí si lo deseas
-                    } else if (response.status === 401) {
-                        // Si la solicitud devuelve un código 401 (No autorizado), mostrar el formulario de token
-                        document.getElementById("loginForm").reset(); // Limpiar el formulario de inicio de sesión
-                        document.getElementById("loginForm").style.display = "none"; // Ocultar el formulario de inicio de sesión
-                        document.getElementById("tokenForm").style.display = "block"; // Mostrar el formulario de token
+                    if (response.status === 401) {
+                        //document.getElementById("loginForm").reset(); 
+                        document.getElementById("loginForm").style.display = "none"; 
+                        document.getElementById("tokenForm").style.display = "block";
+                    } else if (response.status === 409) {
+                        console.log("Token Invalido"); s
                     } else {
-                        // Si ocurre algún otro error, mostrar un mensaje de error genérico
                         console.error("Error al iniciar sesión");
                     }
                 })
                 .catch(function (error) {
-                    // Capturar y mostrar cualquier error de red u otros errores
                     console.error("Error de red:", error);
                 });
         });
 
-        // Agregar un evento al botón "Aceptar" del formulario de token para manejar su lógica
         document.getElementById("tokenForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Evitar que el formulario se envíe de forma convencional
+            event.preventDefault();
+            var email = obtenerCorreo(); 
 
-            // Lógica para manejar el envío del formulario de token si es necesario
-            console.log("Enviar formulario de token");
+            var email = document.getElementById("email").value;
+            var token = document.getElementById("token").value;
+
+            var formData = {
+                "Correo": email,
+                "Token": token
+            };
+           // alert("Datos del formulario:\n" + JSON.stringify(formData));
+            fetch("https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/ValidarDobleFactor", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        window.location.href = "/usr/Home.html";
+                    } else {
+                        console.log("Respuesta del servidor:", response);
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error de red:", error);
+                });
         });
     </script>
 
