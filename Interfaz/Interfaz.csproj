@@ -102,6 +102,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\pub\nav.html" />
     <Content Include="Components\usr\nav.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -126,6 +127,7 @@
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Logo.PNG" />
     <Content Include="JS\auth.js" />
+    <Content Include="JS\Labels.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -222,7 +224,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Components\pub\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
