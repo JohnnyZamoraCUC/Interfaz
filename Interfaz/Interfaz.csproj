@@ -185,6 +185,7 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="usr\home.html" />
+    <Content Include="usr\Labels.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="usr\Aterrizaje\Aterrizaje.html" />
     <Content Include="usr\Aterrizaje\Menu-Aterrizaje.html" />

@@ -1,6 +1,7 @@
-﻿const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
+﻿
+//JS PARA MOSTRAR LABELS
+const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
 
-// Función para obtener la descripción correspondiente al ID de la etiqueta del API
 function buscarDescripcionDesdeApi(idElemento) {
     return fetch(apiUrl)
         .then(response => {
@@ -15,17 +16,18 @@ function buscarDescripcionDesdeApi(idElemento) {
         })
         .catch(error => {
             console.error('Se produjo un error:', error);
-            return ''; // Devuelve una cadena vacía en caso de error
+            return '';
         });
 }
 
-// Obtener todas las etiquetas con el atributo "id"
 const elementos = document.querySelectorAll('[id]');
-
-// Iterar sobre las etiquetas y actualizar su contenido
 elementos.forEach(elemento => {
     buscarDescripcionDesdeApi(elemento.id)
         .then(descripcion => {
             elemento.textContent = descripcion || elemento.id;
         });
 });
+
+
+
+
