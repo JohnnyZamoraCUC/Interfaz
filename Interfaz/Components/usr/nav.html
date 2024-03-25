@@ -1,0 +1,114 @@
+﻿<style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap');
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+    /* Estilos comunes */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    nav {
+        position: relative; /* Cambiado a 'fixed' */
+        padding: 7px 0.7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        z-index: 1;
+        font-family: "Poppins", sans-serif;
+    }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+            nav ul li {
+                margin-left: 1.5rem;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: #000;
+                    font-size: 95%;
+                    font-weight: 400;
+                    padding: 4px 8px;
+                    border-radius: 5px;
+                    font-family: "Poppins", sans-serif;
+                }
+
+                    nav ul li a:hover {
+                        background-color: #f5f5f5;
+                    }
+
+    .mini-nav {
+        background-color: #0086EE;
+        border-radius: 10px;
+        padding: 4px;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+
+        .mini-nav img {
+            width: 80px;
+            height: 68px;
+        }
+
+</style>
+<div>
+        <nav>
+            <div class="mini-nav">
+                <img src="/Imagenes//Logo.png" />
+                <div class="text-container">
+                    <p>Sky Guardian</p>
+                    <p>Protegiendo cada vuelo, cuidando cada paso.</p>
+                </div>
+            </div>
+            <ul style="display: flex; align-items: center;">
+                <li>
+                    <a class="navbar-brand" href="#">Home</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+                <li>
+                    <a id="Tours" class="navbar-brand" href="#">Tours</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+                <li>
+                    <a id="blog" class="navbar-brand" href="#">Blog</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                </li>
+                <li>
+                    <a id="abouts" class="navbar-brand" href="#">About Us</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+                <li>
+                    <a id="contacus" class="navbar-brand" href="#">Contact Us</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+                <li>
+                    <div class="login-container">
+                        <a id="loginBtn" href="#"></a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+</div>
+

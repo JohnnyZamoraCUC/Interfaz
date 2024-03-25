@@ -1,62 +1,74 @@
-﻿function submitLoginForm() {
+﻿
+function guardarCorreo(email) {
+    localStorage.setItem('correo', email);
+}
+
+// Función para obtener el correo electrónico del almacenamiento local
+function obtenerCorreo() {
+    return localStorage.getItem('correo');
+}
+
+document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
-    alert("Email: " + email + "\nContraseña: " + password);
 
-    // Enviar las credenciales al endpoint de login
-    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/Login', {
-        method: 'POST',
+    var formData = {
+        "Correo": email,
+        "Contrasena": password
+    };
+    guardarCorreo(email);
+
+    fetch("https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/Login", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            Correo: email,
-            Contrasena: password
-        })
+        body: JSON.stringify(formData)
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data === "Credenciales válidas") {
-                alert("Inicio de sesión exitoso");
-                // Aquí puedes redireccionar al usuario a otra página si el inicio de sesión es exitoso
+        .then(function (response) {
+            if (response.status === 401) {
+                //document.getElementById("loginForm").reset(); 
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("tokenForm").style.display = "block";
+            } else if (response.status === 409) {
+                console.log("Token Invalido"); s
             } else {
-                alert("Credenciales incorrectas");
-                // Limpiar el formulario de inicio de sesión
-                document.getElementById("loginForm").reset();
+                console.error("Error al iniciar sesión");
             }
         })
-        .catch(error => console.error('Error:', error));
+        .catch(function (error) {
+            console.error("Error de red:", error);
+        });
+});
 
-    return false; // Evitar que el formulario se envíe
-}
+document.getElementById("tokenForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+    var email = obtenerCorreo();
 
-function submitTokenForm() {
-    var correo = document.getElementById("correo").value;
+    var email = document.getElementById("email").value;
     var token = document.getElementById("token").value;
 
-    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/ValidarDobleFactor', {
-        method: 'POST',
+    var formData = {
+        "Correo": email,
+        "Token": token
+    };
+    // alert("Datos del formulario:\n" + JSON.stringify(formData));
+    fetch("https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Usuarios/ValidarDobleFactor", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            Correo: correo,
-            Token: token
-        })
+        body: JSON.stringify(formData)
     })
-        .then(response => {
-            if (response.ok) {
-                alert("Token de doble factor válido");
-                // Aquí puedes redireccionar al usuario a otra página si la validación del token es exitosa
-            } else if (response.status === 401) {
-                alert("Token de doble factor inválido");
-                // Aquí puedes manejar el caso en el que el token sea inválido
+        .then(function (response) {
+            if (response.status === 200) {
+                window.location.href = "/Interfaz/usr/Home.html";
             } else {
-                alert("Error al validar el token de doble factor");
-                // Aquí puedes manejar otros posibles errores
+                console.log("Respuesta del servidor:", response);
             }
         })
-        .catch(error => console.error('Error:', error));
-
-    return false; // Evitar que el formulario se envíe
-}
+        .catch(function (error) {
+            console.error("Error de red:", error);
+        });
+});
