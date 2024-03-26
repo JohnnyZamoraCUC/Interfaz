@@ -14,10 +14,10 @@
 
     nav {
         position: relative; /* Cambiado a 'fixed' */
-        padding: 7px 0.7%;
+        padding: 5px 0.7%;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: end;
         box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         z-index: 1;
         font-family: "Poppins", sans-serif;
@@ -26,10 +26,13 @@
         nav ul {
             list-style: none;
             display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-right: 500px; /* Ajusta este valor según sea necesario */
         }
 
             nav ul li {
-                margin-left: 1.5rem;
+                margin-left: 1rem;
             }
 
                 nav ul li a {
@@ -48,16 +51,28 @@
 
     .mini-nav {
         background-color: #0086EE;
-        border-radius: 10px;
-        padding: 4px;
+        border-radius: 15px;
+        padding: 1px;
         color: white;
         display: flex;
         align-items: center;
+        width: 500px;
+        height: 75px;
     }
 
         .mini-nav img {
-            width: 80px;
-            height: 68px;
+            width: 70px;
+            height: 58px;
+        }
+
+    .text-container p {
+        margin: 0; /* Elimina el espacio entre los párrafos */
+        padding: 0; /* Elimina el espacio dentro de los párrafos */
+    }
+
+        .text-container p:first-child {
+            font-size: 24px; /* Aumenta el tamaño de la fuente para 'Sky Guardian' */
+            font-weight: bold; /* Hace el texto 'Sky Guardian' en negrita */
         }
 </style>
 <div>
@@ -69,7 +84,7 @@
                 <p>Protegiendo cada vuelo, cuidando cada paso.</p>
             </div>
         </div>
-        <ul style="display: flex; align-items: center;">
+        <ul>
             <li>
                 <a id="lblHome" class="navbar-brand" href="#">lblHome</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,68 +92,70 @@
                 </button>
             </li>
             <li>
-                <a id="Tours" class="navbar-brand" href="#">Tours</a>
+                <a id="lblTours" class="navbar-brand" href="#">lblTours</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </li>
             <li>
-                <a id="blog" class="navbar-brand" href="#">Blog</a>
+                <a id="lblBlog" class="navbar-brand" href="#">lblBlog</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
             </li>
             <li>
-                <a id="abouts" class="navbar-brand" href="#">About Us</a>
+                <a id="lblAboutUs" class="navbar-brand" href="#">lblAboutUs</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </li>
             <li>
-                <a id="lblcontacus" class="navbar-brand" href="#"></a>
+                <a id="lblContacUs" class="navbar-brand" href="#">lblContacUs</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </li>
-            <li>
-                <div class="login-container">
-                    <a id="btnemergencia" href="#"></a>
-                    <button type="button" class="btn btn-danger">btnemergencia</button>
-                </div>
+            <li class="nav-item">
+                <button id="btnEmergencia" type="button" class="btn btn-danger">Danger</button>
             </li>
         </ul>
     </nav>
 </div>
-
 <script>
+    const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
 
-const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
-function buscarDescripcionDesdeApi(idElemento) {
-    return fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Hubo un problema al obtener los datos.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            const elemento = data.find(item => item.Nombre === idElemento);
-            return elemento ? elemento.Descripcion : '';
-        })
-        .catch(error => {
-            console.error('Se produjo un error:', error);
-            return ''; 
-        });
-}
+    // Función para buscar la descripción desde la API
+    function buscarDescripcionDesdeApi(idElemento) {
+        return fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Hubo un problema al obtener los datos.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Busca el elemento en el JSON por el nombre (idElemento)
+                const elemento = data.find(item => item.Nombre === idElemento);
+                // Retorna la descripción si se encontró, de lo contrario, retorna una cadena vacía
+                return elemento ? elemento.Descripcion : '';
+            })
+            .catch(error => {
+                console.error('Se produjo un error:', error);
+                return ''; // Retorna una cadena vacía en caso de error
+            });
+    }
 
-const elementos = document.querySelectorAll('[id]');
+    // Obtiene todos los elementos del navbar por su ID
+    const elementos = document.querySelectorAll('a[id^="lbl"], button[id^="btn"]');
 
-elementos.forEach(elemento => {
-    buscarDescripcionDesdeApi(elemento.id)
-        .then(descripcion => {
-            elemento.textContent = descripcion || elemento.id;
-        });
-});
-
+    // Itera sobre cada elemento para actualizar su contenido
+    elementos.forEach(elemento => {
+        // Obtiene la descripción desde la API y actualiza el texto del elemento
+        buscarDescripcionDesdeApi(elemento.id)
+            .then(descripcion => {
+                // Si la descripción está vacía, se mantiene el ID como texto
+                elemento.textContent = descripcion || elemento.id;
+            });
+    });
 </script>

@@ -1,4 +1,9 @@
-﻿/*CSS de flip card*/
+﻿body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/*CSS de flip card*/
 .flip-card {
     background-color: transparent;
     width: 300px;

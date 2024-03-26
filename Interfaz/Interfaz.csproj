@@ -125,6 +125,7 @@
     <Content Include="CSS\index.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Imagenes\Avianca.jpg" />
     <Content Include="Imagenes\Logo.PNG" />
     <Content Include="JS\auth.js" />
     <Content Include="JS\Labels.js" />
