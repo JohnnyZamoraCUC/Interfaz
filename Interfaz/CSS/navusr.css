@@ -12,7 +12,6 @@ body, html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 nav {
     position: relative; /* Cambiado a 'fixed' */
     padding: 5px 0.7%;
@@ -24,18 +23,18 @@ nav {
     font-family: "Poppins", sans-serif;
 }
 
-
-
     nav ul {
+        list-style: none;
+        display: flex;
         list-style: none;
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin-right: 500px; /* Ajusta este valor según sea necesario */
+        margin-right: 80px; /* Ajusta este valor según sea necesario */
     }
 
         nav ul li {
-            margin-left: 1rem;
+            margin-left: 1.5rem;
         }
 
             nav ul li a {
@@ -52,6 +51,8 @@ nav {
                     background-color: #f5f5f5;
                 }
 
+
+
 .mini-nav {
     background-color: #0086EE;
     border-radius: 10px;
@@ -67,7 +68,6 @@ nav {
         width: 70px;
         height: 58px;
     }
-
 .text-container p {
     margin: 0; /* Elimina el espacio entre los párrafos */
     padding: 0; /* Elimina el espacio dentro de los párrafos */
@@ -76,3 +76,65 @@ nav {
     .text-container p:first-child {
         font-size: 24px; /* Aumenta el tamaño de la fuente para 'Sky Guardian' */
     }
+/* Reset general */
+*, *:after, *:before {
+    box-sizing: border-box;
+}
+
+/* Estilos específicos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+    nav {
+        padding: 10px;
+    }
+
+    .mini-nav img {
+        width: 60px; /* Ajusta el tamaño del logo */
+        height: auto;
+    }
+
+    .text-container {
+        display: none; /* Oculta el texto del encabezado en dispositivos móviles */
+    }
+
+    .hamburger {
+        display: block; /* Muestra el icono de hamburguesa */
+    }
+
+    nav ul {
+        display: none; /* Oculta la lista de navegación en el encabezado */
+        position: absolute;
+        top: 60px; /* Ajusta la distancia desde la parte superior */
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega sombra al menú */
+        z-index: 1;
+    }
+
+        nav ul.active {
+            display: flex; /* Muestra la lista de navegación cuando el menú de hamburguesa está activo */
+            flex-direction: column; /* Cambia la dirección del flexbox para que los elementos estén apilados verticalmente */
+        }
+
+    .menubar {
+        padding: 20% 0; /* Ajusta el relleno del menú lateral */
+    }
+
+        .menubar ul li {
+            margin-bottom: 20px; /* Ajusta el espacio entre elementos del menú lateral */
+        }
+
+    .footer-container {
+        padding: 20px; /* Ajusta el relleno del pie de página en dispositivos móviles*/
+    }
+
+    section {
+        height: auto; /* Ajusta la altura de la sección para que se adapte al contenido */
+    }
+
+    h1,
+    h2,
+    span {
+        font-size: 2rem; /* Tamaño de fuente más pequeño para dispositivos móviles */
+    }
+}
