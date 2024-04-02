@@ -95,120 +95,8 @@
     </div>
 
     <!-- Contenedor de Aterrizajes-->
-    <div class="ListaAterrizajes">
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="flip-card-front">
-                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
-                </div>
-                <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=241'">
-                    <h1>Aerolinea</h1>
-                    <p>Vuelo: </p>
-                    <p>Piloto: </p>
-                    <p>Prioridad: </p>
-                    <p>Prioridad: </p>
-                </div>
-            </div>
-        </div>
-
+    <div class="ListaAterrizajes" id="ListaAterrizajes">
+        
     </div>
     <div class="ContenedorPrin">
 
@@ -216,8 +104,30 @@
     <script src="/JS/Labels.js"></script>
     <script src="/Interfaz/JS/Labels.js"></script>
     <script>
-        function CargarVuelos() {
+        const nombreAerolinea = "Avianca";
+        const numeroVuelo = 241;
+        const nombrePiloto = "Juan Pérez";
+        const prioridad1 = "A";
+        const prioridad2 = "C";
 
+        for (let i = 0; i < 10; i++) {
+            const codigoHTML = `
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
+                        </div>
+                        <div class="flip-card-back" onclick="location.href='Menu-Aterrizaje.html?ID=${numeroVuelo}'">
+                            <h1>${nombreAerolinea}</h1>
+                            <p>Vuelo: ${numeroVuelo}</p>
+                            <p>Piloto: ${nombrePiloto}</p>
+                            <p>Prioridad: ${prioridad1}</p>
+                            <p>Prioridad: ${prioridad2}</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
         }
     </script>
 </body>

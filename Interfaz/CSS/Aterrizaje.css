@@ -51,7 +51,7 @@
 /*Contenedor de aterrizajes*/
 .ListaAterrizajes {
     width: 340px;
-    height: 880px;
+    height: 840px;
     position: relative;
     overflow: scroll;
     float: left;
@@ -62,7 +62,7 @@
 .ContenedorPrin {
     float: right;
     width: 1550px;
-    height: 880px;
+    height: 840px;
     position: relative;
 }
 
