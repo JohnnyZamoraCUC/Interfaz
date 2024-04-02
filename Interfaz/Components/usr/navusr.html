@@ -1,151 +1,7 @@
 ﻿
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;400;600;800;900&display=swap');
-    @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-
-    body, html {
-        margin: 0;
-        padding: 0;
-    }
-    /* Estilos comunes */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
-
-    nav {
-        position: relative; /* Cambiado a 'fixed' */
-        padding: 5px 0.7%;
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-        z-index: 1;
-        font-family: "Poppins", sans-serif;
-    }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            list-style: none;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            margin-right: 80px; /* Ajusta este valor según sea necesario */
-        }
-
-            nav ul li {
-                margin-left: 1.5rem;
-            }
-
-                nav ul li a {
-                    text-decoration: none;
-                    color: #000;
-                    font-size: 95%;
-                    font-weight: 400;
-                    padding: 4px 8px;
-                    border-radius: 5px;
-                    font-family: "Poppins", sans-serif;
-                }
-
-                    nav ul li a:hover {
-                        background-color: #f5f5f5;
-                    }
-
-
-
-    .mini-nav {
-        background-color: #0086EE;
-        border-radius: 10px;
-        padding: 1px;
-        color: white;
-        display: flex;
-        align-items: center;
-        width: 500px;
-        height: 75px;
-    }
-
-        .mini-nav img {
-            width: 70px;
-            height: 58px;
-        }
-
-    .text-container p {
-        margin: 0; /* Elimina el espacio entre los párrafos */
-        padding: 0; /* Elimina el espacio dentro de los párrafos */
-    }
-
-        .text-container p:first-child {
-            font-size: 24px; /* Aumenta el tamaño de la fuente para 'Sky Guardian' */
-        }
-    /* Reset general */
-    *, *:after, *:before {
-        box-sizing: border-box;
-    }
-
-    /* Estilos específicos para dispositivos móviles */
-    @media screen and (max-width: 768px) {
-        nav {
-            padding: 10px;
-        }
-
-        .mini-nav img {
-            width: 60px; /* Ajusta el tamaño del logo */
-            height: auto;
-        }
-
-        .text-container {
-            display: none; /* Oculta el texto del encabezado en dispositivos móviles */
-        }
-
-        .hamburger {
-            display: block; /* Muestra el icono de hamburguesa */
-        }
-
-        nav ul {
-            display: none; /* Oculta la lista de navegación en el encabezado */
-            position: absolute;
-            top: 60px; /* Ajusta la distancia desde la parte superior */
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agrega sombra al menú */
-            z-index: 1;
-        }
-
-            nav ul.active {
-                display: flex; /* Muestra la lista de navegación cuando el menú de hamburguesa está activo */
-                flex-direction: column; /* Cambia la dirección del flexbox para que los elementos estén apilados verticalmente */
-            }
-
-        .menubar {
-            padding: 20% 0; /* Ajusta el relleno del menú lateral */
-        }
-
-            .menubar ul li {
-                margin-bottom: 20px; /* Ajusta el espacio entre elementos del menú lateral */
-            }
-
-        .footer-container {
-            padding: 20px; /* Ajusta el relleno del pie de página en dispositivos móviles*/
-        }
-
-        section {
-            height: auto; /* Ajusta la altura de la sección para que se adapte al contenido */
-        }
-
-        h1,
-        h2,
-        span {
-            font-size: 2rem; /* Tamaño de fuente más pequeño para dispositivos móviles */
-        }
-    }
-</style>
+<link href="/CSS/index.css" rel="stylesheet">
+<body>
 <div class="contenedor-header">
     <header>
         <nav>
@@ -189,44 +45,34 @@
                     </button>
                 </li>
                 <li class="nav-item">
-                    <button id="btnEmergencia" type="button" class="btn btn-danger">Danger</button>
+                    <button id="btnEmergencia" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalEmergencia">Emergencia</button>
                 </li>
             </ul>
         </nav>
     </header>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalEmergencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">¡Emergencia activada!</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Emergencia</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                Por favor, seleccione una opción:
+                <!-- Contenido del modal de emergencia -->
+                <p>Este es un mensaje de emergencia.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Opción 1</button>
-                <button type="button" class="btn btn-danger">Opción 2</button>
+                <!-- Otros botones del modal si es necesario -->
             </div>
         </div>
     </div>
 </div>
-<script>
-    // Obtener el botón de emergencia por su ID
-    var btnEmergencia = document.getElementById("btnEmergencia");
-
-    // Agregar un event listener para el evento clic
-    btnEmergencia.addEventListener("click", function () {
-        // Mostrar la alerta al hacer clic en el botón de emergencia
-        alert("¡Emergencia activada! Por favor, permanezca tranquilo y siga las instrucciones del personal de vuelo.");
-    });
-</script>
+    </body>
 <script>
     const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
-
     // Función para buscar la descripción desde la API
     function buscarDescripcionDesdeApi(idElemento) {
         return fetch(apiUrl)
@@ -260,5 +106,19 @@
                 elemento.textContent = descripcion || elemento.id;
             });
     });
-
 </script>
+<script>
+    // Mostrar el modal de emergencia al hacer clic en el botón
+    document.getElementById('btnEmergencia').addEventListener('click', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('modalEmergencia'));
+        myModal.show();
+        document.body.classList.add('modal-open'); // Agregar la clase modal-open al body
+    });
+
+    // Eliminar la clase modal-open del body al cerrar el modal
+    document.getElementById('modalEmergencia').addEventListener('hidden.bs.modal', function () {
+        document.body.classList.remove('modal-open');
+    });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

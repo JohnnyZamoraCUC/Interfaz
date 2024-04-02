@@ -8,8 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <iframe src="/Components/usr/navusr.html" style="width: 100%; height: 100px; border: none;"></iframe>
     <div class="container mt-5">
-        <h1 class="mb-4">CRUD de Etiquetas</h1>
+        <h3 class="mb-4">CRUD de Etiquetas</h3>
         <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAgregarEtiqueta">
             Agregar Etiqueta
         </button>
@@ -84,116 +85,116 @@
 
 
     <script>
-   //JS PARA CRUD LABELS
-function mostrarModalEditar(id, nombre, descripcion) {
-    document.getElementById('nombreEditar').value = nombre;
-    document.getElementById('descripcionEditar').value = descripcion;
-    document.querySelector('#modalEditarEtiqueta button.btn-primary').setAttribute('data-id', id);
-    const modal = new bootstrap.Modal(document.getElementById('modalEditarEtiqueta'), {});
-    modal.show();
-}
-function editarEtiqueta() {
-    const id = document.querySelector('#modalEditarEtiqueta button.btn-primary').getAttribute('data-id');
-    const nombre = document.getElementById('nombreEditar').value;
-    const descripcion = document.getElementById('descripcionEditar').value;
+        //JS PARA CRUD LABELS
+        function mostrarModalEditar(id, nombre, descripcion) {
+            document.getElementById('nombreEditar').value = nombre;
+            document.getElementById('descripcionEditar').value = descripcion;
+            document.querySelector('#modalEditarEtiqueta button.btn-primary').setAttribute('data-id', id);
+            const modal = new bootstrap.Modal(document.getElementById('modalEditarEtiqueta'), {});
+            modal.show();
+        }
+        function editarEtiqueta() {
+            const id = document.querySelector('#modalEditarEtiqueta button.btn-primary').getAttribute('data-id');
+            const nombre = document.getElementById('nombreEditar').value;
+            const descripcion = document.getElementById('descripcionEditar').value;
 
-    fetch(`https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ActualizarLabel/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ Nombre: nombre, Descripcion: descripcion })
-    })
-        .then(response => {
-            if (response.ok) {
-                location.reload();
-            } else {
-                throw new Error('Error al editar la etiqueta');
-            }
-        })
-        .catch(error => console.error('Error:', error));
-}
-function cargarDatos() {
-    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabelsID')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Error al obtener los datos del API');
-            }
-            return response.json();
-        })
-        .then(data => {
-            document.getElementById('tablaEtiquetas').innerHTML = '';
-            data.forEach(etiqueta => {
-                const fila = `
-                                        <tr>
-                                            <td>${etiqueta.IdLabel}</td>
-                                            <td>${etiqueta.Nombre}</td>
-                                            <td>${etiqueta.Descripcion}</td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Acciones
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li>
-                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalEditarEtiqueta" onclick="mostrarModalEditar(${etiqueta.IdLabel}, '${etiqueta.Nombre}', '${etiqueta.Descripcion}')">
-                                                            Editar
-                                                        </a>
-                                                       </li>
-                                                        <li><a class="dropdown-item" href="#" onclick="eliminarEtiqueta(${etiqueta.IdLabel})">Borrar</a></li>
+            fetch(`https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ActualizarLabel/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Nombre: nombre, Descripcion: descripcion })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        throw new Error('Error al editar la etiqueta');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        function cargarDatos() {
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabelsID')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener los datos del API');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById('tablaEtiquetas').innerHTML = '';
+                    data.forEach(etiqueta => {
+                        const fila = `
+                                            <tr>
+                                                <td>${etiqueta.IdLabel}</td>
+                                                <td>${etiqueta.Nombre}</td>
+                                                <td>${etiqueta.Descripcion}</td>
+                                                <td>
+                                                    <div class="btn-group">
+                                                        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Acciones
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#modalEditarEtiqueta" onclick="mostrarModalEditar(${etiqueta.IdLabel}, '${etiqueta.Nombre}', '${etiqueta.Descripcion}')">
+                                                                Editar
+                                                            </a>
+                                                           </li>
+                                                            <li><a class="dropdown-item" href="#" onclick="eliminarEtiqueta(${etiqueta.IdLabel})">Borrar</a></li>
 
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    `;
-                document.getElementById('tablaEtiquetas').innerHTML += fila;
-            });
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+                                                        </ul>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        `;
+                        document.getElementById('tablaEtiquetas').innerHTML += fila;
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
 
-cargarDatos();
-function eliminarEtiqueta(id) {
-    fetch(`https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/EliminarLabel/${id}`, {
-        method: 'DELETE'
-    })
-        .then(response => {
-            if (response.ok) {
-                location.reload();
-            } else {
-                throw new Error('Error al eliminar la etiqueta');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+        cargarDatos();
+        function eliminarEtiqueta(id) {
+            fetch(`https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/EliminarLabel/${id}`, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        throw new Error('Error al eliminar la etiqueta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
 
-function agregarEtiqueta() {
-    const nombre = document.getElementById('nombre').value;
-    const descripcion = document.getElementById('descripcion').value;
+        function agregarEtiqueta() {
+            const nombre = document.getElementById('nombre').value;
+            const descripcion = document.getElementById('descripcion').value;
 
-    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/AgregarLabel', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ Nombre: nombre, Descripcion: descripcion })
-    })
-        .then(response => {
-            if (response.ok) {
-                location.reload();
-            } else {
-                throw new Error('Error al agregar la etiqueta');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/AgregarLabel', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ Nombre: nombre, Descripcion: descripcion })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        location.reload();
+                    } else {
+                        throw new Error('Error al agregar la etiqueta');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
     </script>
 </body>
 </html>

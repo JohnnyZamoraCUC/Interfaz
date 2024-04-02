@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Components\pub\nav.html" />
+    <Content Include="Components\usr\footer.html" />
     <Content Include="Components\usr\navusr.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
