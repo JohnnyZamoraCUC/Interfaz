@@ -195,7 +195,16 @@
         </nav>
     </header>
 </div>
+<script>
+    // Obtener el botón de emergencia por su ID
+    var btnEmergencia = document.getElementById("btnEmergencia");
 
+    // Agregar un event listener para el evento clic
+    btnEmergencia.addEventListener("click", function () {
+        // Mostrar la alerta al hacer clic en el botón de emergencia
+        alert("¡Emergencia activada! Por favor, permanezca tranquilo y siga las instrucciones del personal de vuelo.");
+    });
+</script>
 <script>
     const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Labels/ObtenerLabels';
 
