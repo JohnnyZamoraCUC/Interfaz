@@ -184,6 +184,7 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
+    <Content Include="usr\Aproximacion\Aproximacion.html" />
     <Content Include="usr\home.html" />
     <Content Include="usr\Labels.html" />
     <Content Include="ViewSwitcher.ascx" />
