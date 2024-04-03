@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Interfaz/CSS/Aterrizaje.css" rel="stylesheet" />
+    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet" />
+    <link href="/CSS/Aterrizaje.css" rel="stylesheet" />
+    <link href="/CSS/navusr.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <title>Aproximacion</title>
+    <style>
+        /* Estilo para el título */
+        .titulo {
+            text-align: center; /* Centra el texto horizontalmente */
+            width: 100%; /* Ancho del título al 100% del contenedor */
+        }
+
+        .circle {
+            position: relative; /* Establece la posición relativa para permitir la posición absoluta del texto */
+            width: 300px; /* Ajustar el tamaño del botón */
+            height: 70px; /* Ajustar el tamaño del botón */
+            background-color: #00FF00; /* Color de fondo verde */
+            border-radius: 30px; /* Bordes más rectangulares para que parezca un botón */
+            margin: 13px; /* Espacio entre los botones y otros elementos */
+            display: inline-block; /* Para que los botones aparezcan en línea */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            text-align: center; /* Centra el texto horizontalmente */
+            line-height: 70px; /* Ajusta la altura de línea para centrar verticalmente el texto */
+        }
+
+            .circle span {
+                width: 100%; /* Ajusta el ancho del span al 100% del círculo */
+                text-align: center; /* Centra el texto horizontalmente dentro del span */
+            }
+
+        .circleFinal {
+            position: absolute; /* Establece la posición absoluta para el círculo final */
+            top: 59.5%; /* Posiciona el círculo en el 50% de la altura del contenedor padre */
+            left: 55%; /* Posiciona el círculo en el 50% del ancho del contenedor padre */
+            transform: translate(-50%, -50%); /* Centra el círculo exactamente en el centro */
+            width: 300px; /* Ajustar el tamaño del botón */
+            height: 70px; /* Ajustar el tamaño del botón */
+            background-color: #00FF00; /* Color de fondo verde */
+            border-radius: 30px; /* Bordes más rectangulares para que parezca un botón */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            display: flex; /* Utiliza flexbox para centrar verticalmente el texto */
+            justify-content: center; /* Centra el contenido horizontalmente */
+            align-items: center; /* Centra el contenido verticalmente */
+            font-size: 16px; /* Ajusta el tamaño de la fuente para que se ajuste al círculo */
+        }
+        @-webkit-keyframes scale-up-hor-right {
+            0% {
+                -webkit-transform: scaleX(0.4);
+                transform: scaleX(0.4);
+                -webkit-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+
+            100% {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+                -webkit-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+        }
+
+        @keyframes scale-up-hor-right {
+            0% {
+                -webkit-transform: scaleX(0.4);
+                transform: scaleX(0.4);
+                -webkit-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+
+            100% {
+                -webkit-transform: scaleX(1);
+                transform: scaleX(1);
+                -webkit-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+        }
+        .circle:hover::before {
+            content: attr(title); /* Muestra el atributo title como un pseudo-elemento antes del círculo */
+            position: absolute; /* Posiciona el mensaje de información de manera absoluta */
+            top: -60px; /* Ajusta la posición del mensaje hacia arriba */
+            left: 50%; /* Centra el mensaje horizontalmente */
+            transform: translateX(-50%); /* Centra el mensaje horizontalmente */
+            background-color: rgba(128, 128, 128, 0.8); /* Fondo semi-transparente gris */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Ajusta el espaciado interno */
+            border-radius: 10px; /* Borde redondeado */
+            font-size: 13px; /* Tamaño de la fuente */
+            line-height: 1.2; /* Ajusta el espaciado entre líneas */
+            z-index: 1; /* Ajusta el índice Z para que esté sobre los círculos */
+        }
+
+    </style>
+</head>
+<body>
+    <iframe src="/Components/usr/navusr.html" style="width: 100%; height: 100px; border: none;"></iframe>
+
+    <!-- Contenedor de Aterrizajes-->
+    <div class="ListaAterrizajes" id="ListaAterrizajes">
+
+    </div>
+    <h1 class="titulo">Aproximacion e Informacion</h1>
+
+
+    <!-- Agregamos los círculos -->
+    <div class="circle" title="Dar al boton de emergencia si la prioridad es emergente"><span>Prioridad: A</span></div>
+    <div class="circle"><span>Vuelo: 241</span></div>
+    <div class="circle"><span>Piloto: Juan Perez</span></div>
+    <div class="circle"><span>Escala: No</span></div>
+    <div class="circle"><span>Tipo de Vuelo: Comercial</span></div>
+    <div class="circle"><span>Velocidad: 259km por hora</span></div>
+    <div class="circle"><span>Altitud: 914m</span></div>
+    <div class="circle"><span>Distancia: 30km por hora</span></div>
+    <div class="circle"><span>Pasajeros: 20</span></div>
+    <div class="circle"><span>Angulo de desenso: 3°</span></div>
+    <div class="circle"><span>Hora Estimada: 10:30am</span></div>
+    <div class="circle"><span>Trafico: Normal</span></div>
+    <div class="circleFinal">
+        <span>Combustible: 5000 litros</span>
+    </div>
+    <!-- Agrega más divs con la clase .circle y estilos personalizados para más círculos -->
+
+    <script src="/JS/Labels.js"></script>
+    <script src="/Interfaz/JS/Labels.js"></script>
+    <script>
+        var IDVuelo = 0;
+        const nombreAerolinea = "Avianca";
+        const numeroVuelo = 241;
+        const nombrePiloto = "Juan Pérez";
+        const prioridad1 = "A";
+        const prioridad2 = "C";
+
+        for (let i = 0; i < 10; i++) {
+            const codigoHTML = `
+                                                                                        <div class="flip-card">
+                                                                                            <div class="flip-card-inner">
+                                                                                                <div class="flip-card-front">
+                                                                                                    <img src="/Imagenes/Avianca.jpg" alt="Aeronave" style="width:300px;height:200px;">
+                                                                                                </div>
+                                                                                                <div class="flip-card-back" onclick='Menu(${numeroVuelo})'">
+                                                                                                    <h1>${nombreAerolinea}</h1>
+                                                                                                    <p>Vuelo: ${numeroVuelo}</p>
+                                                                                                    <p>Piloto: ${nombrePiloto}</p>
+                                                                                                    <p>Prioridad: ${prioridad1}</p>
+                                                                                                    <p>Prioridad: ${prioridad2}</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        `;
+            document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
+        }
+        function Menu(Vuelo) {
+            IDVuelo = Vuelo;
+        }
+    </script>
+</body>
+</html>
