@@ -22,30 +22,26 @@ nav {
     padding: 5px 0.7%;
     display: flex;
     justify-content: space-between;
-    align-items: end;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     z-index: 1;
-    font-family: "Poppins", sans-serif;
+    /*font-family: "Poppins", sans-serif;*/
 }
 
     nav ul {
         list-style: none;
         display: flex;
-        list-style: none;
-        align-items: center;
-        justify-content: space-around;
-        margin-right: 30px;
-        /* Ajusta este valor según sea necesario */
+        margin: 0; /* Elimina el margen para alinear correctamente los elementos */
     }
-
         nav ul li {
-            margin-left: 2.6rem;
+            margin-left: 1rem;
+            margin-right: 1rem;
         }
 
             nav ul li a {
+                
                 text-decoration: none;
                 color: #000;
-                font-size: 95%;
+                font-size: 80%;
                 font-weight: 400;
                 padding: 4px 8px;
                 border-radius: 5px;
@@ -59,17 +55,18 @@ nav {
 .mini-nav {
     background-color: #393939;
     border-radius: 10px;
-    padding: 1px;
+    padding: 20px;
     color: white;
     display: flex;
     align-items: center;
-    width: 500px;
-    height: 65px;
+    width: 320px;
+    height: 54px;
 }
 
     .mini-nav img {
         width: 70px;
         height: 58px;
+
     }
 
 .text-container p {
@@ -178,32 +175,4 @@ th {
 
 tbody {
     text-align: center;
-}
-
-.prioridad-alta,
-.prioridad-media,
-.prioridad-normal {
-    padding: 2px 8px;
-    /* Espacio alrededor del texto */
-    border-radius: 4px;
-    /* Borde redondeado */
-}
-
-.prioridad-alta {
-    background-color: #dc3545;
-    /* Color de fondo rojo */
-    color: white;
-    /* Color del texto */
-}
-
-.prioridad-media {
-    background-color: #ffc107;
-    /* Color de fondo amarillo */
-}
-
-.prioridad-normal {
-    background-color: #007bff;
-    /* Color de fondo azul */
-    color: white;
-    /* Color del texto */
 }

@@ -17,12 +17,12 @@
             /* Oculta el menú al principio */
             width: 320px;
             /* Menú más ancho */
-            height: 780px;
+            height: 710px;
             background-color: #CDCDCD;
             color: black;
             transition: left 0.3s ease;
             border-radius: 0 20px 20px 0; /* Bordes redondeados solo en las esquinas derechas */
-            padding: 18px;
+            padding: 10px;
             box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
         }
 
@@ -32,29 +32,50 @@
         }
 
         .col {
-            padding: 2px 0; /* Espacio entre columnas */
+            padding: 0px 0; /* Espacio entre columnas */
+            font-size: 16px; /* Tamaño de fuente para las columnas */
         }
 
         p {
             margin: 0; /* Elimina el margen predeterminado de los párrafos */
+            font-size: 10px; /* Tamaño de fuente para los párrafos */
         }
 
         /* Estilos para centrar los títulos */
         .col p {
             text-align: center;
+            font-size: 12px; /* Tamaño de fuente para los títulos */
         }
 
         /* Estilos para mostrar los datos debajo de los títulos */
         .col span {
             display: block;
             text-align: center;
+            font-size: 13px; /* Tamaño de fuente para los datos */
         }
+
         #imgAvion img {
             max-width: 100%; /* La imagen ocupará como máximo el ancho del contenedor */
-            height: auto; /* La altura de la imagen se ajustará automáticamente para mantener la proporción */
+            height: 160px; /* La altura de la imagen se ajustará automáticamente para mantener la proporción */
             display: block; /* Esto garantiza que la imagen no genere espacio adicional debajo de ella */
             margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
             border-radius: 30px;
+        }
+
+        #rowscontainer {
+            background-color: #E9E9E9; /* Cambia el color de fondo a gris claro */
+            border-radius: 10px 10px 10px 10px;
+            width: calc(110px + 180px); /* Calcula el ancho total sumando el valor del margen derecho */
+        }
+
+        #containerreport {
+            background-color: #6FC100; /* Color de fondo rojo */
+            position: absolute; /* Posicionamiento absoluto */
+            top: 80px; /* Espacio desde la parte superior */
+            left: 330px; /* Ancho del menú lateral */
+            right: 10px; /* Extiende hasta el borde derecho */
+            bottom: 50px; /* Extiende hasta el borde inferior */
+            border-radius: 10px 10px 10px 10px;
         }
     </style>
 </head>
@@ -109,12 +130,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     </li>
-                    <li>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="35" fill="currentColor"
-                             class="bi bi-person" viewBox="0 0 16 16">
-                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
-                        </svg>
-                    </li>
+
                 </ul>
             </nav>
         </header>
@@ -169,70 +185,74 @@
         <div class="row">
             <p><strong></strong> <span id="imgAvion"></span></p>
         </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Número de vuelo:</strong> <span id="lblNumeroVuelo"></span></p>
+        <div id="rowscontainer">
+            <div class="row">
+                <div class="col">
+                    <p><strong>Número Vuelo</strong> <span id="lblNumeroVuelo"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Aerolínea</strong> <span id="lblAerolinea"></span></p>
+                </div>
             </div>
-            <div class="col">
-                <p><strong>Aerolínea:</strong> <span id="lblAerolinea"></span></p>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Aeronave</strong> <span id="lblAeronave"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Estado Vuelo</strong> <span id="lblEstadoVuelo"></span></p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Aeronave:</strong> <span id="lblAeronave"></span></p>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Piloto</strong> <span id="lblPiloto"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Prioridad</strong> <span id="lblPrioridad"></span></p>
+                </div>
             </div>
-            <div class="col">
-                <p><strong>Estado de vuelo:</strong> <span id="lblEstadoVuelo"></span></p>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Origen</strong> <span id="lblOrigen"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Destino</strong> <span id="lblDestino"></span></p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Piloto:</strong> <span id="lblPiloto"></span></p>
-            </div>
-            <div class="col">
-                <p><strong>Prioridad:</strong> <span id="lblPrioridad"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Origen:</strong> <span id="lblOrigen"></span></p>
-            </div>
-            <div class="col">
-                <p><strong>Destino:</strong> <span id="lblDestino"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Tipo de vuelo:</strong> <span id="lblTipoVuelo"></span></p>
-            </div>
-            <div class="col">
-                <p><strong>Duración estimada:</strong> <span id="lblDuracionEstimada"></span></p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <p><strong>Hora de salida:</strong> <span id="lblHoraSalida"></span></p>
-            </div>
-            <div class="col">
-                <p><strong>Hora de llegada:</strong> <span id="lblHoraLlegada"></span></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <p><strong>Fecha de salida:</strong> <span id="lblFechaSalida"></span></p>
-            </div>
-            <div class="col">
-                <p><strong>Fecha de llegada:</strong> <span id="lblFechaLlegada"></span></p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <p><strong>Ruta:</strong> <span id="lblRuta"></span></p>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Tipo vuelo</strong> <span id="lblTipoVuelo"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Tiempo vuelo</strong> <span id="lblDuracionEstimada"></span></p>
+                </div>
             </div>
 
+            <div class="row">
+                <div class="col">
+                    <p><strong>Hora salida</strong> <span id="lblHoraSalida"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Hora llegada</strong> <span id="lblHoraLlegada"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p><strong>Fecha salida</strong> <span id="lblFechaSalida"></span></p>
+                </div>
+                <div class="col">
+                    <p><strong>Fecha llegada</strong> <span id="lblFechaLlegada"></span></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <p><strong>Ruta</strong> <span id="lblRuta"></span></p>
+                </div>
+            </div>
         </div>
+    </div>
+    <div id="containerreport">
+
     </div>
     
     <script src="/JS/Labels.js"></script>
@@ -249,7 +269,6 @@
             if (respuesta) {
                 // Convertir la respuesta a un objeto JavaScript
                 var datosVuelo = JSON.parse(respuesta);
-
                 var horaSalida = new Date(datosVuelo[0].HoraSalida);
                 var fechaSalida = horaSalida.toDateString(); // Obtiene la fecha en formato de cadena
                 var horaSalidaFormatted = horaSalida.toLocaleTimeString();
