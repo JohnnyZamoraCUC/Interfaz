@@ -32,7 +32,7 @@
         }
 
         .col {
-            padding: 5px 0; /* Espacio entre columnas */
+            padding: 2px 0; /* Espacio entre columnas */
         }
 
         p {
@@ -48,6 +48,13 @@
         .col span {
             display: block;
             text-align: center;
+        }
+        #imgAvion img {
+            max-width: 100%; /* La imagen ocupará como máximo el ancho del contenedor */
+            height: auto; /* La altura de la imagen se ajustará automáticamente para mantener la proporción */
+            display: block; /* Esto garantiza que la imagen no genere espacio adicional debajo de ella */
+            margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
+            border-radius: 30px;
         }
     </style>
 </head>
@@ -160,7 +167,7 @@
     </div>
     <div class="menu-lateral" id="menuLateral">
         <div class="row">
-            <h5> Imagen </h5>
+            <p><strong></strong> <span id="imgAvion"></span></p>
         </div>
         <div class="row">
             <div class="col">
@@ -199,7 +206,7 @@
                 <p><strong>Tipo de vuelo:</strong> <span id="lblTipoVuelo"></span></p>
             </div>
             <div class="col">
-                <p><strong>Duración estimada:</strong> <span id="lblDuracionEstimada"></span> minutos</p>
+                <p><strong>Duración estimada:</strong> <span id="lblDuracionEstimada"></span></p>
             </div>
         </div>
 
@@ -213,7 +220,10 @@
         </div>
 
         <div class="row">
-            <p><strong>Ruta:</strong> <span id="lblRuta"></span></p>
+            <div class="col">
+                <p><strong>Ruta:</strong> <span id="lblRuta"></span></p>
+            </div>
+      
         </div>
     </div>
     
@@ -231,6 +241,7 @@
             if (respuesta) {
                 // Convertir la respuesta a un objeto JavaScript
                 var datosVuelo = JSON.parse(respuesta);
+                $('#imgAvion').html('<img src="' + datosVuelo[0].AeronaveImagen + '">');
 
                 $('#lblNumeroVuelo').text(datosVuelo[0].NumeroVuelo);
                 $('#lblAerolinea').text(datosVuelo[0].Aerolinea);
