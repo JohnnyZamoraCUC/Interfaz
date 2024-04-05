@@ -52,14 +52,5 @@
         });
     });
 
-    // Obtener la respuesta del almacenamiento local del navegador
-    var respuesta = localStorage.getItem('respuestaAPI');
-    if (respuesta) {
-        // Mostrar la respuesta en la consola
-        console.log('Respuesta del API:', JSON.parse(respuesta));
-        // Limpiar la respuesta del almacenamiento local para evitar confusiones
-        localStorage.removeItem('respuestaAPI');
-    } else {
-        console.log('No se recibió respuesta del API.');
-    }
+
 });
