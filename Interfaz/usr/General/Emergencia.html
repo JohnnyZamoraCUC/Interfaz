@@ -15,14 +15,14 @@
             top: 80px;
             left: -280px;
             /* Oculta el menú al principio */
-            width: 350px;
+            width: 320px;
             /* Menú más ancho */
-            height: 91%;
+            height: 780px;
             background-color: #CDCDCD;
             color: black;
             transition: left 0.3s ease;
             border-radius: 0 20px 20px 0; /* Bordes redondeados solo en las esquinas derechas */
-            padding: 20px;
+            padding: 18px;
             box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
         }
 
@@ -218,12 +218,20 @@
                 <p><strong>Hora de llegada:</strong> <span id="lblHoraLlegada"></span></p>
             </div>
         </div>
+        <div class="row">
+            <div class="col">
+                <p><strong>Fecha de salida:</strong> <span id="lblFechaSalida"></span></p>
+            </div>
+            <div class="col">
+                <p><strong>Fecha de llegada:</strong> <span id="lblFechaLlegada"></span></p>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col">
                 <p><strong>Ruta:</strong> <span id="lblRuta"></span></p>
             </div>
-      
+
         </div>
     </div>
     
@@ -241,8 +249,16 @@
             if (respuesta) {
                 // Convertir la respuesta a un objeto JavaScript
                 var datosVuelo = JSON.parse(respuesta);
-                $('#imgAvion').html('<img src="' + datosVuelo[0].AeronaveImagen + '">');
 
+                var horaSalida = new Date(datosVuelo[0].HoraSalida);
+                var fechaSalida = horaSalida.toDateString(); // Obtiene la fecha en formato de cadena
+                var horaSalidaFormatted = horaSalida.toLocaleTimeString();
+
+                var horaLlegada = new Date(datosVuelo[0].HoraLlegada);
+                var fechaLlegada = horaLlegada.toDateString(); // Obtiene la fecha en formato de cadena
+                var horaLlegadaFormatted = horaLlegada.toLocaleTimeString();
+
+                $('#imgAvion').html('<img src="' + datosVuelo[0].AeronaveImagen + '">');
                 $('#lblNumeroVuelo').text(datosVuelo[0].NumeroVuelo);
                 $('#lblAerolinea').text(datosVuelo[0].Aerolinea);
                 $('#lblAeronave').text(datosVuelo[0].Aeronave);
@@ -253,8 +269,12 @@
                 $('#lblOrigen').text(datosVuelo[0].Origen);
                 $('#lblDestino').text(datosVuelo[0].Destino);
                 $('#lblRuta').text(datosVuelo[0].Ruta);
-                $('#lblHoraSalida').text(datosVuelo[0].HoraSalida);
-                $('#lblHoraLlegada').text(datosVuelo[0].HoraLlegada);
+                $('#lblHoraSalida').text(horaSalidaFormatted);
+                $('#lblHoraLlegada').text(horaLlegadaFormatted);
+
+                $('#lblFechaSalida').text(fechaSalida);
+                $('#lblFechaLlegada').text(fechaLlegada);
+
                 $('#lblDuracionEstimada').text(datosVuelo[0].DuracionEstimada);
                 console.log('Respuesta del API:', JSON.parse(respuesta));
 
