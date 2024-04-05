@@ -18,7 +18,7 @@
             width: 320px;
             /* Menú más ancho */
             height: 710px;
-            background-color: #CDCDCD;
+            background-color: #5E5E5E;
             color: black;
             transition: left 0.3s ease;
             border-radius: 0 20px 20px 0; /* Bordes redondeados solo en las esquinas derechas */
@@ -27,8 +27,9 @@
         }
 
         .row {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Línea de separación entre filas */
+            border-bottom: 1px solid rgba(23, 32, 42, 0.2); /* Línea de separación entre filas */
             padding: 10px 0; /* Espacio entre filas */
+           
         }
 
         .col {
@@ -69,13 +70,17 @@
         }
 
         #containerreport {
-            background-color: #6FC100; /* Color de fondo rojo */
+            background-color: #F9F9F9; /* Color de fondo rojo */
             position: absolute; /* Posicionamiento absoluto */
             top: 80px; /* Espacio desde la parte superior */
             left: 330px; /* Ancho del menú lateral */
             right: 10px; /* Extiende hasta el borde derecho */
             bottom: 50px; /* Extiende hasta el borde inferior */
             border-radius: 10px 10px 10px 10px;
+        }
+        #lbltitulo {
+            margin-top: 20px; /* Ajusta el margen superior para separar el título del borde superior */
+            text-align: center; /* Centra el texto horizontalmente */
         }
     </style>
 </head>
@@ -252,7 +257,11 @@
         </div>
     </div>
     <div id="containerreport">
-
+        <div id="lbltitulo">
+            <h5>
+                Historial de Reportes
+                </h5>
+            </div>
     </div>
     
     <script src="/JS/Labels.js"></script>
