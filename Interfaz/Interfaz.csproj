@@ -128,6 +128,7 @@
     <Content Include="Imagenes\Avianca.jpg" />
     <Content Include="Imagenes\Logo.PNG" />
     <Content Include="JS\auth.js" />
+    <Content Include="JS\Emergencia.js" />
     <Content Include="JS\Labels.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -186,8 +187,9 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="usr\Aproximacion\Aproximacion.html" />
+    <Content Include="usr\General\Emergencia.html" />
     <Content Include="usr\General\Radar.html" />
-    <Content Include="usr\General\home.html" />
+    <Content Include="usr\General\Home.html" />
     <Content Include="usr\General\Labels.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="usr\Aterrizaje\Aterrizaje.html" />
