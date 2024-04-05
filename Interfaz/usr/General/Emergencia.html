@@ -8,80 +8,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="/CSS/navusr.css" rel="stylesheet">
+    <link href="/CSS/Emergencia.css" rel="stylesheet">
     <style>
-        /* Estilos para el menú lateral */
-        .menu-lateral {
-            position: absolute;
-            top: 80px;
-            left: -280px;
-            /* Oculta el menú al principio */
-            width: 320px;
-            /* Menú más ancho */
-            height: 710px;
-            background-color: #5E5E5E;
-            color: black;
-            transition: left 0.3s ease;
-            border-radius: 0 20px 20px 0; /* Bordes redondeados solo en las esquinas derechas */
-            padding: 10px;
-            box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
-        }
-
-        .row {
-            border-bottom: 1px solid rgba(23, 32, 42, 0.2); /* Línea de separación entre filas */
-            padding: 10px 0; /* Espacio entre filas */
-           
-        }
-
-        .col {
-            padding: 0px 0; /* Espacio entre columnas */
-            font-size: 16px; /* Tamaño de fuente para las columnas */
-        }
-
-        p {
-            margin: 0; /* Elimina el margen predeterminado de los párrafos */
-            font-size: 10px; /* Tamaño de fuente para los párrafos */
-        }
-
-        /* Estilos para centrar los títulos */
-        .col p {
-            text-align: center;
-            font-size: 12px; /* Tamaño de fuente para los títulos */
-        }
-
-        /* Estilos para mostrar los datos debajo de los títulos */
-        .col span {
-            display: block;
-            text-align: center;
-            font-size: 13px; /* Tamaño de fuente para los datos */
-        }
-
-        #imgAvion img {
-            max-width: 100%; /* La imagen ocupará como máximo el ancho del contenedor */
-            height: 160px; /* La altura de la imagen se ajustará automáticamente para mantener la proporción */
-            display: block; /* Esto garantiza que la imagen no genere espacio adicional debajo de ella */
-            margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
-            border-radius: 30px;
-        }
-
-        #rowscontainer {
-            background-color: #E9E9E9; /* Cambia el color de fondo a gris claro */
-            border-radius: 10px 10px 10px 10px;
-            width: calc(110px + 180px); /* Calcula el ancho total sumando el valor del margen derecho */
-        }
-
-        #containerreport {
-            background-color: #F9F9F9; /* Color de fondo rojo */
-            position: absolute; /* Posicionamiento absoluto */
-            top: 80px; /* Espacio desde la parte superior */
-            left: 330px; /* Ancho del menú lateral */
-            right: 10px; /* Extiende hasta el borde derecho */
-            bottom: 50px; /* Extiende hasta el borde inferior */
-            border-radius: 10px 10px 10px 10px;
-        }
         #lbltitulo {
             margin-top: 20px; /* Ajusta el margen superior para separar el título del borde superior */
             text-align: center; /* Centra el texto horizontalmente */
         }
+
+            #lbltitulo h5 {
+                color: black; /* Establece el color del texto a negro */
+            }
     </style>
 </head>
 
@@ -267,52 +203,7 @@
     <script src="/JS/Labels.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/JS/Emergencia.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Mostrar el menú lateral automáticamente al cargar la página
-            $('#menuLateral').css('left', '0');
-            $('#contenidoPrincipal').css('margin-left', '250px'); // Ajusta el contenido principal
-
-            // Obtener la respuesta del almacenamiento local del navegador
-            var respuesta = localStorage.getItem('respuestaAPI');
-            if (respuesta) {
-                // Convertir la respuesta a un objeto JavaScript
-                var datosVuelo = JSON.parse(respuesta);
-                var horaSalida = new Date(datosVuelo[0].HoraSalida);
-                var fechaSalida = horaSalida.toDateString(); // Obtiene la fecha en formato de cadena
-                var horaSalidaFormatted = horaSalida.toLocaleTimeString();
-
-                var horaLlegada = new Date(datosVuelo[0].HoraLlegada);
-                var fechaLlegada = horaLlegada.toDateString(); // Obtiene la fecha en formato de cadena
-                var horaLlegadaFormatted = horaLlegada.toLocaleTimeString();
-
-                $('#imgAvion').html('<img src="' + datosVuelo[0].AeronaveImagen + '">');
-                $('#lblNumeroVuelo').text(datosVuelo[0].NumeroVuelo);
-                $('#lblAerolinea').text(datosVuelo[0].Aerolinea);
-                $('#lblAeronave').text(datosVuelo[0].Aeronave);
-                $('#lblEstadoVuelo').text(datosVuelo[0].EstadoVuelo);
-                $('#lblPiloto').text(datosVuelo[0].PilotoNombre + ' ' + datosVuelo[0].PilotoApellido);
-                $('#lblPrioridad').text(datosVuelo[0].Prioridad);
-                $('#lblTipoVuelo').text(datosVuelo[0].TipoVuelo);
-                $('#lblOrigen').text(datosVuelo[0].Origen);
-                $('#lblDestino').text(datosVuelo[0].Destino);
-                $('#lblRuta').text(datosVuelo[0].Ruta);
-                $('#lblHoraSalida').text(horaSalidaFormatted);
-                $('#lblHoraLlegada').text(horaLlegadaFormatted);
-
-                $('#lblFechaSalida').text(fechaSalida);
-                $('#lblFechaLlegada').text(fechaLlegada);
-
-                $('#lblDuracionEstimada').text(datosVuelo[0].DuracionEstimada);
-                console.log('Respuesta del API:', JSON.parse(respuesta));
-
-                // Limpiar la respuesta del almacenamiento local para evitar confusiones
-                localStorage.removeItem('respuestaAPI');
-            } else {
-                console.log('No se recibió respuesta del API.');
-            }
-        });
-    </script>
+    <script src="/JS/Menulateral.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>

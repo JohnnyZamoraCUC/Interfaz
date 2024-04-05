@@ -121,6 +121,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="CSS\Aterrizaje.css" />
     <Content Include="CSS\Cards.css" />
+    <Content Include="CSS\Emergencia.css" />
     <Content Include="CSS\index.css" />
     <Content Include="CSS\navusr.css" />
     <Content Include="favicon.ico" />
@@ -130,6 +131,7 @@
     <Content Include="JS\auth.js" />
     <Content Include="JS\Emergencia.js" />
     <Content Include="JS\Labels.js" />
+    <Content Include="JS\Menulateral.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />

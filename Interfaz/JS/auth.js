@@ -63,7 +63,7 @@ document.getElementById("tokenForm").addEventListener("submit", function (event)
     })
         .then(function (response) {
             if (response.status === 200) {
-                window.location.href = "/Interfaz/usr/Home.html";
+                window.location.href = "/Interfaz/usr/General/Home.html";
             } else {
                 console.log("Respuesta del servidor:", response);
             }
