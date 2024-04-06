@@ -7,7 +7,7 @@
     width: 320px;
     /* Menú más ancho */
     height: 710px;
-    background-color: #5E5E5E;
+    background-color: #5C5E5F;
     color: black;
     transition: left 0.3s ease;
     border-radius: 0 20px 20px 0; /* Bordes redondeados solo en las esquinas derechas */
@@ -66,3 +66,27 @@ p {
     bottom: 50px; /* Extiende hasta el borde inferior */
     border-radius: 10px 10px 10px 10px;
 }
+
+.modal-header-little {
+    background-color: #5C5E5F;
+    /* Cambia el color de fondo a amarillo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    border-top-left-radius: 10px; /* Agrega bordes redondeados solo en la esquina superior izquierda */
+    border-top-right-radius: 10px; /* Agrega bordes redondeados solo en la esquina superior derecha */
+    padding: 7px; /* Agrega espacio interno para mantener el borde redondeado visible */
+}
+
+
+#lbltitulo {
+    margin-top: 0;
+    text-align: center; /* Centra el texto horizontalmente */
+
+}
+
+    #lbltitulo h5 {
+        color: white; /* Establece el color del texto a negro */
+       
+    }

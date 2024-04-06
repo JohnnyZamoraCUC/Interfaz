@@ -132,6 +132,7 @@
     <Content Include="JS\Emergencia.js" />
     <Content Include="JS\Labels.js" />
     <Content Include="JS\Menulateral.js" />
+    <Content Include="JS\Radar.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
