@@ -18,7 +18,7 @@ html {
 
 nav {
     position: relative;
-    background-color: #ffffff;
+    background-color: #212529;
     /* Cambiado a 'fixed' */
     padding: 5px 0.7%;
     display: flex;
@@ -36,12 +36,12 @@ nav {
         nav ul li {
             margin-left: 1rem;
             margin-right: 1rem;
+            color: #FFFFFF; /* Color blanco para el texto de los enlaces */
         }
 
             nav ul li a {
-                
                 text-decoration: none;
-                color: #000;
+                color: #FFFFFF; /* Color blanco para el texto de los enlaces */
                 font-size: 80%;
                 font-weight: 400;
                 padding: 4px 8px;
@@ -50,11 +50,11 @@ nav {
             }
 
                 nav ul li a:hover {
-                    background-color: #f5f5f5;
+                    background-color: #F1C40F;
                 }
 
 .mini-nav {
-    background-color: #393939;
+    background-color: #4A545F;
     border-radius: 10px;
     padding: 20px;
     color: white;
