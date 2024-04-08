@@ -4,17 +4,16 @@
     $('#contenidoPrincipal').css('margin-left', '250px'); // Ajusta el contenido principal
     $('#tipoEmergenciaSelect, #equipoEmergenciaSelect, #procedimientoSelect, #prioridadSelect, #altitudEmergenciaSelect,#fechaHoraInicioInput  ,#fechaHoraFinInput, #descripcionInput').prop('disabled', true);
 
-    // Obtener la respuesta del almacenamiento local del navegador
+
     var respuesta = localStorage.getItem('respuestaAPI');
     if (respuesta) {
-        // Convertir la respuesta a un objeto JavaScript
         var datosVuelo = JSON.parse(respuesta);
         var horaSalida = new Date(datosVuelo[0].HoraSalida);
-        var fechaSalida = horaSalida.toDateString(); // Obtiene la fecha en formato de cadena
+        var fechaSalida = horaSalida.toDateString(); 
         var horaSalidaFormatted = horaSalida.toLocaleTimeString();
 
         var horaLlegada = new Date(datosVuelo[0].HoraLlegada);
-        var fechaLlegada = horaLlegada.toDateString(); // Obtiene la fecha en formato de cadena
+        var fechaLlegada = horaLlegada.toDateString(); 
         var horaLlegadaFormatted = horaLlegada.toLocaleTimeString();
 
         $('#imgAvion').html('<img src="' + datosVuelo[0].AeronaveImagen + '">');
@@ -33,21 +32,20 @@
         $('#lblFechaSalida').text(fechaSalida);
         $('#lblFechaLlegada').text(fechaLlegada);
         $('#lblDuracionEstimada').text(datosVuelo[0].DuracionEstimada);
+        $('#lblidvuelo').text(datosVuelo[0].IdVuelo);
         
         console.log('Respuesta del API:', JSON.parse(respuesta));
-
-        // Limpiar la respuesta del almacenamiento local para evitar confusiones
         localStorage.removeItem('respuestaAPI');
         habilitarCamposSeleccion();
+   
     } else {
         console.log('No se recibió respuesta del API.');
     }
+   
 });
 // URL del API
 function habilitarCamposSeleccion() {
     $('#tipoEmergenciaSelect, #equipoEmergenciaSelect, #procedimientoSelect, #prioridadSelect, #altitudEmergenciaSelect,#fechaHoraInicioInput  ,#fechaHoraFinInput, #descripcionInput').prop('disabled', false);
-
-    // Llamar a las funciones para cargar dinámicamente los dropdowns
     cargarTiposEmergencia();
     cargarPrioridadesAterrizaje();
     cargarAltitudesEmergencia();
@@ -56,12 +54,8 @@ function habilitarCamposSeleccion() {
 }
 const ApiUrlEmergencia = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/ObtenerTiposEquiposProcedimientos';
 const prioridadesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/PrioridadAterizaje';
-
-// URL de la API para obtener las altitudes de emergencia
 const altitudesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/AltitudEmergencia';
 
-
-// Función para cargar el tipo de emergencia en el primer dropdown
 const cargarTiposEmergencia = async () => {
     try {
         const response = await fetch(ApiUrlEmergencia);
@@ -74,15 +68,12 @@ const cargarTiposEmergencia = async () => {
             option.text = tipo.Tipo;
             tipoEmergenciaSelect.appendChild(option);
         });
-
-        // Llamar a la función para cargar equipos basados en el tipo de emergencia seleccionado
         cargarEquiposEmergencia();
     } catch (error) {
         console.error('Error al cargar tipos de emergencia:', error);
     }
 };
 
-// Función para cargar los equipos basados en el tipo de emergencia seleccionado
 const cargarEquiposEmergencia = async () => {
     const tipoEmergenciaSelect = document.getElementById('tipoEmergenciaSelect');
     const selectedTipoId = tipoEmergenciaSelect.value;
@@ -104,11 +95,10 @@ const cargarEquiposEmergencia = async () => {
         });
     }
 
-    // Llamar a la función para cargar procedimientos basados en el equipo seleccionado
+ 
     cargarProcedimientos();
 };
 
-// Función para cargar los procedimientos basados en el equipo seleccionado
 const cargarProcedimientos = async () => {
     const equipoEmergenciaSelect = document.getElementById('equipoEmergenciaSelect');
     const selectedEquipoId = equipoEmergenciaSelect.value;
@@ -130,6 +120,11 @@ const cargarProcedimientos = async () => {
         });
     }
 };
+// Event listener para cargar equipos al cambiar el tipo de emergencia seleccionado
+document.getElementById('tipoEmergenciaSelect').addEventListener('change', cargarEquiposEmergencia);
+
+// Event listener para cargar procedimientos al cambiar el equipo seleccionado
+document.getElementById('equipoEmergenciaSelect').addEventListener('change', cargarProcedimientos);
 
 const cargarPrioridadesAterrizaje = async () => {
     try {
@@ -148,7 +143,6 @@ const cargarPrioridadesAterrizaje = async () => {
     }
 };
 
-// Función para cargar las altitudes de emergencia
 const cargarAltitudesEmergencia = async () => {
     try {
         const response = await fetch(altitudesUrl);
@@ -185,3 +179,5 @@ document.addEventListener('DOMContentLoaded', () => {
         modalDescripcion.hide(); // Ocultar el modal
     });
 });
+
+
