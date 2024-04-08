@@ -14,27 +14,36 @@
     <script src="https://unpkg.com/leaflet-curve"></script>
 
     <style>
-        select {
-            width: 40%;
-            padding: 1px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-        input {
-            width: 40%;
-            padding: 1px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            margin-bottom: 20px;
+
+        .card .form-group {
+            margin-bottom: 6px; /* Reducción del margen inferior entre elementos */
         }
 
-        button {
-            padding: 10px 20px;
-            font-size: 1rem;
+        .card h6 {
+            font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+            margin-bottom: 3px; /* Reducción del margen inferior */
         }
+        .card h5 {
+            font-size: 20px; /* Tamaño de fuente más pequeño */
+            margin-bottom: 2px; /* Reducción del margen inferior */
+        }
+        .card select,
+        .card input {
+            width: 40%; /* Utiliza el 100% del ancho disponible */
+            padding: 4px; /* Reducción del espacio interno */
+            border-radius: 3px; /* Bordes más suaves */
+            border: 1px solid #ccc;
+            font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+            margin-bottom: 6px; /* Reducción del margen inferior */
+        }
+
+        .card button {
+            width: auto; /* Ancho automático según contenido */
+            padding: 4px 10px; /* Reducción del padding */
+            font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+        }
+
+
 
         .card {
             width: 60rem;
@@ -45,7 +54,8 @@
         }
 
         #cardRadarContainer {
-            width: 35rem;
+            width: 30rem;
+            height: 18rem;
             margin-left: auto; /* Moverá el elemento hacia la derecha */
         }
         .card-body {
@@ -57,19 +67,19 @@
         .card-title {
             font-size: 1.25rem;
             /* Ajusta el tamaño de fuente según tus necesidades */
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.1rem;
         }
 
         #map {
             /* Estilos para el contenedor del mapa */
             width: 100%;
-            height: 250px;
+            height: 200px;
             border: 1px solid #ccc;
             /* Puedes agregar más estilos para el mapa según lo requieras */
         }
 
         #cardCreateEmergency {
-            height: 800px; /* Ajusta la altura según tus necesidades */
+            height: 700px; /* Ajusta la altura según tus necesidades */
 
         }
         /* Estilos para la tarjeta de notificación */
@@ -304,8 +314,8 @@
                 <div class="card" id="cardCreateEmergency">
                     <div class="card-body">
                         <h5 class="card-title">Crear Emergencia</h5>
-                        <div class="card" style="max-width: 600px; margin: 20px auto; padding: 20px; margin-left: 10px; margin-right: 10px;">
-                            <div>
+                        <div class="card" style="max-width: 600px; margin: 20px auto; padding: 20px; margin-left: 10px; margin-right: 10px; height:38rem">
+                            
 
                                 <div class="form-group">
                                     <h6>Tipo de Emergencia:</h6>
@@ -363,12 +373,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex justify-content-center align-items-start">
                 <div class="card" id="cardRadarContainer">
                     <div class="card-body">
                         <h5 class="card-title">Radar</h5>
@@ -376,6 +386,8 @@
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
     <script>
