@@ -7,17 +7,73 @@
     <title>Pagina Principal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet">
-    <link href="/Interfaz//CSS/Emergencia.css" rel="stylesheet">
+    <link href="/CSS/navusr.css" rel="stylesheet">
+    <link href="/CSS/Emergencia.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-curve"></script>
 
     <style>
-        #map {
-            height: 250px;
+        select {
+            width: 40%;
+            padding: 1px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 40%;
+            padding: 1px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
 
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
+        .card {
+            width: 60rem;
+            margin-top: 10px;
+            /* Puedes ajustar los márgenes según tus necesidades */
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        #cardRadarContainer {
+            width: 35rem;
+            margin-left: auto; /* Moverá el elemento hacia la derecha */
+        }
+        .card-body {
+            /* Ajusta el padding según tus necesidades */
+            padding: 1.25rem;
+
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            /* Ajusta el tamaño de fuente según tus necesidades */
+            margin-bottom: 0.75rem;
+        }
+
+        #map {
+            /* Estilos para el contenedor del mapa */
+            width: 100%;
+            height: 250px;
+            border: 1px solid #ccc;
+            /* Puedes agregar más estilos para el mapa según lo requieras */
+        }
+
+        #cardCreateEmergency {
+            height: 800px; /* Ajusta la altura según tus necesidades */
+
+        }
+
+    
     </style>
 </head>
 
@@ -198,129 +254,240 @@
                 <h5 class="modal-title-lbltitulo">Reporte de Incidencia</h5>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="card" id="cardreportdinamicContainer" style="width: 15rem; margin-top: 10px; margin-left: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">Reporte Detalles</h5>
-                </div>
-            </div>
 
-            <div class="card" id="cardRadarContainer" style="width: 35rem; margin-top: 10px; margin-right: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">Radar</h5>
-                    <div id="map">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card" id="cardCreateEmergency">
+                    <div class="card-body">
+                        <h5 class="card-title">Crear Emergencia</h5>
+                        <div class="card" style="max-width: 600px; margin: 20px auto; padding: 20px; margin-left: 10px; margin-right: 10px;">
+                            <div>
+
+                                <div class="form-group">
+                                    <h6>Tipo de Emergencia:</h6>
+                                    <select id="tipoEmergenciaSelect"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>Equipo de Emergencia:</h6>
+                                    <select id="equipoEmergenciaSelect"></select>
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>Procedimiento:</h6>
+                                    <select id="procedimientoSelect"></select>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Proridad de Aterrizaje:</h6>
+                                    <select id="prioridadSelect"></select>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Altitud de Emergencia:</h6>
+                                    <select id="altitudEmergenciaSelect"></select>
+                                </div>
+                                <div class="form-group">
+                                    <h6>Fecha y Hora de Inicio:</h6>
+                                    <input type="datetime-local" id="fechaHoraInicioInput" name="fechaHoraInicio">
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>Fecha y Hora de Fin:</h6>
+                                    <input type="datetime-local" id="fechaHoraFinInput" name="fechaHoraFin">
+                                </div>
+                                <div class="form-group">
+                                    <h6>Descripción:</h6>
+                                    <input type="text" id="descripcionInput" name="descripcion" placeholder="Ingrese una descripción...">
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-success" style="margin-top: 20px; margin-left: 150px;">Realizar Reporte</button>
+                                </div>
+                                <!-- Modal para ingresar la descripción -->
+                                <div class="modal fade" id="modalDescripcion" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Descripcion de Emergencia</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <textarea id="descripcionTextarea" class="form-control" rows="5" placeholder="Ingrese una descripción..."></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" id="guardarDescripcion">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-
-
-    </div>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Detalles del Vuelo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Aquí se mostrarán dinámicamente los detalles del vuelo -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <div class="col-md-4">
+                <div class="card" id="cardRadarContainer">
+                    <div class="card-body">
+                        <h5 class="card-title">Radar</h5>
+                        <div id="map"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
+        // URL del API
+        const ApiUrlEmergencia = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/ObtenerTiposEquiposProcedimientos';
+        const prioridadesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/PrioridadAterizaje';
+
+        // URL de la API para obtener las altitudes de emergencia
+        const altitudesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/AltitudEmergencia';
+
+
+        // Función para cargar el tipo de emergencia en el primer dropdown
+        const cargarTiposEmergencia = async () => {
+            try {
+                const response = await fetch(ApiUrlEmergencia);
+                const data = await response.json();
+
+                const tipoEmergenciaSelect = document.getElementById('tipoEmergenciaSelect');
+                data.forEach(tipo => {
+                    const option = document.createElement('option');
+                    option.value = tipo.IdTipoEmergencia;
+                    option.text = tipo.Tipo;
+                    tipoEmergenciaSelect.appendChild(option);
+                });
+
+                // Llamar a la función para cargar equipos basados en el tipo de emergencia seleccionado
+                cargarEquiposEmergencia();
+            } catch (error) {
+                console.error('Error al cargar tipos de emergencia:', error);
+            }
+        };
+
+        // Función para cargar los equipos basados en el tipo de emergencia seleccionado
+        const cargarEquiposEmergencia = async () => {
+            const tipoEmergenciaSelect = document.getElementById('tipoEmergenciaSelect');
+            const selectedTipoId = tipoEmergenciaSelect.value;
+
+            const response = await fetch(ApiUrlEmergencia);
+            const data = await response.json();
+
+            const equiposEmergenciaSelect = document.getElementById('equipoEmergenciaSelect');
+            equiposEmergenciaSelect.innerHTML = '';
+
+            const tipoSeleccionado = data.find(tipo => tipo.IdTipoEmergencia === parseInt(selectedTipoId));
+
+            if (tipoSeleccionado) {
+                tipoSeleccionado.Equipos.forEach(equipo => {
+                    const option = document.createElement('option');
+                    option.value = equipo.IdEquipoEmergencia;
+                    option.text = equipo.NombreEquipo;
+                    equiposEmergenciaSelect.appendChild(option);
+                });
+            }
+
+            // Llamar a la función para cargar procedimientos basados en el equipo seleccionado
+            cargarProcedimientos();
+        };
+
+        // Función para cargar los procedimientos basados en el equipo seleccionado
+        const cargarProcedimientos = async () => {
+            const equipoEmergenciaSelect = document.getElementById('equipoEmergenciaSelect');
+            const selectedEquipoId = equipoEmergenciaSelect.value;
+
+            const response = await fetch(ApiUrlEmergencia);
+            const data = await response.json();
+
+            const procedimientoSelect = document.getElementById('procedimientoSelect');
+            procedimientoSelect.innerHTML = '';
+
+            const equipoSeleccionado = data.flatMap(tipo => tipo.Equipos).find(equipo => equipo.IdEquipoEmergencia === parseInt(selectedEquipoId));
+
+            if (equipoSeleccionado) {
+                equipoSeleccionado.Procedimientos.forEach(procedimiento => {
+                    const option = document.createElement('option');
+                    option.value = procedimiento.IdProcedimiento;
+                    option.text = procedimiento.Nombre;
+                    procedimientoSelect.appendChild(option);
+                });
+            }
+        };
+
+        // Event listeners para cargar dinámicamente los dropdowns
         document.addEventListener('DOMContentLoaded', () => {
-            const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencia/ObtenerReportes';
+            cargarTiposEmergencia();
 
-            const fetchEmergencyData = async () => {
-                try {
-                    const response = await fetch(apiUrl);
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching emergency data:', error);
-                    return [];
-                }
-            };
+            document.getElementById('tipoEmergenciaSelect').addEventListener('change', cargarEquiposEmergencia);
+            document.getElementById('equipoEmergenciaSelect').addEventListener('change', cargarProcedimientos);
+        });
+        const cargarPrioridadesAterrizaje = async () => {
+            try {
+                const response = await fetch(prioridadesUrl);
+                const prioridadesData = await response.json();
 
-            const renderEmergencyCards = async () => {
-                const container = document.getElementById('cardreportdinamicContainer');
-                const emergencies = await fetchEmergencyData();
-
-                emergencies.forEach(emergency => {
-                    const card = document.createElement('div');
-                    card.classList.add('card', 'm-1');
-                    card.style.width = '10rem';
-
-                    const cardBody = document.createElement('div');
-                    cardBody.classList.add('card-body');
-
-                    const button = document.createElement('button');
-                    button.classList.add('btn', 'btn-primary', 'btn-vuelo');
-                    button.textContent = `Vuelo ${emergency.DatoVuelo}`;
-                    button.dataset.emergencyId = emergency.IdEmergencia;
-
-                    button.addEventListener('click', () => {
-                        openFlightDetailsModal(emergency);
-                    });
-
-                    cardBody.appendChild(button);
-                    card.appendChild(cardBody);
-                    container.appendChild(card);
+                const prioridadSelect = document.getElementById('prioridadSelect');
+                prioridadesData.forEach(prioridad => {
+                    const option = document.createElement('option');
+                    option.value = prioridad.IdPrioridadAterrizaje;
+                    option.textContent = prioridad.Descripcion;
+                    prioridadSelect.appendChild(option);
                 });
-            };
+            } catch (error) {
+                console.error('Error al cargar las prioridades de aterrizaje:', error);
+            }
+        };
 
-            const openFlightDetailsModal = (emergency) => {
-                const modalTitle = document.getElementById('staticBackdropLabel');
-                modalTitle.textContent = `Detalles del Vuelo ${emergency.DatoVuelo}`;
+        // Función para cargar las altitudes de emergencia
+        const cargarAltitudesEmergencia = async () => {
+            try {
+                const response = await fetch(altitudesUrl);
+                const altitudesData = await response.json();
 
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido previo del modal
-
-                // Crear elementos para mostrar todos los detalles del vuelo
-                const detailsList = document.createElement('ul');
-                detailsList.classList.add('list-group');
-
-                const flightDetails = Object.entries(emergency);
-
-                flightDetails.forEach(([key, value]) => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('list-group-item');
-                    listItem.innerHTML = `<strong>${key}:</strong> ${value}`;
-                    detailsList.appendChild(listItem);
+                const altitudSelect = document.getElementById('altitudEmergenciaSelect');
+                altitudesData.forEach(altitud => {
+                    const option = document.createElement('option');
+                    option.value = altitud.IdAltitudEmergencia;
+                    option.textContent = `${altitud.Altitud} Metros`;
+                    altitudSelect.appendChild(option);
                 });
+            } catch (error) {
+                console.error('Error al cargar las altitudes de emergencia:', error);
+            }
+        };
 
-                // Agregar la lista de detalles al modal body
-                modalBody.appendChild(detailsList);
-
-                // Mostrar el modal de Detalles del Vuelo
-                const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-                flightModal.show();
-            };
-
-            const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-
-            // Limpiar el modal cuando se cierra
-            flightModal._element.addEventListener('hidden.bs.modal', () => {
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido del modal al cerrarlo
-            });
-
-            renderEmergencyCards();
+        // Event listener para cargar los datos al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarPrioridadesAterrizaje();
+            cargarAltitudesEmergencia();
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const descripcionInput = document.getElementById('descripcionInput');
+            const modalDescripcion = new bootstrap.Modal(document.getElementById('modalDescripcion'));
+            const descripcionTextarea = document.getElementById('descripcionTextarea');
+            const guardarDescripcionBtn = document.getElementById('guardarDescripcion');
+
+            // Mostrar modal al hacer clic en el campo de entrada
+            descripcionInput.addEventListener('click', () => {
+                modalDescripcion.show(); // Mostrar el modal
+                descripcionTextarea.value = descripcionInput.value; // Iniciar el textarea con el valor actual
+            });
+
+            // Acción al hacer clic en Guardar
+            guardarDescripcionBtn.addEventListener('click', () => {
+                descripcionInput.value = descripcionTextarea.value; // Asignar el valor del textarea al campo de entrada
+                modalDescripcion.hide(); // Ocultar el modal
+            });
+        });
 
     </script>
-    <script src="/Interfaz//JS/Labels.js"></script>
+    
+
+    <script src="/JS/Labels.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/Interfaz//JS/Emergencia.js"></script>
-    <script src="/Interfaz//JS/Menulateral.js"></script>
-    <script src="/Interfaz//JS/Radar.js"></script>
+    <script src="/JS/Emergencia.js"></script>
+    <script src="/JS/Menulateral.js"></script>
+    <script src="/JS/Radar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>

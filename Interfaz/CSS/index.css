@@ -86,10 +86,7 @@ nav {
 
 /* Estilos específicos de section.css */
 
-section {
-    view-timeline: --scroll;
-    height: 100vh;
-}
+
 
 h1, h2, span {
     font-family: serif;
@@ -113,7 +110,6 @@ h2 {
     top: 20%;
     left: 50%;
     margin: 0;
-    translate: -50% -50%;
     width: 100%;
 }
 

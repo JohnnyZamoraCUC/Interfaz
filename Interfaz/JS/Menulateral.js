@@ -32,6 +32,7 @@
         $('#lblFechaSalida').text(fechaSalida);
         $('#lblFechaLlegada').text(fechaLlegada);
         $('#lblDuracionEstimada').text(datosVuelo[0].DuracionEstimada);
+        
         console.log('Respuesta del API:', JSON.parse(respuesta));
 
         // Limpiar la respuesta del almacenamiento local para evitar confusiones
@@ -40,3 +41,4 @@
         console.log('No se recibió respuesta del API.');
     }
 });
+
