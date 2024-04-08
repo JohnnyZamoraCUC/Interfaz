@@ -1,4 +1,4 @@
-﻿body, html {
+body, html {
     margin: 0;
     padding: 0;
 }
@@ -88,70 +88,3 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
-
-/*CSS de botones*/
-.btn {
-    width: 6.5em;
-    height: 2.3em;
-    margin: 0.5em;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 0.625em;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-button:hover {
-    color: black;
-}
-
-button:after {
-    content: "";
-    background: white;
-    position: absolute;
-    z-index: -1;
-    left: -20%;
-    right: -20%;
-    top: 0;
-    bottom: 0;
-    transform: skewX(-45deg) scale(0, 1);
-    transition: all 0.5s;
-}
-
-button:hover:after {
-    transform: skewX(-45deg) scale(1, 1);
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-}
-
-.BtnMenu {
-    background-color: #04AA6D;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 6px;
-    width: 200px;
-    height: 75px;
-    position: relative;
-    margin-bottom: 20px;
-    margin-left: 30px;
-    margin-top: 30px;
-}
-
-.ContenedorBtn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 500px;
-    height: 600px;
-}

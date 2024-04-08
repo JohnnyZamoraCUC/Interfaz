@@ -119,10 +119,10 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="CSS\Aterrizaje.css" />
     <Content Include="CSS\Cards.css" />
     <Content Include="CSS\Emergencia.css" />
     <Content Include="CSS\index.css" />
+    <Content Include="CSS\LAterrizaje.css" />
     <Content Include="CSS\navusr.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -192,12 +192,12 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="usr\Aproximacion\Aproximacion.html" />
+    <Content Include="usr\Aterrizaje\ListaAterrizaje.html" />
     <Content Include="usr\General\Emergencia.html" />
     <Content Include="usr\General\Radar.html" />
     <Content Include="usr\General\Home.html" />
     <Content Include="usr\General\Labels.html" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="usr\Aterrizaje\Aterrizaje.html" />
     <Content Include="pub\index.html" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
