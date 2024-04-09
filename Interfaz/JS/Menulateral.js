@@ -121,7 +121,7 @@ const cargarProcedimientos = async () => {
         equipoSeleccionado.Procedimientos.forEach(procedimiento => {
             const option = document.createElement('option');
             option.value = procedimiento.IdProcedimiento;
-            option.text = procedimiento.Nombre;
+            option.text = procedimiento.Descripcion;
             procedimientoSelect.appendChild(option);
         });
     }
@@ -195,9 +195,6 @@ var map = L.map('map').setView([10, -83.6], 8); // Ajustar vista para mostrar la
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-
-
-// Función para trazar la ruta aérea entre el aeropuerto de origen y destino
 function drawFlightRoute(origin, destination) {
     var controlPoints = [
         'M', origin,
