@@ -399,7 +399,7 @@
         fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
             .then(response => response.json())
             .then(data => {
-
+                console.error(data);
                 document.getElementById('InfVuelo').textContent = data[0].NumVuelo;
                 document.getElementById('InfPiloto').textContent = data[0].PilotoNombre + " " + data[0].PilotoApellido;
                 document.getElementById('InfAeronave').textContent = data[0].Aeronave;
