@@ -90,3 +90,125 @@ p {
         color: white; /* Establece el color del texto a negro */
        
     }
+
+
+
+#divreport{
+    background-color: #F9F9F9; /* Color de fondo rojo */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 80px; /* Espacio desde la parte superior */
+    left: 10px; /* Ancho del menú lateral */
+    right: 10px; /* Extiende hasta el borde derecho */
+    bottom: 50px; /* Extiende hasta el borde inferior */
+    border-radius: 10px 10px 10px 10px;
+}
+
+/*EfectosEmegencia.html*/
+.card .form-group {
+    margin-bottom: 6px; /* Reducción del margen inferior entre elementos */
+}
+
+.card h6 {
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+    margin-bottom: 3px; /* Reducción del margen inferior */
+}
+
+.card h5 {
+    font-size: 20px; /* Tamaño de fuente más pequeño */
+    margin-bottom: 2px; /* Reducción del margen inferior */
+}
+
+.card select,
+.card input {
+    width: 70%; /* Utiliza el 100% del ancho disponible */
+    padding: 4px; /* Reducción del espacio interno */
+    border-radius: 3px; /* Bordes más suaves */
+    border: 1px solid #ccc;
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+    margin-bottom: 6px; /* Reducción del margen inferior */
+}
+
+.card button {
+    width: auto; /* Ancho automático según contenido */
+    padding: 4px 10px; /* Reducción del padding */
+    font-size: 0.75rem; /* Tamaño de fuente más pequeño */
+}
+
+.col-md-6 {
+    margin-right: 240px; /* Mueve el contenedor hacia la izquierda */
+}
+
+.card {
+    width: 60rem;
+    margin-top: 10px;
+    /* Puedes ajustar los márgenes según tus necesidades */
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#cardRadarContainer {
+    width: 50rem;
+    height: 28rem;
+    margin-left: calc(14vw - 5rem); /* Moverá el elemento hacia la derecha */
+    margin-top: 5rem; /* Esto moverá el elemento hacia abajo */
+}
+
+.card-body {
+    /* Ajusta el padding según tus necesidades */
+
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    /* Ajusta el tamaño de fuente según tus necesidades */
+    margin-bottom: 0.1rem;
+}
+
+#map {
+    /* Estilos para el contenedor del mapa */
+    width: 100%;
+    height: 23rem;
+    border: 1px solid #ccc;
+    /* Puedes agregar más estilos para el mapa según lo requieras */
+}
+
+#cardCreateEmergency {
+    height: 700px; /* Ajusta la altura según tus necesidades */
+    width: 580px
+}
+/* Estilos para la tarjeta de notificación */
+.notification-card {
+    position: fixed;
+    right: 20px; /* Posición inicial a la derecha */
+    bottom: 20px;
+    background-color: #28a745; /* Color de fondo verde (éxito) */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s forwards; /* Animación de entrada */
+    display: none; /* Por defecto oculto */
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%); /* Inicio desde la derecha */
+    }
+
+    to {
+        transform: translateX(0); /* Fin en posición normal */
+    }
+}
+
+/* Animación de salida */
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Inicio desde posición normal */
+    }
+
+    to {
+        transform: translateX(100%); /* Fin hacia la derecha */
+    }
+}
