@@ -121,7 +121,7 @@ const cargarProcedimientos = async () => {
         equipoSeleccionado.Procedimientos.forEach(procedimiento => {
             const option = document.createElement('option');
             option.value = procedimiento.IdProcedimiento;
-            option.text = procedimiento.Descripcion;
+            option.text = procedimiento.Pasos;
             procedimientoSelect.appendChild(option);
         });
     }
