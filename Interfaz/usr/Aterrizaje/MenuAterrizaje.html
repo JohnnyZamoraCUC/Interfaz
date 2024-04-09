@@ -183,7 +183,7 @@
     <div class="Menu">
 
         <div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarPistas()">
-            <img src="/Imagenes/Pista.jpg" class="card-img">
+            <img src="/Interfaz/Imagenes/Pista.jpg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title">Pistas</h5>
                 <p class="card-text">Presione para abrir las pistas disponibles</p>
@@ -191,7 +191,7 @@
         </div>
         <br />
         <div class="card bg-dark text-white" onclick="AutorizarAterrizaje()">
-            <img src="/Imagenes/Autorizar.jpeg" class="card-img">
+            <img src="/Interfaz/Imagenes/Autorizar.jpeg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title">Autorizar aterrizaje</h5>
                 <p class="card-text">Presione para autorizar aterrizaje</p>
@@ -199,7 +199,7 @@
         </div>
         <br />
         <div class="card bg-dark text-white" onclick="TerminarProceso()">
-            <img src="/Imagenes/Aterrizado.jpg" class="card-img">
+            <img src="/Interfaz/Imagenes/Aterrizado.jpg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title" style="color: black;">Aeronave aterrizada</h5>
                 <p class="card-text" style="color: black;">Presione cuando la aeronave haya aterrizado para terminar el proceso</p>
@@ -284,8 +284,7 @@
         <div class="ContenedorSecuencia">
             <form>
                 <div class="mb-3">
-                    <label class="form-label">Pista asignada</label>
-
+                    <p><strong> Pista asignada:</strong> <i id="PistSelect"></i></p>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">ETA</label>
@@ -294,7 +293,7 @@
                 <div class="mb-3">
                     <label class="form-label">Identificador de aeronave</label>
                 </div>
-                <div class="mb-3>
+                <div class="mb-3">
                     <label class="form-label">Datos minimos</label>
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
@@ -420,6 +419,7 @@
         }
         function SelectPista(IDPista) {
             PistaSelect = IDPista;
+            document.getElementById('PistSelect').textContent = PistaSelect;
         }
     </script>
 
