@@ -321,7 +321,7 @@
                         <option value="3">M</option>
                     </select>
                 </div>
-                <div class="mb-3>
+                <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Instrucciones especiales</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                 </div>
@@ -363,7 +363,7 @@
         var Vuelo = urlParams.get('vuelo');
         var PistaSelect = "";
         function CargarPistas() {
-            fetch('http://localhost:59769/api/Aterrizaje/InfoPistas?CodAeropuerto=' + Aeropuerto)
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoPistas?CodAeropuerto=' + Aeropuerto)
                 .then(response => response.json())
                 .then(data => {
                     console.error(data);
@@ -396,7 +396,7 @@
                 .catch(error => console.error('Error al cargar las pistas:', error));
         }
 
-        fetch('http://localhost:59769/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
             .then(response => response.json())
             .then(data => {
 

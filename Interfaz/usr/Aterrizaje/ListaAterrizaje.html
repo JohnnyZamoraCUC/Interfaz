@@ -244,7 +244,7 @@
                 div.removeChild(div.firstChild);
             }
 
-            fetch('http://localhost:59769/api/Aterrizaje/ObtenerAproximacion?Aeroport=' + seleccionAero)
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/ObtenerAproximacion?Aeroport=' + seleccionAero)
                 .then(response => response.json())
                 .then(data => {
                     for (let i = 0; i < data.length; i++) {
@@ -281,7 +281,7 @@
 
         //llena las opciones de aeropuertos existentes
         var dato = "";
-        fetch('http://localhost:59769/api/Aterrizaje/ObtenerAeropuertos')
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/ObtenerAeropuertos')
             .then(response => response.json())
             .then(data => {
                 for (let i = 0; i < data.length; i++) {
@@ -301,7 +301,7 @@
             if (div.style.display === "none") {
                 div.style.display = "block";
             }
-            fetch('http://localhost:59769/api/Aterrizaje/InfoVuelo?codigoVuelo=' + VueloURL)
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + VueloURL)
                 .then(response => response.json())
                 .then(data => {
                     document.getElementById('InfVuelo').textContent = data[0].NumVuelo;
@@ -321,7 +321,7 @@
         document.getElementById('BTContinuar').addEventListener('click', function () {
             var elementselect = document.getElementById("Aeropuertos");
             var seleccionAero = elementselect.value;
-            window.location.href = 'http://localhost:50672/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL;
+            window.location.href = '/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL;
         });
     </script>
     <script src="/JS/Labels.js"></script>
