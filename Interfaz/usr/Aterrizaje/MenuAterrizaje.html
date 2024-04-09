@@ -185,6 +185,13 @@
             display: flex;
             justify-content: center;
         }
+
+        .ContenedorSecuencia {
+            background-color: red;
+            height: 650px;
+            width: 50%;
+            margin: 0 auto;
+        }
     </style>
     
 
@@ -219,6 +226,10 @@
         <!--Modal Pistas-->
         <h1 class="pAlign">Secuencia de aterrizaje</h1>
 
+        <div class="ContenedorSecuencia">
+
+        </div>
+
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -239,10 +250,11 @@
     <script src="/JS/Labels.js"></script>
     <script src="/Interfaz/JS/Labels.js"></script>
     <script>
-        const url = window.location.search;
-        const urlParams = new URLSearchParams(url);
-        const Aeropuerto = "Aeropuerto Internacional Juan Santamaría"//urlParams.get('aeropuerto');
-        const Vuelo = urlParams.get('Vuelo');
+        var url = window.location.search;
+        var urlParams = new URLSearchParams(url);
+        var Aeropuerto = "Aeropuerto Internacional Juan Santamaría"//urlParams.get('aeropuerto');
+        var Vuelo = urlParams.get('Vuelo');
+        var PistaSelect = "";
         function CargarPistas() {
             fetch('http://localhost:59769/api/Aterrizaje/InfoPistas?CodAeropuerto=Aeropuerto%20Internacional%20Juan%20Santamar%C3%ADa')
                 .then(response => response.json())
@@ -266,7 +278,7 @@
                                             <p class="card-text">Longitud: ${Longitud}</p>
                                             <p class="card-text">Ancho de la pista: ${Ancho}</p>
                                             <p class="card-text">Obsevaciones: ${Comentarios}</p>
-                                            <a href="#" class="btn btn-primary">Seleccionar</a>
+                                            <a href="#" class="btn btn-primary" onclick="SelectPista(${NumPista})">Seleccionar</a>
                                         </div>
                                     </div>
                                 `;
@@ -281,6 +293,9 @@
             while (div.firstChild) {
                 div.removeChild(div.firstChild);
             }
+        }
+        function SelectPista(IDPista) {
+            PistaSelect = IDPista;
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
