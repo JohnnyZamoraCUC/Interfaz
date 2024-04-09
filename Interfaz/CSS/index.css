@@ -88,30 +88,7 @@ nav {
 
 
 
-h1, h2, span {
-    font-family: serif;
-    color: white; /* Cambia el color del texto a blanco */
-}
 
-h1 {
-    display: grid;
-}
-
-h2 {
-    font-size: clamp(2rem, 5vw + 1rem, 6rem);
-    text-align: center;
-}
-
-:is(h1, h2) {
-    font-size: clamp(2.5rem, 7vw + 1rem, 10rem);
-    text-align: center;
-    line-height: 1;
-    position: fixed;
-    top: 20%;
-    left: 50%;
-    margin: 0;
-    width: 100%;
-}
 
 /* Reset general */
 *, *:after, *:before {
@@ -169,11 +146,6 @@ h2 {
         height: auto; /* Ajusta la altura de la sección para que se adapte al contenido */
     }
 
-    h1,
-    h2,
-    span {
-        font-size: 2rem; /* Tamaño de fuente más pequeño para dispositivos móviles */
-    }
 }
 
 .login-container {
@@ -198,4 +170,40 @@ h2 {
     object-fit: cover; /* Hace que la imagen cubra todo el contenedor */
     border-radius: 20px; /* Redondea las esquinas de la imagen */
     overflow: hidden;
+}
+
+/* Estilos para la tarjeta de notificación */
+.notification-card {
+    position: fixed;
+    right: 20px; /* Posición inicial a la derecha */
+    bottom: 20px;
+    background-color: #BA2C2C; /* Color de fondo verde (éxito) */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: slideIn 0.5s forwards; /* Animación de entrada */
+    display: none; /* Por defecto oculto */
+}
+
+/* Animación de entrada */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%); /* Inicio desde la derecha */
+    }
+
+    to {
+        transform: translateX(0); /* Fin en posición normal */
+    }
+}
+
+/* Animación de salida */
+@keyframes slideOut {
+    from {
+        transform: translateX(0); /* Inicio desde posición normal */
+    }
+
+    to {
+        transform: translateX(100%); /* Fin hacia la derecha */
+    }
 }

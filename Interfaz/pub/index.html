@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/CSS/index.css" rel="stylesheet">
     <link href="/Interfaz/CSS/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-
         .login-container {
             position: relative;
             top: -2px; /* Ajusta este valor según sea necesario */
@@ -25,14 +23,118 @@
             margin-top: 20px; /* Espacio por encima del carrusel */
             margin-left: 100px;
             margin-bottom: 300px; /* Ajustar el margen inferior hacia arriba */
+            position: relative; /* Establece posición relativa para los elementos internos */
         }
 
+        .carousel-item {
+            position: relative; /* Establece posición relativa para alinear elementos hijos */
+        }
+
+            .carousel-item::before {
+                content: ''; /* Añade un pseudo-elemento para la superposición */
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%); /* Degradado lineal oscuro a transparente */
+            }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 20px; /* Ajusta la posición verticalmente según sea necesario */
+            left: 50%; /* Centra horizontalmente */
+            transform: translateX(-50%); /* Centra horizontalmente */
+            color: #fff; /* Color del texto */
+        }
         .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover; /* Hace que la imagen cubra todo el contenedor */
             border-radius: 20px; /* Redondea las esquinas de la imagen */
             overflow: hidden;
+        }
+
+        h1 {
+            position: absolute;
+            top: 180px; /* Ajusta la posición verticalmente según sea necesario */
+            left: 50%; /* Centra horizontalmente el encabezado */
+            transform: translateX(-50%); /* Centra el encabezado horizontalmente */
+            text-align: center; /* Centra el texto dentro del encabezado */
+            z-index: 1; /* Asegura que el encabezado esté por encima del carrusel */
+            color: #fff; /* Color del texto del encabezado */
+     
+        }
+
+
+        .section-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .section-text {
+            max-width: 50%;
+            padding: 0 20px;
+        }
+
+            .section-text h2 {
+                font-size: 45px;
+                margin-bottom: 0;
+                margin-top: 0;
+                margin-left: 250px;
+            }
+
+            .section-text div {
+                font-size: 18px;
+                margin-bottom: 10px;
+                margin-left: 250px;
+            }
+
+        .section-image {
+            max-width: 40%;
+            margin-left: 50px;
+            margin-right: auto;
+            animation: moveUpDown 3s infinite alternate;
+        }
+
+            .section-image img {
+                max-width: 100%;
+                height: auto;
+                display: block; /* Esto es importante para manejar correctamente el espacio ocupado por la imagen */
+            }
+
+        .read-more-btn-container {
+            margin-left: 250px;
+        }
+
+        .read-more-btn {
+            background-color: yellow;
+            border: none;
+            color: black;
+            padding: 20px 45px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+
+        @keyframes moveUpDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
@@ -91,6 +193,14 @@
             </nav>
         </header>
     </div>
+    <section>
+        <div>
+            <h1>
+                <span>Sky Guardian</span>
+                <span>Find & Book Your Destination</span>
+            </h1>
+        </div>
+    </section>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -129,14 +239,26 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-    <section>
-        <div>
-            <h1>
-                <span>Sky Guardian</span>
-                <span>Find & Book Your Destination</span>
-            </h1>
+    <section class="section-container">
+        <div class="section-text">
+            <h2>Personaliza tu Viaje</h2>
+            <div class="texp">
+                <p>Ofrecemos diversas opciones para que personalices tu experiencia de vuelo. Puedes seleccionar tu clase preferida, agregar servicios adicionales como comidas especiales o asientos preferenciales, y más.</p>
+            </div>
+            <div class="read-more-btn-container">
+                <button class="read-more-btn">Leer Mas</button>
+            </div>
         </div>
+
+        <div class="section-image">
+            <img src="https://cms.googlycode.com/wp17/wp-content/uploads/2024/02/about-img-04.png" alt="Imagen de Ejemplo">
+        </div>
+
     </section>
+
+
+
+
     <!-- Modal de Inicio de Sesión -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -171,6 +293,12 @@
                 </div>
             </div>
         </div>
+        <!-- Tarjeta de notificación de emergencia creada -->
+        <div class="notification-card" id="notificationCard">
+            Contraseña/Usuario Incorrectos
+        </div>
+        <div class="notification-card" id="notificationtoken">
+            Token Invalido</div>
     </div>
 
     <div class="container footer-container">
