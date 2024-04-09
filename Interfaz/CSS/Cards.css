@@ -4,6 +4,32 @@
     flex-wrap: wrap;
     justify-content: flex-start; /* Cambiado */
 }
+/* Estilo para el ícono de check */
+.check-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #28a745; /* Color verde */
+    border-radius: 50%; /* Forma redonda */
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    color: white; /* Color del texto */
+    font-size: 14px;
+    margin-right: 5px; /* Espacio a la derecha del ícono */
+}
+/* Estilo para el ícono de equis */
+.cross-icon {
+    width: 20px;
+    height: 20px;
+    background-color: #dc3545; /* Color rojo */
+    border-radius: 50%; /* Forma redonda */
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    color: white; /* Color del texto */
+    font-size: 14px;
+    margin-right: 5px; /* Espacio a la derecha del ícono */
+}
 
 .card {
     box-sizing: border-box;
