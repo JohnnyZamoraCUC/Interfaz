@@ -126,8 +126,11 @@
     <Content Include="CSS\navusr.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Imagenes\Aterrizado.jpg" />
+    <Content Include="Imagenes\Autorizar.jpeg" />
     <Content Include="Imagenes\Avianca.jpg" />
     <Content Include="Imagenes\Logo.PNG" />
+    <Content Include="Imagenes\Pista.jpg" />
     <Content Include="JS\auth.js" />
     <Content Include="JS\Emergencia.js" />
     <Content Include="JS\JavaScript.js" />
