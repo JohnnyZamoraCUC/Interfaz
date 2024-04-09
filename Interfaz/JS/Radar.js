@@ -34,11 +34,11 @@
         .then(data => {
             // Obtener las coordenadas del aeropuerto de origen y destino del primer vuelo en los datos
             var origin = [data[0].AeropuertoOLatitud, data[0].AeropuertoOLontigud];
-    var destination = [data[0].AeropuertoDLatitud, data[0].AeropuertoDLongitud];
+             var destination = [data[0].AeropuertoDLatitud, data[0].AeropuertoDLongitud];
 
     // Agregar los marcadores de origen y destino al mapa
-    var originMarker = L.marker(origin).addTo(map);
-    originMarker.bindPopup("<b>Aeropuerto Origen</b><br>Latitud: " + origin[0] + "<br>Longitud: " + origin[1]).openPopup();
+        var originMarker = L.marker(origin).addTo(map);
+        originMarker.bindPopup("<b>Aeropuerto Origen</b><br>Latitud: " + origin[0] + "<br>Longitud: " + origin[1]).openPopup();
         var destinationMarker = L.marker(destination).addTo(map);
         destinationMarker.bindPopup("<b>Aeropuerto Destino</b><br>Latitud: " + destination[0] + "<br>Longitud: " + destination[1]).openPopup();
 

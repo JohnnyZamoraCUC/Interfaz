@@ -33,7 +33,13 @@
         $('#lblFechaLlegada').text(fechaLlegada);
         $('#lblDuracionEstimada').text(datosVuelo[0].DuracionEstimada);
         $('#lblidvuelo').text(datosVuelo[0].IdVuelo);
-        
+        var origin = [datosVuelo[0].AeropuertoOLatitud, datosVuelo[0].AeropuertoOLontigud];
+        var destination = [datosVuelo[0].AeropuertoDLatitud, datosVuelo[0].AeropuertoDLongitud];
+        var aeronaveLat = datosVuelo[0].AeronaveLat;
+        var aeronaveLon = datosVuelo[0].AeronaveLon;
+
+        drawFlightRoute(origin, destination);
+        drwaplane(aeronaveLat, aeronaveLon);
         console.log('Respuesta del API:', JSON.parse(respuesta));
         localStorage.removeItem('respuestaAPI');
         habilitarCamposSeleccion();
@@ -181,3 +187,43 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
+
+
+var map = L.map('map').setView([10, -83.6], 8); // Ajustar vista para mostrar la ruta
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+
+// Función para trazar la ruta aérea entre el aeropuerto de origen y destino
+function drawFlightRoute(origin, destination) {
+    var controlPoints = [
+        'M', origin,
+        'Q', [origin[0] - 0.2, origin[1] + 0.5], // Punto de control 1
+        [destination[0] + 0.2, destination[1] - 0.5], // Punto de control 2
+        'T', destination
+    ];
+    var bezier = L.curve(controlPoints, { color: 'blue' }).addTo(map);
+    map.fitBounds(bezier.getBounds());
+
+    // Agregar los marcadores de origen y destino al mapa
+    var originMarker = L.marker(origin).addTo(map);
+    originMarker.bindPopup("<b>Aeropuerto Origen</b><br>Latitud: " + origin[0] + "<br>Longitud: " + origin[1]).openPopup();
+    var destinationMarker = L.marker(destination).addTo(map);
+    destinationMarker.bindPopup("<b>Aeropuerto Destino</b><br>Latitud: " + destination[0] + "<br>Longitud: " + destination[1]).openPopup();
+
+}
+function drwaplane(aeronaveLat, aeronaveLon) {
+    var airplaneMarker = L.marker([aeronaveLat, aeronaveLon], {
+        icon: L.icon({
+            iconUrl: 'https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Airplane.svg',
+            iconSize: [32, 32], // Tamaño del ícono
+            iconAnchor: [16, 16], // Punto de anclaje del ícono (centro)
+        })
+    }).addTo(map);
+
+    // Agregar información al marcador (opcional)
+    airplaneMarker.bindPopup("<b>Aeronave Actual</b><br>Latitud: " + aeronaveLat + "<br>Longitud: " + aeronaveLon).openPopup();
+}
