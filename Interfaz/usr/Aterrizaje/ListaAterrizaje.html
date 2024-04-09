@@ -198,6 +198,7 @@
         <div class="topcorner">
             <h3 class="pAlign">Aeropuertos</h3>
             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Aeropuertos">
+                <option>Seleccione un aeropuerto</option>
             </select>
         </div>
         
@@ -205,12 +206,13 @@
             <p>Vuelo: <i id="InfVuelo"></i></p>
             <p>Piloto: <i id="InfPiloto"></i></p>
             <p>Aeronave: <i id="InfAeronave"></i></p>
-            <p>Hora registro: <i id="InfHora"></i></p>
-            <p>Distancia restante: <i id="InfDistancia"></i></p>
-            <p>Angulo descenso: <i id="InfAngulo"></i></p>
-            <p>Permiso de sobrevuelo: <i id="InfPermiso"></i></p>
-            <p>Comentarios:</p>
-            <p id="InfComentario"></p>
+            <p>Aerolinea: <i id="InfAerolinea"></i></p>
+            <p>Estado vuelo: <i id="InfEstVuelo"></i></p>
+            <p>Prioridad: <i id="InfPrioridad"></i></p>
+            <p>Tipo de vuelo: <i id="InfTipoVuelo"></i></p>
+            <p>Origen: <i id="InfOrigen"></i></p>
+            <p>Destino: <i id="InfDestino"></i></p>
+
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="BTMenu">
                 Continuar
             </button>
@@ -240,59 +242,43 @@
     <script src="/Interfaz/JS/Labels.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        var nombreAerolinea = "";
+        var numeroVuelo = 0;
+        var nombrePiloto = "";
+        var Aeronave = "";
+        var prioridad = "";
+        var Imagen = "";
+        var VueloURL = "";
+
         document.getElementById('Aeropuertos').onchange = function () {
-            location.reload();
-        };
-        //llena las opciones de aeropuertos existentes
-        var dato = "";
-        fetch('http://localhost:59769/api/Aterrizaje/ObtenerAeropuertos')
-            .then(response => response.json())
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    dato = data[i].Aeropuerto;
-                    console.error(dato);
-                    const codigoHTML = `
-                                    <option selected>${dato}</option>
-                                    `;
-                    document.getElementById("Aeropuertos").innerHTML += codigoHTML;
-                }
-            })
-            .catch(error => console.error('Error al cargar los aeropuertos:', error));
+            var elementselect = document.getElementById("Aeropuertos");
+            var seleccionAero = elementselect.value;
 
-    </script>
-    <script>
-        const nombreAerolinea = "";
-        const numeroVuelo = 0;
-        const nombrePiloto = "";
-        const Aeronave = "";
-        const prioridad = "";
-        const Imagen = "";
+            var div = document.getElementById('ListaAterrizajes');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
 
-        fetch('http://localhost:59769/api/Aterrizaje/ObtenerAproximacion')
-            .then(response => response.json())
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    nombreAerolinea = data[i].Aerolinea;
-                    numeroVuelo = data[i].Vuelo;
-                    nombrePiloto = data[i].NombrePiloto;
-                    nombrePiloto = nombrePiloto + " " + data[i].ApellidoPiloto;
-                    Aeronave = data[i].Aeronave;
-                    prioridad = data[i].Prioridad;
-                    Imagen = data[i].AeronaveImagen;
-
-
-                    var elementselect = document.getElementById("Aeropuertos");
-                    var seleccionAero = elementselect.value; 
-                    if (seleccionAero == data[i].Destino) {
+            fetch('http://localhost:59769/api/Aterrizaje/ObtenerAproximacion?Aeroport=' + seleccionAero)
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        nombreAerolinea = data[i].Aerolinea;
+                        numeroVuelo = data[i].Vuelo;
+                        nombrePiloto = data[i].NombrePiloto;
+                        nombrePiloto = nombrePiloto + " " + data[i].ApellidoPiloto;
+                        Aeronave = data[i].Aeronave;
+                        prioridad = data[i].Prioridad;
+                        Imagen = data[i].AeronaveImagen;
                         const codigoHTML = `
                             <div class="flip-card">
                                 <div class="flip-card-inner">
                                     <div class="flip-card-front">
                                         <img src="${Imagen}" alt="Aeronave" style="width:300px;height:200px;">
                                     </div>
-                                    <div class="flip-card-back" onclick='Menu(${numeroVuelo})'">
-                                        <h1>${nombreAerolinea}</h1>
-                                        <p>Vuelo: ${numeroVuelo}</p>
+                                    <div class="flip-card-back" onclick='Info(${numeroVuelo})'">
+                                        <p>${nombreAerolinea}</p>
+                                        <p>Vuelo: ${numeroVuelo}</p> 
                                         <p>Piloto: ${nombrePiloto}</p>
                                         <p>Aeronave: ${Aeronave}</p>
                                         <p>Prioridad: ${prioridad}</p>
@@ -302,20 +288,54 @@
                             `;
                         document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
                     }
+                })
+                .catch(error => console.error('Error al cargar los vuelos:', error));
+
+        };
+        
+
+        //llena las opciones de aeropuertos existentes
+            var dato = "";
+            fetch('http://localhost:59769/api/Aterrizaje/ObtenerAeropuertos')
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    dato = data[i].Aeropuerto;
+                    const codigoHTML = `
+                                    <option>${dato}</option>
+                                    `;
+                    document.getElementById("Aeropuertos").innerHTML += codigoHTML;
                 }
             })
             .catch(error => console.error('Error al cargar los aeropuertos:', error));
 
-        
-        function Menu(Vuelo) {
-            $(document).ready(function () {
-                $("#DivInformacion").toggle(); 
-            });
+
+        function Info(Vuelo) {
+            VueloURL = Vuelo
+            fetch('http://localhost:59769/api/Aterrizaje/InfoVuelo?codigoVuelo='+Vuelo)
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        if (seleccionAero == data[i].Destino) {
+                            document.getElementById('InfVuelo').textContent = data.NumVuelo;
+                            document.getElementById('"InfPiloto').textContent = data.PilotoNombre + " " + data.PilotoApellido;
+                            document.getElementById('InfAeronave').textContent = data.Aeronave;
+                            document.getElementById('InfAerolinea').textContent = data.Aerolinea;
+                            document.getElementById('InfEstVuelo').textContent = data.EstadoVuelo;
+                            document.getElementById('InfPrioridad').textContent = data.Prioridad;
+                            document.getElementById('InfTipoVuelo').textContent = data.TipoVuelo;
+                            document.getElementById('InfOrigen').textContent = data.Origen;
+                            document.getElementById('InfDestino').textContent = data.Destino;
+                        }
+                    }
+                })
+                .catch(error => console.error('Error al cargar los aeropuertos:', error));
         }
-    </script>
-
-    <script>
-
+        document.getElementById('BTMenu').addEventListener('click', function () {
+            var elementselect = document.getElementById("Aeropuertos");
+            var seleccionAero = elementselect.value; 
+            window.location.href = '/Interfaz/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto='+seleccionAero+'&vuelo='+VueloURL;
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

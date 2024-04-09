@@ -171,13 +171,65 @@
     </div>
 
     <div class="ContenedorPrin" id="ContenedorPrin">
-        
-    </div>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="Pista">
+            Pitas
+        </button>
 
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Pistas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="BodyPistas">
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="/JS/Labels.js"></script>
     <script src="/Interfaz/JS/Labels.js"></script>
     <script>
-        
+        const url = window.location.search;
+        const urlParams = new URLSearchParams(url);
+        const Aeropuerto = "Aeropuerto Internacional Juan Santamaría"//urlParams.get('aeropuerto');
+        const Vuelo = urlParams.get('Vuelo');
+
+        fetch('http://localhost:59769/api/Aterrizaje/InfoPistas?CodAeropuerto=Aeropuerto%20Internacional%20Juan%20Santamar%C3%ADa')
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    NumPista = data[i].Pista;
+                    EstadoPsita = data[i].EstPsita;
+                    Dispon = data[i].Disponibilidad;
+                    Longitud = nombrePiloto + " " + data[i].Longi;
+                    Ancho = data[i].AnchoPista;
+                    Comentarios = data[i].Comentarios;
+
+                    const codigoHTML = `
+                        <div class="card">
+                            <h5 class="card-header">Pista</h5>
+                            <div class="card-body">
+                                <p class="card-text">Pista: ${NumPista}</p>
+                                <p class="card-text">Estado de Pista: ${EstadoPsita}</p>
+                                <p class="card-text">Disponibilidad: ${Dispon}</p>
+                                <p class="card-text">Longitud: ${Longitud}</p>
+                                <p class="card-text">Ancho de la pista: ${Ancho}</p>
+                                <p class="card-text">Obsevaciones: ${Comentarios}</p>
+                                <a href="#" class="btn btn-primary">Seleccionar</a>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById("BodyPistas").innerHTML += codigoHTML;
+                    
+                }
+            })
+            .catch(error => console.error('Error al cargar los aeropuertos:', error));
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
