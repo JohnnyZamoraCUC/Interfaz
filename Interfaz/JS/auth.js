@@ -31,9 +31,14 @@ document.getElementById("loginForm").addEventListener("submit", function (event)
                 //document.getElementById("loginForm").reset(); 
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("tokenForm").style.display = "block";
+               
             } else if (response.status === 409) {
-                console.log("Token Invalido"); s
+               
+                console.log("Token Invalido"); 
+                mostrarNotificacion();
+                
             } else {
+                 // Mostrar la notificación de error
                 console.error("Error al iniciar sesión");
             }
         })
@@ -65,6 +70,7 @@ document.getElementById("tokenForm").addEventListener("submit", function (event)
             if (response.status === 200) {
                 window.location.href = "/Interfaz/usr/General/Home.html";
             } else {
+                mostrarNotificaciontoken()
                 console.log("Respuesta del servidor:", response);
             }
         })
@@ -72,3 +78,52 @@ document.getElementById("tokenForm").addEventListener("submit", function (event)
             console.error("Error de red:", error);
         });
 });
+
+
+function mostrarNotificacion() {
+    const notificationCard = document.getElementById('notificationCard');
+    notificationCard.style.display = 'block';
+
+
+    notificationCard.style.animationName = 'slideIn';
+
+
+    setTimeout(function () {
+        ocultarNotificacion();
+    }, 3000);
+}
+
+// Función para ocultar la tarjeta de notificación
+function ocultarNotificacion() {
+    const notificationCard = document.getElementById('notificationCard');
+    notificationCard.style.animationName = 'slideOut'; // Agregar animación de salida
+    setTimeout(function () {
+        notificationCard.style.display = 'none';
+    }, 500);
+}
+
+
+function mostrarNotificaciontoken() {
+    const notificationtoken = document.getElementById('notificationtoken');
+    notificationtoken.style.display = 'block';
+
+
+    notificationtoken.style.animationName = 'slideIn';
+
+
+    setTimeout(function () {
+        ocultarNotificaciontoken();
+    }, 3000);
+}
+
+// Función para ocultar la tarjeta de notificación
+function ocultarNotificaciontoken() {
+    const notificationtoken = document.getElementById('notificationtoken');
+    notificationtoken.style.animationName = 'slideOut'; // Agregar animación de salida
+    setTimeout(function () {
+        notificationtoken.style.display = 'none';
+    }, 500);
+}
+
+
+
