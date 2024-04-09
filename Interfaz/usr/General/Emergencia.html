@@ -57,9 +57,10 @@
         }
 
         #cardRadarContainer {
-            width: 40rem;
-            height: 18rem;
-            margin-left: auto; /* Moverá el elemento hacia la derecha */
+            width: 50rem;
+            height: 28rem;
+            margin-left: calc(14vw - 5rem); /* Moverá el elemento hacia la derecha */
+            margin-top: 5rem; /* Esto moverá el elemento hacia abajo */
         }
         .card-body {
             /* Ajusta el padding según tus necesidades */
@@ -77,7 +78,7 @@
         #map {
             /* Estilos para el contenedor del mapa */
             width: 100%;
-            height: 200px;
+            height: 23rem;
             border: 1px solid #ccc;
             /* Puedes agregar más estilos para el mapa según lo requieras */
         }
@@ -319,79 +320,76 @@
                     <div class="card-body">
                         <h5 class="card-title">Crear Emergencia</h5>
                         <div class="card" style="max-width: 500px; margin: 10px auto; padding: 20px; margin-left: 10px; margin-right: 10px; height:38rem">
-                            
 
-                                <div class="form-group">
-                                    <h6>Tipo de Emergencia:</h6>
-                                    <select id="tipoEmergenciaSelect"></select>
-                                </div>
 
-                                <div class="form-group">
-                                    <h6>Equipo de Emergencia:</h6>
-                                    <select id="equipoEmergenciaSelect"></select>
-                                </div>
+                            <div class="form-group">
+                                <h6>Tipo de Emergencia:</h6>
+                                <select id="tipoEmergenciaSelect"></select>
+                            </div>
 
-                                <div class="form-group">
-                                    <h6>Procedimiento:</h6>
-                                    <select id="procedimientoSelect"></select>
-                                </div>
-                                <div class="form-group">
-                                    <h6>Proridad de Aterrizaje:</h6>
-                                    <select id="prioridadSelect"></select>
-                                </div>
-                                <div class="form-group">
-                                    <h6>Altitud de Emergencia:</h6>
-                                    <select id="altitudEmergenciaSelect"></select>
-                                </div>
-                                <div class="form-group">
-                                    <h6>Fecha y Hora de Inicio:</h6>
-                                    <input type="datetime-local" id="fechaHoraInicioInput" name="fechaHoraInicio">
-                                </div>
+                            <div class="form-group">
+                                <h6>Equipo de Emergencia:</h6>
+                                <select id="equipoEmergenciaSelect"></select>
+                            </div>
 
-                                <div class="form-group">
-                                    <h6>Fecha y Hora de Fin:</h6>
-                                    <input type="datetime-local" id="fechaHoraFinInput" name="fechaHoraFin">
-                                </div>
-                                <div class="form-group">
-                                    <h6>Descripción:</h6>
-                                    <input type="text" id="descripcionInput" name="descripcion" placeholder="Ingrese una descripción...">
-                                </div>
-                                <div>
-                                    <button id="reporteenviar" type="button" class="btn btn-success" style="margin-top: 20px; margin-left: 150px;">Realizar Reporte</button>
-                                </div>
-                                <!-- Modal para ingresar la descripción -->
-                                <div class="modal fade" id="modalDescripcion" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Descripcion de Emergencia</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <textarea id="descripcionTextarea" class="form-control" rows="5" placeholder="Ingrese una descripción..."></textarea>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary" id="guardarDescripcion">Guardar</button>
-                                            </div>
+                            <div class="form-group">
+                                <h6>Procedimiento:</h6>
+                                <select id="procedimientoSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Proridad de Aterrizaje:</h6>
+                                <select id="prioridadSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Altitud de Emergencia:</h6>
+                                <select id="altitudEmergenciaSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Fecha y Hora de Inicio:</h6>
+                                <input type="datetime-local" id="fechaHoraInicioInput" name="fechaHoraInicio">
+                            </div>
+
+                            <div class="form-group">
+                                <h6>Fecha y Hora de Fin:</h6>
+                                <input type="datetime-local" id="fechaHoraFinInput" name="fechaHoraFin">
+                            </div>
+                            <div class="form-group">
+                                <h6>Descripción:</h6>
+                                <input type="text" id="descripcionInput" name="descripcion" placeholder="Ingrese una descripción...">
+                            </div>
+                            <div>
+                                <button id="reporteenviar" type="button" class="btn btn-success" style="margin-top: 20px; margin-left: 150px;">Realizar Reporte</button>
+                            </div>
+                            <!-- Modal para ingresar la descripción -->
+                            <div class="modal fade" id="modalDescripcion" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Descripcion de Emergencia</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea id="descripcionTextarea" class="form-control" rows="5" placeholder="Ingrese una descripción..."></textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" id="guardarDescripcion">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
-                            
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 d-flex justify-content-end align-items-center">
-                <div class="card" id="cardRadarContainer">
-                    <div class="card-body">
-                        <h5 class="card-title">Radar</h5>
-                        <div id="map"></div>
-                    </div>
+
+            <div class="card" id="cardRadarContainer">
+                <div class="card-body">
+                    <h5 class="card-title">Radar</h5>
+                    <div id="map"></div>
                 </div>
             </div>
-
-
         </div>
     </div>
     <script>
