@@ -199,6 +199,7 @@
     <Content Include="usr\General\Radar.html" />
     <Content Include="usr\General\Home.html" />
     <Content Include="usr\General\Labels.html" />
+    <Content Include="usr\General\Reportes.html" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="pub\index.html" />
     <Content Include="Web.config" />

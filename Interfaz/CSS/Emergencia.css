@@ -90,3 +90,15 @@ p {
         color: white; /* Establece el color del texto a negro */
        
     }
+
+
+
+#divreport{
+    background-color: #F9F9F9; /* Color de fondo rojo */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 80px; /* Espacio desde la parte superior */
+    left: 10px; /* Ancho del menú lateral */
+    right: 10px; /* Extiende hasta el borde derecho */
+    bottom: 50px; /* Extiende hasta el borde inferior */
+    border-radius: 10px 10px 10px 10px;
+}
