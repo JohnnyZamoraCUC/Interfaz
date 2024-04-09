@@ -195,9 +195,9 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
-    <Content Include="usr\Aproximacion\Aproximacion.html" />
     <Content Include="usr\Aterrizaje\ListaAterrizaje.html" />
     <Content Include="usr\Aterrizaje\MenuAterrizaje.html" />
+    <Content Include="usr\Aproximacion\Aproximacion.html" />
     <Content Include="usr\General\Emergencia.html" />
     <Content Include="usr\General\Radar.html" />
     <Content Include="usr\General\Home.html" />
