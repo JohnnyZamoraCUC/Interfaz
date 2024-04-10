@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informacion de Vuelos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-T6ZL9V3u+D+F7sqPjE+JnJSGekC6DBi6s78O/DfvOJYz9vp3+T/qDlkCY1waVwFJuSG76eQUquvlQ0uWuSXlPQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="/CSS/navusr.css" rel="stylesheet">
+    <link href="/CSS/Cards.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="contenedor-header">
+        <header>
+            <nav>
+                <div class="mini-nav">
+                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Logo.PNG" />
+                    <div class="text-container">
+                        <p>Sky Guardian</p>
+                        <p>Protegiendo cada vuelo, cuidando cada paso.</p>
+                    </div>
+                </div>
+                <ul style="align-items: center;">
+                    <li class="nav-item">
+                        <button id="btnEmergencia" type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                data-bs-target="#modalEmergencia">
+                            Emergencia
+                        </button>
+                    </li>
+                    <li>
+                        <a id="lblHome" class="navbar-brand" href="#">lblHome</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <a id="lblTours" class="navbar-brand" href="#">lblTours</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <a id="lblBlog" class="navbar-brand" href="#">lblBlog</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <a id="lblAboutUs" class="navbar-brand" href="#">lblAboutUs</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <a id="lblContacUs" class="navbar-brand" href="#">lblContacUs</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </li>
+                    <li>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="90" height="35" fill="currentColor"
+                             class="bi bi-person" viewBox="0 0 16 16">
+                            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                        </svg>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="modal fade" id="modalEmergencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Reporte de Incidencia</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card mx-auto" style="width: 50rem;">
+                        <div class="card-body">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="95" height="40" fill="currentColor"
+                                     class="bi bi-exclamation-triangle-fill" viewBox="10 0 16 16"
+                                     style="margin-left: 360px;">
+                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                            </div>
+                            <h5 class="card-title">Vuelos Activos</h5>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Aerolinea</th>
+                                        <th scope="col">Vuelo</th>
+                                        <th scope="col">Prioridad</th>
+                                        <th scope="col">Seleccion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">CRAirlanes</th>
+                                        <td>C9878</td>
+                                        <td><span class="prioridad-alta">Alta</span></td>
+                                        <td><button type="button" class="btn btn-primary">Seleccionar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Emirates</th>
+                                        <td>C2260</td>
+                                        <td><span class="prioridad-media">Media</span></td>
+                                        <td><button type="button" class="btn btn-primary">Seleccionar</button></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Avianca</th>
+                                        <td>C2010</td>
+                                        <td><span class="prioridad-normal">Normal</span></td>
+                                        <td><button type="button" class="btn btn-primary">Seleccionar</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        h1 {
+            margin-top: 30px; /* Separación hacia arriba del título */
+            margin-bottom: 30px; /* Separación hacia abajo del título */
+            text-align: center; /* Centrar el texto */
+        }
+
+        .cross-icon {
+            width: 20px;
+            height: 20px;
+            background-color: #dc3545; /* Color rojo */
+            border-radius: 50%; /* Forma redonda */
+            display: inline-block;
+            text-align: center;
+            line-height: 20px;
+            color: white; /* Color del texto */
+            font-size: 14px;
+            margin-right: 5px; /* Espacio a la derecha del ícono */
+        }
+        /* Estilo para ajustar el tamaño del modal */
+        .modal-dialog {
+            max-width: 450px; /* Ancho máximo del modal */
+            margin: 30px auto; /* Margen superior e inferior auto para centrar verticalmente */
+        }
+
+        .modal-content {
+            height: 750px; /* Altura del contenido del modal */
+            overflow-y: auto; /* Permitir desplazamiento vertical si el contenido es demasiado largo */
+            background-color: #A9A9A9; /* Color de fondo gris */
+        }
+
+        /* Estilo para el encabezado del modal */
+        .modal-header {
+            background-color: #2874A6; /* Color de fondo azul */
+
+            color: white; /* Color del texto en el encabezado */
+            border-bottom: none; /* Eliminar el borde inferior */
+            text-align: center; /* Centrar el texto */
+        }
+
+        /* Estilo para el título del modal */
+        .modal-title {
+            margin: 0 auto; /* Centrar horizontalmente */
+            margin-left: 15px; /* Ajuste del margen izquierdo */
+        }
+    </style>
+
+
+    <h1>Informacion de Vuelos</h1>
+    <div class="parent" id="cardContainer">
+        <!-- Las tarjetas se agregarán aquí mediante JavaScript -->
+    </div>
+
+    <div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detalle de Vuelo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body" id="detalleModalBody">
+                    <!-- Aquí se mostrará la información detallada de la tarjeta seleccionada -->
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <!-- Botón para registrar aproximación -->
+                    <button id="RegistrarAproximacion" type="button" class="btn btn-dark text-white" onclick="registrarAproximacion()">
+                        Registrar Aproximación
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         let formattedData;
+     async function fetchData() {
+        try {
+            const response = await fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/Obtener');
+            const data = await response.json();
+            formattedData = data.map(vuelo => ({
+                title: 'Piloto',
+                content: `${vuelo.PilotoNombre} ${vuelo.PilotoApellido}`,
+                flight: vuelo.NumeroVuelo,
+                Prioridad: vuelo.Prioridad,
+                TipoVuelo: vuelo.TipoVuelo,
+                Aerolinea: vuelo.Aerolinea,
+                Aeronave: vuelo.Aeronave,
+                EstadoVuelo: vuelo.EstadoVuelo,
+                Destino: vuelo.Destino,
+                Latitud: vuelo.AeropuertoDLatitud,
+                Longitud: vuelo.AeropuertoDLongitud,
+                Ruta: vuelo.Ruta,
+                HoraSalida: vuelo.HoraSalida,
+                HoraLlegada: vuelo.HoraLlegada,
+                Duracion: vuelo.DuracionEstimada,
+                   IdVuelo: vuelo.IdVuelo,
+            }));
+            renderCards(formattedData);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+        // Función para crear una tarjeta
+        function createCard(title, content, flight) {
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const contentBox = document.createElement('div');
+            contentBox.classList.add('content-box');
+
+            const cardTitle = document.createElement('span');
+            cardTitle.classList.add('card-title');
+            cardTitle.textContent = title;
+
+            const cardContent = document.createElement('p');
+            cardContent.classList.add('card-content');
+            cardContent.textContent = content;
+
+            const seeMore = document.createElement('span');
+            seeMore.classList.add('see-more');
+            seeMore.textContent = 'Ver más información';
+            seeMore.addEventListener('click', () => {
+                mostrarDetalleModal(flight);
+            });
+
+            contentBox.appendChild(cardTitle);
+            contentBox.appendChild(cardContent);
+            contentBox.appendChild(seeMore);
+
+            const dateBox = document.createElement('div');
+            dateBox.classList.add('date-box');
+
+            const vuelo = document.createElement('span');
+            vuelo.classList.add('vuelo');
+            vuelo.textContent = 'Vuelo';
+
+            const numero = document.createElement('span');
+            numero.classList.add('numero');
+            numero.textContent = flight;
+
+            dateBox.appendChild(vuelo);
+            dateBox.appendChild(numero);
+
+            card.appendChild(contentBox);
+            card.appendChild(dateBox);
+
+            return card;
+        }
+
+      // Función para agregar todas las tarjetas al contenedor
+function renderCards(data) {
+    const container = document.getElementById('cardContainer');
+    const filteredData = data.filter(vuelo => {
+        return vuelo.EstadoVuelo === "En vuelo" || vuelo.EstadoVuelo === "Retrasado" || vuelo.EstadoVuelo === "En espera" || vuelo.EstadoVuelo === "Aproximado";
+    });
+
+    if (filteredData.length === 0) {
+        container.innerHTML = "<p>No hay vuelos</p>";
+    } else {
+        filteredData.forEach(cardInfo => {
+            const card = createCard(cardInfo.title, cardInfo.content, cardInfo.flight);
+            container.appendChild(card);
+        });
+    }
+}
+
+let vueloSeleccionadoNumber; // Variable para almacenar el número de vuelo del vuelo seleccionado
+
+function mostrarDetalleModal(flight) {
+    vueloSeleccionadoNumber = flight; // Guarda el número de vuelo del vuelo seleccionado
+
+    const vueloSeleccionado = formattedData.find(card => card.flight === flight);
+    const detalleModalBody = document.getElementById('detalleModalBody');
+
+    let estadoVueloHTML = `<span class="cross-icon">×</span>`;
+    if (vueloSeleccionado.EstadoVuelo === "Aproximado") {
+        estadoVueloHTML = `<span class="check-icon">✔</span>`;
+    }
+
+    detalleModalBody.innerHTML = `
+        <p><span class="check-icon">✔</span> <strong>Vuelo:</strong> ${vueloSeleccionado.flight}</p>
+        <p><span class="check-icon">✔</span> <strong>Piloto:</strong> ${vueloSeleccionado.content}</p>
+        <p><span class="check-icon">✔</span> <strong>Prioridad:</strong> ${vueloSeleccionado.Prioridad}</p>
+        <p><span class="check-icon">✔</span> <strong>Tipo de Vuelo:</strong> ${vueloSeleccionado.TipoVuelo}</p>
+        <p><span class="check-icon">✔</span> <strong>Aerolinea:</strong> ${vueloSeleccionado.Aerolinea}</p>
+        <p><span class="check-icon">✔</span> <strong>Aeronave:</strong> ${vueloSeleccionado.Aeronave}</p>
+        <p>${estadoVueloHTML} <strong>Estado de Vuelo:</strong> ${vueloSeleccionado.EstadoVuelo}</p>
+        <p><span class="check-icon">✔</span> <strong>Destino:</strong> ${vueloSeleccionado.Destino}</p>
+        <p><span class="check-icon">✔</span> <strong>Altitud:</strong> ${vueloSeleccionado.Latitud}</p>
+        <p><span class="check-icon">✔</span> <strong>Longitud:</strong> ${vueloSeleccionado.Longitud}</p>
+        <p><span class="check-icon">✔</span> <strong>Ruta:</strong> ${vueloSeleccionado.Ruta}</p>
+        <p><span class="check-icon">✔</span> <strong>Hora de Salida:</strong> ${vueloSeleccionado.HoraSalida}</p>
+        <p><span class="check-icon">✔</span> <strong>Hora de Llegada:</strong> ${vueloSeleccionado.HoraLlegada}</p>
+        <p><span class="check-icon">✔</span> <strong>Duracion Estimada:</strong> ${vueloSeleccionado.Duracion}</p>
+    `;
+
+    const detalleModal = new bootstrap.Modal(document.getElementById('detalleModal'));
+    detalleModal.show();
+}
+
+function registrarAproximacion() {
+    const vueloSeleccionado = formattedData.find(vuelo => vuelo.flight === vueloSeleccionadoNumber);
+
+    if (vueloSeleccionado && vueloSeleccionado.EstadoVuelo === "Aproximado") {
+        // Si el vuelo seleccionado está en estado "Aproximado", redirige a la página correspondiente
+        window.location.href = `Aproximacion.html?id=${vueloSeleccionado.IdVuelo}`;
+    } else {
+        // Si el vuelo seleccionado no está en estado "Aproximado", muestra un mensaje de error
+        alert("El vuelo seleccionado no está en estado 'Aproximado'.");
+    }
+}
+
+
+
+fetchData();
+
+    </script>
+
+
+    <script src="/JS/Labels.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
