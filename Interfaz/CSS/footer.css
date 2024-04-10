@@ -1,0 +1,51 @@
+﻿/* Estilos para el pie de página */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-md-6 {
+    width: 48%;
+}
+
+h3 {
+    color: #fff;
+}
+
+p {
+    color: #ccc;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+hr {
+    border-color: #555;
+}
