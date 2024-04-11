@@ -17,7 +17,7 @@
 
 .row {
    
-    padding: 10px 0; /* Espacio entre filas */
+    padding: 1px 0; /* Espacio entre filas */
 }
 
 .col {
@@ -55,7 +55,7 @@ p {
     background-color: #E9E9E9; /* Cambia el color de fondo a gris claro */
     border-radius: 10px 10px 10px 10px;
     width: calc(110px + 180px); /* Calcula el ancho total sumando el valor del margen derecho */
-    height:650px;
+    height:500px;
 }
 
 #containerreport {
