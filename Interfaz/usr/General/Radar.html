@@ -14,7 +14,7 @@
 </head>
 <body>
     <div id="map"></div>
-    <script>
+   <script>
     var map = L.map('map').setView([10, -83.6], 8); // Ajustar vista para mostrar la ruta
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -30,11 +30,11 @@
     });
 
     // Función para trazar la ruta aérea entre el aeropuerto de origen y destino
-    function drawFlightRoute(origin, destination) {
+    function drawFlightRoute(origin, destination, intermediatePoints) {
         var controlPoints = [
             'M', origin,
-            'Q', [origin[0] - 0.2, origin[1] + 0.5], // Punto de control 1
-                 [destination[0] + 0.2, destination[1] - 0.5], // Punto de control 2
+            'Q', intermediatePoints[0], // Punto de control 1
+                 intermediatePoints[1], // Punto de control 2
             'T', destination
         ];
         var bezier = L.curve(controlPoints, {color: 'blue'}).addTo(map);
@@ -45,23 +45,18 @@
     }
 
     // Hacer solicitud al API
-    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/Obtener')
+    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/CalcularPuntosIntermedios?codigoVuelo=CR0004')
         .then(response => response.json())
         .then(data => {
-            // Obtener las coordenadas del aeropuerto de origen y destino del primer vuelo en los datos
-            var origin = [data[0].AeropuertoOLatitud, data[0].AeropuertoOLontigud];
-            var destination = [data[0].AeropuertoDLatitud, data[0].AeropuertoDLongitud];
+            // Obtener las coordenadas del aeropuerto de origen y destino
+            var origin = [data[0].m_Item1, data[0].m_Item2]; // Primer punto como origen
+            var destination = [data[data.length - 1].m_Item1, data[data.length - 1].m_Item2]; // Último punto como destino
 
-            // Agregar los marcadores de origen y destino al mapa
-            var originMarker = L.marker(origin).addTo(map);
-            originMarker.bindPopup("<b>Aeropuerto Origen</b><br>Latitud: " + origin[0] + "<br>Longitud: " + origin[1]).openPopup();
-            var destinationMarker = L.marker(destination).addTo(map);
-            destinationMarker.bindPopup("<b>Aeropuerto Destino</b><br>Latitud: " + destination[0] + "<br>Longitud: " + destination[1]).openPopup();
-
-            // Trazar la ruta aérea entre el aeropuerto de origen y destino
-            drawFlightRoute(origin, destination);
+            // Trazar la ruta aérea entre el aeropuerto de origen y destino con los puntos intermedios
+            drawFlightRoute(origin, destination, [data[1].m_Item1, data[1].m_Item2, data[2].m_Item1, data[2].m_Item2]);
         })
         .catch(error => console.error('Error fetching flight data:', error));
-    </script>
+</script>
+
 </body>
 </html>

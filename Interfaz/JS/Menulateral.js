@@ -37,9 +37,15 @@
         var destination = [datosVuelo[0].AeropuertoDLatitud, datosVuelo[0].AeropuertoDLongitud];
         var aeronaveLat = datosVuelo[0].AeronaveLat;
         var aeronaveLon = datosVuelo[0].AeronaveLon;
+        var codigovueloF = datosVuelo[0].NumeroVuelo;
 
-        drawFlightRoute(origin, destination);
-        drwaplane(aeronaveLat, aeronaveLon);
+        consultarApi(codigovueloF)
+        
+        setInterval(function () {
+            consultarUbicacionAvion(codigovueloF);
+        }, 1000); // Llama a consultarUbicacionAvion cada 1000 milisegundos (1 segundo)
+        
+        //drwaplane(aeronaveLat, aeronaveLon);
         console.log('Respuesta del API:', JSON.parse(respuesta));
         localStorage.removeItem('respuestaAPI');
         habilitarCamposSeleccion();
@@ -195,32 +201,119 @@ var map = L.map('map').setView([10, -83.6], 8); // Ajustar vista para mostrar la
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-function drawFlightRoute(origin, destination) {
-    var controlPoints = [
-        'M', origin,
-        'Q', [origin[0] - 0.2, origin[1] + 0.5], // Punto de control 1
-        [destination[0] + 0.2, destination[1] - 0.5], // Punto de control 2
-        'T', destination
-    ];
-    var bezier = L.curve(controlPoints, { color: 'blue' }).addTo(map);
-    map.fitBounds(bezier.getBounds());
+function consultarApi(codigoVuelo) {
+    var apiUrl = `http://localhost:59769/api/Vuelos/CalcularPuntosIntermedios?codigoVuelo=${codigoVuelo}`;
 
-    // Agregar los marcadores de origen y destino al mapa
-    var originMarker = L.marker(origin).addTo(map);
-    originMarker.bindPopup("<b>Aeropuerto Origen</b><br>Latitud: " + origin[0] + "<br>Longitud: " + origin[1]).openPopup();
-    var destinationMarker = L.marker(destination).addTo(map);
-    destinationMarker.bindPopup("<b>Aeropuerto Destino</b><br>Latitud: " + destination[0] + "<br>Longitud: " + destination[1]).openPopup();
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud. Código HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Datos recibidos del API:', data);
+            // Verificar que haya al menos 2 puntos para formar una ruta
+            if (data.length < 2) {
+                throw new Error('El API no devolvió suficientes puntos para trazar una ruta.');
+            }
+
+            // Dibujar la ruta en el mapa
+            drawFlightRoute(map, data);
+        })
+        .catch(error => {
+            console.error('Error al consultar el API:', error);
+            alert('Error al consultar el API. Verifique el código de vuelo.');
+        });
+}
+
+function drawFlightRoute(map, data) {
+    var routePoints = [];
+
+    // Crear un array de puntos de la ruta
+    data.forEach(point => {
+        routePoints.push([point.m_Item1, point.m_Item2]);
+    });
+
+    // Crear una línea poligonal (ruta) con los puntos de la ruta
+    L.polyline(routePoints, { color: 'blue' }).addTo(map);
+    map.fitBounds(routePoints); // Ajustar la vista para mostrar toda la ruta
+
+    // Añadir marcadores de origen y destino al mapa
+    var origin = routePoints[0];
+    var destination = routePoints[routePoints.length - 1];
+    L.marker(origin).addTo(map).bindPopup('Origen').openPopup();
+    L.marker(destination).addTo(map).bindPopup('Destino').openPopup();
+
 
 }
-function drwaplane(aeronaveLat, aeronaveLon) {
+var airplaneMarker; // Declarar la variable global
+function consultarUbicacionAvion(codigoVuelo) {
+    const apiUrl = `http://localhost:59769/api/Vuelos/ObtenerPUbicacionavion?codigoVuelo=${codigoVuelo}`;
+
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Error en la solicitud. Código HTTP: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.length > 0) {
+                const { AeronaveLat, AeronaveLon } = data[0];
+                updatePlaneLocation(AeronaveLat, AeronaveLon);
+            } else {
+                throw new Error('No se encontraron datos de ubicación para la aeronave.');
+            }
+        })
+        .catch(error => {
+            // Imprimir los datos recibidos por la API en el mensaje de error
+            console.error('Error al consultar la ubicación del avión. Datos recibidos:', error);
+            alert('Error al consultar la ubicación del avión. Inténtelo de nuevo más tarde.');
+        });
+}
+
+
+function updatePlaneLocation(newLat, newLon) {
+    // Eliminar el marcador existente del avión si ya está presente en el mapa
+    if (airplaneMarker) {
+        map.removeLayer(airplaneMarker);
+    }
+
+    // Crear un nuevo marcador con la ubicación actualizada del avión
+    airplaneMarker = L.marker([newLat, newLon], {
+        icon: L.icon({
+            iconUrl: 'https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Airplane.svg',
+            iconSize: [32, 32], // Tamaño del ícono
+            iconAnchor: [16, 16] // Punto de anclaje del ícono (centro)
+        })
+    }).addTo(map);
+
+    // Agregar información al marcador (opcional)
+    airplaneMarker.bindPopup("<b>Aeronave Actual</b><br>Latitud: " + newLat + "<br>Longitud: " + newLon).openPopup();
+
+    // Centrar el mapa en la nueva ubicación del avión
+    map.setView([newLat, newLon], map.getZoom());
+}
+
+
+function drawPlane(aeronaveLat, aeronaveLon) {
+    // Suponiendo que 'map' es tu instancia de Leaflet
     var airplaneMarker = L.marker([aeronaveLat, aeronaveLon], {
         icon: L.icon({
             iconUrl: 'https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Airplane.svg',
             iconSize: [32, 32], // Tamaño del ícono
-            iconAnchor: [16, 16], // Punto de anclaje del ícono (centro)
+            iconAnchor: [16, 16] // Punto de anclaje del ícono (centro)
         })
     }).addTo(map);
 
     // Agregar información al marcador (opcional)
     airplaneMarker.bindPopup("<b>Aeronave Actual</b><br>Latitud: " + aeronaveLat + "<br>Longitud: " + aeronaveLon).openPopup();
 }
+
+// Llamar a la función para consultar la ubicación del avión (debes proporcionar el código de vuelo correcto)
+
+
+
+
+
