@@ -102,6 +102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bootstrap\CssIndex\bootstrap.css" />
+    <Content Include="Bootstrap\CssIndex\responsive.css" />
+    <Content Include="Bootstrap\CssIndex\style.css" />
     <Content Include="Bootstrap\css\bootstrap-grid.css" />
     <Content Include="Bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Bootstrap\css\bootstrap-grid.rtl.css" />
@@ -201,6 +204,10 @@
     <Content Include="Bootstrap\js\bootstrap.esm.min.js.map" />
     <Content Include="Bootstrap\js\bootstrap.js.map" />
     <Content Include="Bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="pub\about.html" />
+    <Content Include="pub\contact.html" />
+    <Content Include="pub\index.html" />
+    <Content Include="pub\service.html" />
     <Content Include="Site.Master" />
     <Content Include="usr\Aproximacion\Vuelos.html" />
     <Content Include="usr\Aterrizaje\ListaAterrizaje.html" />
@@ -215,7 +222,7 @@
     <Content Include="usr\General\Reportes.html" />
     <Content Include="usr\header.html" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="pub\index.html" />
+    <Content Include="pub\index2.html" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -254,6 +261,8 @@
     <Folder Include="Components\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bootstrap\CssIndex\style.css.map" />
+    <Content Include="Bootstrap\CssIndex\style.scss" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -1,367 +1,611 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Interfaz/CSS/index.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Heustonn</title>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Bootstrap/css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700|Roboto:400,700&display=swap" rel="stylesheet">
+    <link href="/Bootstrap/CssIndex/style.css" rel="stylesheet" />
+    <link href="/Bootstrap/CssIndex/responsive.css" rel="stylesheet" />
     <style>
+
+
+        .mini-nav {
+           
+            border-radius: 10px;
+            padding: 1px;
+            color: white;
+            display: flex;
+            align-items: center;
+            width: 500px;
+            height: 65px;
+        }
+
+            .mini-nav img {
+                width: 70px;
+                height: 58px;
+            }
+
+
+        .text-container p {
+            margin: 0;
+            padding: 0; /* Elimina el espacio dentro de los párrafos */
+            font-size: 15px;
+        }
+
+            .text-container p:first-child {
+                font-size: 25px; /* Aumenta el tamaño de la fuente para 'Sky Guardian' */
+                font-weight: bolder; /* Hace el texto 'Sky Guardian' en negrita */
+            }
         .login-container {
             position: relative;
-            top: -2px; /* Ajusta este valor según sea necesario */
+            top: -2px;
+            /* Ajusta este valor según sea necesario */
             margin-right: 20px;
         }
 
-        #carouselExampleCaptions {
-            max-width: 90%; /* Ancho máximo para cubrir el ancho de la pantalla */
-            height: 800px;
-            overflow: hidden; /* Oculta el desbordamiento */
-            border-radius: 20px; /* Bordes redondeados */
-            margin-top: 20px; /* Espacio por encima del carrusel */
-            margin-left: 100px;
-            margin-bottom: 300px; /* Ajustar el margen inferior hacia arriba */
-            position: relative; /* Establece posición relativa para los elementos internos */
+
+        /* Estilos para la tarjeta de notificación */
+        .notification-card {
+            position: fixed;
+            right: 20px;
+            /* Posición inicial a la derecha */
+            bottom: 20px;
+            background-color: #BA2C2C;
+            /* Color de fondo verde (éxito) */
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.5s forwards;
+            /* Animación de entrada */
+            display: none;
+            /* Por defecto oculto */
         }
 
-        .carousel-item {
-            position: relative; /* Establece posición relativa para alinear elementos hijos */
-        }
-
-            .carousel-item::before {
-                content: ''; /* Añade un pseudo-elemento para la superposición */
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%); /* Degradado lineal oscuro a transparente */
+        /* Animación de entrada */
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                /* Inicio desde la derecha */
             }
 
-        .carousel-caption {
-            position: absolute;
-            bottom: 20px; /* Ajusta la posición verticalmente según sea necesario */
-            left: 50%; /* Centra horizontalmente */
-            transform: translateX(-50%); /* Centra horizontalmente */
-            color: #fff; /* Color del texto */
-        }
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Hace que la imagen cubra todo el contenedor */
-            border-radius: 20px; /* Redondea las esquinas de la imagen */
-            overflow: hidden;
+            to {
+                transform: translateX(0);
+                /* Fin en posición normal */
+            }
         }
 
-        h1 {
-            position: absolute;
-            top: 180px; /* Ajusta la posición verticalmente según sea necesario */
-            left: 50%; /* Centra horizontalmente el encabezado */
-            transform: translateX(-50%); /* Centra el encabezado horizontalmente */
-            text-align: center; /* Centra el texto dentro del encabezado */
-            z-index: 1; /* Asegura que el encabezado esté por encima del carrusel */
-            color: #fff; 
-     
-        }
-
-
-        .section-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 20px;
-        }
-
-        .section-text {
-            max-width: 50%;
-            padding: 0 20px;
-        }
-
-            .section-text h2 {
-                font-size: 45px;
-                margin-bottom: 0;
-                margin-top: 0;
-                margin-left: 250px;
+        /* Animación de salida */
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                /* Inicio desde posición normal */
             }
 
-            .section-text div {
-                font-size: 18px;
-                margin-bottom: 10px;
-                margin-left: 250px;
-            }
-
-        .section-image {
-            max-width: 40%;
-            margin-left: 50px;
-            margin-right: auto;
-            animation: moveUpDown 3s infinite alternate;
-        }
-
-            .section-image img {
-                max-width: 100%;
-                height: auto;
-                display: block; /* Esto es importante para manejar correctamente el espacio ocupado por la imagen */
-            }
-
-        .read-more-btn-container {
-            margin-left: 250px;
-        }
-
-        .read-more-btn {
-            background-color: yellow;
-            border: none;
-            color: black;
-            padding: 20px 45px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 12px;
-        }
-
-        @keyframes moveUpDown {
-            0% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-
-            100% {
-                transform: translateY(0);
+            to {
+                transform: translateX(100%);
+                /* Fin hacia la derecha */
             }
         }
     </style>
+
 </head>
+
 <body>
-    <div class="contenedor-header">
-        <header>
-            <nav>
-                <div class="mini-nav">
-                    <img src="/Imagenes//Logo.png" />
-                    <div class="text-container">
-                        <p>Sky Guardian</p>
-                        <p>Protegiendo cada vuelo, cuidando cada paso.</p>
+    <div class="hero_area">
+        <header class="header_section">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                    <a class="navbar-brand" href="index.html">
+                        <div class="mini-nav">
+                            <img src="/Imagenes//Logo.png" />
+                            <div class="text-container">
+                                <p>Sky Guardian</p>
+                                <p>Protegiendo cada vuelo, cuidando cada paso.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"> </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+                            <ul class="navbar-nav  ">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index.html">
+                                        Dashboard <span class="sr-only"></span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html"> Acerca de Nosotros </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="service.html"> Servicios </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html"> Contactenos</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                        Inicio Sesion
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                    <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+                        <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"> </button>
+                    </form>
+                </nav>
+            </div>
+        </header>
+        <!-- end header section -->
+        <!-- slider section -->
+        <section class=" slider_section position-relative">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="slider_item-box layout_padding2">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="img-box">
+                                            <div>
+                                                <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Avion.png" alt="" class="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="detail-box">
+                                            <div>
+                                                <h1>
+                                                    Sky <br>
+                                                    Guardian <br>
+                                                             <span>
+                                                                 Protegiendo cada vuelo, cuidando cada paso
+                                                             </span>
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        <!-- end slider section -->
+    </div>
+
+    <div class="bg">
+
+        <!-- about section -->
+        <section class="about_section layout_padding">
+            <div class="container">
+                <div class="custom_heading-container">
+                    <h3 class=" ">
+                        Acerca de Nuestra Compa;ia
+                    </h3>
+                </div>
+                <p class="layout_padding2-top">
+                    En SkyGuardian, nos enorgullece
+                    ofrecer una experiencia de vuelo excepcional con un enfoque inquebrantable en la seguridad, la comodidad
+                    y el servicio al cliente. Desde nuestros modestos inicios, hemos crecido hasta convertirnos en una de las
+                    principales aerolíneas en la región, sirviendo a pasajeros tanto nacionales como internacionales con rutas estratégicas y eficientes.
+                </p>
+                <div class="img-box layout_padding2">
+                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Maleta.png" alt="" style="max-width: 50%; height: auto;">
+                </div>
+
+            </div>
+        </section>
+        <section class="service_section layout_padding-bottom">
+            <div class="container">
+                <div class="custom_heading-container">
+                    <h3 class=" ">
+                        Nuestros Servicios
+                    </h3>
+                </div>
+                <p class="">
+                    En SkyGuardian, nos esforzamos por ofrecer una amplia gama de servicios diseñados para hacer que tu experiencia de viaje sea conveniente, cómoda y placentera. Desde el momento en que reservas tu vuelo hasta que llegas a tu destino final, estamos aquí para atender todas tus necesidades.
+                </p>
+                <div class="service_container ">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="box b-1">
+                                <div class="img-box">
+                                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Destinos.jpg" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Variedad de Destinos
+                                    </h6>
+                                    <p>
+                                        Disfruta de una extensa red de rutas que conectan ciudades principales y destinos turísticos populares.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="box b-2">
+                                <div class="img-box">
+                                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Comodidad.jpg" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Comodidad a Bordo
+                                    </h6>
+                                    <p>
+                                        Relájate y disfruta de nuestras cabinas diseñadas para tu comodidad. Nuestros asientos espaciosos te permiten estirar las piernas, y nuestro equipo de tripulación está siempre dispuesto a ayudarte para que tu vuelo sea lo más agradable posible.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="box b-3">
+                                <div class="img-box">
+                                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/PrimeraClase.jpg" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Servicio al Cliente de Primera Clase
+                                    </h6>
+                                    <p>
+                                        Nuestro equipo está dedicado a brindarte un servicio al cliente excepcional. Estamos disponibles para ayudarte en cada etapa de tu viaje, desde la reserva hasta la llegada, para garantizar una experiencia sin contratiempos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="box b-4">
+                                <div class="img-box">
+                                    <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Seguridad.jpg" alt="">
+                                </div>
+                                <div class="detail-box">
+                                    <h6>
+                                        Seguridad
+                                    </h6>
+                                    <p>
+                                       Operamos con los más altos estándares de seguridad y mantenimiento para garantizar viajes seguros y tranquilos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <ul style="display: flex; align-items: center;">
-                    <li>
-                        <a class="navbar-brand" href="#">Home</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </li>
-                    <li>
-                        <a id="Tours" class="navbar-brand" href="#">Tours</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </li>
-                    <li>
-                        <a id="blog" class="navbar-brand" href="#">Blog</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
+            </div>
+        </section>
+  
+        <section class="work_section layout_padding">
+            <div class="container">
+                <div class="custom_heading-container">
+                    <h3 class=" ">
+                        HOW IT WORKS
+                    </h3>
+                </div>
+            </div>
+            <div class="work_container ">
+                <div class="box b-1">
+                    <div class="img-box">
+                        <img src="images/w-1.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h6>
+                            Adipiscing elit
+                        </h6>
+                    </div>
+                </div>
+                <div class="box b-2">
+                    <div class="img-box ">
+                        <img src="images/w-2.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h6>
+                            Adipiscing elit
+                        </h6>
+                    </div>
+                </div>
+                <div class="box b-3">
+                    <div class="img-box ">
+                        <img src="images/w-3.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h6>
+                            Adipiscing elit
+                        </h6>
+                    </div>
+                </div>
+                <div class="box b-4">
+                    <div class="img-box ">
+                        <img src="images/w-4.png" alt="">
+                    </div>
+                    <div class="name">
+                        <h6>
+                            Adipiscing elit
+                        </h6>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="btn-box">
+                    <a href="">
+                        Read More
+                    </a>
+                    <hr>
+                </div>
+            </div>
+        </section>
+        <!-- end work section -->
+        <!-- contact section -->
+        <section class="contact_section layout_padding">
+            <div class="custom_heading-container">
+                <h3 class=" ">
+                    Booking Online
+                </h3>
+            </div>
+            <div class="container layout_padding2-top">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                        <form action="">
+                            <div>
+                                <input type="text" placeholder="NAME">
+                            </div>
+                            <div>
+                                <input type="email" placeholder="EMAIL">
+                            </div>
+                            <div>
+                                <input type="text" placeholder="PHONE NUMBER">
+                            </div>
+                            <div>
+                                <select name="" id="">
+                                    <option value="" disabled selected> TYPE OF SERVICE</option>
+                                    <option value=""> Service 1</option>
+                                    <option value=""> Service 2</option>
+                                    <option value=""> Service 3</option>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="text" class="message-box" placeholder="MESSAGE">
+                            </div>
+                            <div class="d-flex justify-content-center ">
+                                <button>
+                                    SEND
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-                    </li>
-                    <li>
-                        <a id="abouts" class="navbar-brand" href="#">About Us</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </li>
-                    <li>
-                        <a id="contacus" class="navbar-brand" href="#">Contact Us</a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                    </li>
-                    <li>
-                        <div class="login-container">
-                            <a id="loginBtn" href="#"></a>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                Iniciar Sesión
-                            </button>
+            </div>
+        </section>
+        <!-- end contact section -->
+        <section class="client_section layout_padding-bottom">
+            <div class="container">
+                <div class="custom_heading-container">
+                    <h3 class=" ">
+                        What clients says
+                    </h3>
+                </div>
+                <div class="layout_padding2-top">
+                    <div class="client_container">
+                        <div class="detail-box">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et
+                                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            </p>
                         </div>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+                        <div class="client_id">
+                            <div class="img-box">
+                                <img src="images/client.png" alt="">
+                            </div>
+                            <div class="name">
+                                <h5>
+                                    tempor incididunt
+                                </h5>
+                                <h6>
+                                    Owner
+                                </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- info section -->
+        <section class="info_section layout_padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="info-logo">
+                            <h2>
+                                Heustonn
+                            </h2>
+                            <p>
+                                It is a long established fact that a reader will be distracted by the readable content
+                                of a page when
+                                looking at its layout. The point of
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info-nav">
+                            <h4>
+                                Navigation
+                            </h4>
+                            <ul>
+                                <li>
+                                    <a href="index.html">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="about.html">
+                                        About
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="service.html">
+                                        Services
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        Contact Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Login
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="info-contact">
+                            <h4>
+                                Contact Info
+                            </h4>
+                            <div class="location">
+                                <h6>
+                                    Corporate Office Address:
+                                </h6>
+                                <a href="">
+                                    <img src="images/location.png" alt="">
+                                    <span>
+                                        Loram ipusm New York, NY 36524
+                                    </span>
+                                </a>
+                            </div>
+                            <div class="call">
+                                <h6>
+                                    Customer Service:
+                                </h6>
+                                <a href="">
+                                    <img src="images/telephone.png" alt="">
+                                    <span>
+                                        ( +01 1234567890 )
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="discover">
+                            <h4>
+                                Discover
+                            </h4>
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        Help
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        How It Works
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        subscribe
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        Contact Us
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="social-box">
+                                <a href="">
+                                    <img src="images/facebook.png" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="images/twitter.png" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="images/google-plus.png" alt="">
+                                </a>
+                                <a href="">
+                                    <img src="images/linkedin.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Modal de Inicio de Sesión -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- Contenido del Modal -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel"> Iniciar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"> </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Formulario de Inicio de Sesión -->
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="email" class="form-label"> Correo Electrónico</label>
+                                <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label"> Contraseña</label>
+                                <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                            </div>
+                           <button type="submit" class="btn btn-danger">Iniciar Sesión</button>
+
+                        </form>
+                        <!-- Formulario de Token (Oculto por defecto) -->
+                        <form id="tokenForm" style="display: none;">
+                            <div class="mb-3">
+                                <label for="token" class="form-label"> Token</label>
+                                <input type="text" class="form-control" id="token" placeholder="Ingresa tu token">
+                            </div>
+                            <button type="submit" class="btn btn-danger"> Aceptar</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cancelar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- Tarjeta de notificación de emergencia creada -->
+            <div class="notification-card" id="notificationCard">
+                Contraseña/Usuario Incorrectos
+            </div>
+            <div class="notification-card" id="notificationtoken">
+                Token Invalido
+            </div>
+        </div>
     </div>
-    <section>
-        <div>
-            <h1>
-                <span>Sky Guardian</span>
-                <span>Find & Book Your Destination</span>
-            </h1>
-        </div>
-    </section>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/ST/Images/Airplane.jpg" class="w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/ST/Images/SecondAirplane.jpg" class="w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Some representative placeholder content for the second slide.</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="https://tiusr26pl.cuc-carrera-ti.ac.cr/ST/Images/ThirdAirplane.jpg" class="w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Some representative placeholder content for the third slide.</p>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-    <section class="section-container">
-        <div class="section-text">
-            <h2>Personaliza tu Viaje</h2>
-            <div class="texp">
-                <p>Ofrecemos diversas opciones para que personalices tu experiencia de vuelo. Puedes seleccionar tu clase preferida, agregar servicios adicionales como comidas especiales o asientos preferenciales, y más.</p>
-            </div>
-            <div class="read-more-btn-container">
-                <button class="read-more-btn">Leer Mas</button>
-            </div>
-        </div>
-
-        <div class="section-image">
-            <img src="https://cms.googlycode.com/wp17/wp-content/uploads/2024/02/about-img-04.png" alt="Imagen de Ejemplo">
-        </div>
-
-    </section>
-
-
-
-
-    <!-- Modal de Inicio de Sesión -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Contenido del Modal -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Formulario de Inicio de Sesión -->
-                    <form id="loginForm">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" placeholder="Contraseña">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                    </form>
-                    <!-- Formulario de Token (Oculto por defecto) -->
-                    <form id="tokenForm" style="display: none;">
-                        <div class="mb-3">
-                            <label for="token" class="form-label">Token</label>
-                            <input type="text" class="form-control" id="token" placeholder="Ingresa tu token">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Tarjeta de notificación de emergencia creada -->
-        <div class="notification-card" id="notificationCard">
-            Contraseña/Usuario Incorrectos
-        </div>
-        <div class="notification-card" id="notificationtoken">
-            Token Invalido</div>
-    </div>
-
-    <div class="container footer-container">
-        <footer class="py-5">
-            <div class="row">
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-6 col-md-2 mb-3">
-                    <h5>Section</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-5 offset-md-1 mb-3">
-                    <form>
-                        <h5>Subscribe to our newsletter</h5>
-                        <p>Monthly digest of what's new and exciting from us.</p>
-                        <div class="d-flex flex-column flex-sm-row w-100 gap-2">
-                            <label for="newsletter1" class="visually-hidden">Email address</label>
-                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                            <button class="btn btn-primary" type="button">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
-                <p>© 2024 Sky Guardian, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
-                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
-                </ul>
-            </div>
-        </footer>
-    </div>
-    <script src="/Interfaz/JS/auth.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <section class="container-fluid footer_section">
+            <p>
+                © 2024 SkyGuardian Todos los derechos reservados
+            
+            </p>
+        </section>
+        <script src="/JS/auth.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script type="/CssIndex/js/javascript" src="js/jquery-3.4.1.min.js"></script>
+        <script type="/CssIndex/js/javascript" src="js/bootstrap.js"></script>
 
 </body>
+
 </html>
-
-
-
-
-
-
-
-
