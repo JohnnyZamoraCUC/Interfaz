@@ -4,128 +4,239 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Principal</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/usr/common.js"></script>
+    <title>Reportes</title>
+    <link rel="stylesheet" type="text/css" href="/Bootstrap/css/bootstrap.css" />
+    <link href="/CSS/Emergencia.css" rel="stylesheet">
+    <style>
+        /* Estilos para el contenedor de botones */
+        #flightButtonsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Espacio entre cada botón */
+        }
+
+        .card {
+            width: 240px;
+            height: 354px;
+            border-radius: 20px;
+            background: #f5f5f5;
+            position: relative;
+            padding: 1.8rem;
+            border: 2px solid #c3c6ce;
+            transition: 0.5s ease-out;
+            overflow: visible;
+        }
+
+        .text-body {
+            color: rgb(134, 134, 134);
+        }
+
+        /* Texto */
+        .text-title {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        /* Efecto de hover */
+        .card:hover {
+            border-color: #ff4f5a;
+            box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+        }
+
+            .card:hover .card-button {
+                transform: translate(-50%, 50%);
+                opacity: 1;
+            }
+        .flight-button {
+            padding: 10px 20px;
+            background-color: #ff4f5a;
+            color: white;
+            border: none;
+            border-radius: 25px; /* Radio de borde para hacer los botones redondeados */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .flight-button:hover {
+                background-color: #0099BE; /* Color de fondo al hacer hover sobre el botón */
+            }
+        .text-title {
+            font-size: 16px; /* Tamaño de fuente más pequeño */
+            
+            font-family: Arial, sans-serif; /* Fuente específica (cambia según tus preferencias) */
+            color: #333; /* Color del texto */
+            margin-bottom: 10px; /* Espacio inferior */
+        }
+        .long-card {
+     
+           
+            background-color: #fff;
+            
+        
+            box-sizing: border-box;
+           
+            flex-direction: column;
+           
+            
+        }
+
+
+        #containerDetails {
+            display: flex;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            justify-content: center;
+          
+            background-color: #fff; /* Color de fondo rojo */
+            position: absolute; /* Posicionamiento absoluto */
+            top: 55px; /* Espacio desde la parte superior */
+            left: 330px; /* Ancho del menú lateral */
+            right: 90px; /* Extiende hasta el borde derecho */
+            bottom: 50px; /* Extiende hasta el borde inferior */
+            border-radius: 10px 10px 10px 10px;
+        }
+        #camposemergencia {
+         
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            justify-content: center;
+            background-color: #fff; /* Color de fondo rojo */
+            position: absolute; /* Posicionamiento absoluto */
+            top: 55px; /* Espacio desde la parte superior */
+            left: 50px; /* Ancho del menú lateral */
+            right: 66%; /* Extiende hasta el borde derecho */
+            bottom: 50px; /* Extiende hasta el borde inferior */
+            border-radius: 10px 10px 10px 10px;
+        }
+    </style>
 
 </head>
-
 <body>
     <header id="header"></header>
+
     <div id="divreport">
         <div id="lbltitulo">
             <div class="modal-header-little">
                 <h5 class="modal-title-lbltitulo">Reporte de Incidencia</h5>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="card" id="cardreportdinamicContainer" style="width: 15rem; margin-top: 10px; margin-left: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">Reporte Detalles</h5>
+        <div class="card" id="emergenciasCard">
+            <div class="card-details">
+                <p class="text-title">Emergencias Activas</p>
+                <div id="flightButtonsContainer"></div>
+            </div>
+        </div>
+
+        <div id="containerDetails">
+            <div id="lbltitulo">
+                <div class="card-details">
+                    <p class="text-title">Detalles Emergencia</p>
+                </div>
+                <div id="camposemergencia">
+
+                    <h5 class="card-title">Crear Emergencia</h5>
+                    <div class="card" style="max-width: 900px; margin: 10px auto; padding: 20px; margin-left: 0px; margin-right: 10px; height:38rem; width:30rem">
+
+
+                        <div class="form-group">
+                            <h6>Tipo de Emergencia:</h6>
+                            <select id="tipoEmergenciaSelect"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Equipo de Emergencia:</h6>
+                            <select id="equipoEmergenciaSelect"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Procedimiento:</h6>
+                            <select id="procedimientoSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Proridad de Aterrizaje:</h6>
+                            <select id="prioridadSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Altitud de Emergencia:</h6>
+                            <select id="altitudEmergenciaSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Fecha y Hora de Inicio:</h6>
+                            <input type="datetime-local" id="fechaHoraInicioInput" name="fechaHoraInicio">
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Fecha y Hora de Fin:</h6>
+                            <input type="datetime-local" id="fechaHoraFinInput" name="fechaHoraFin">
+                        </div>
+                        <div class="form-group">
+                            <h6>Descripción:</h6>
+                            <input type="text" id="descripcionInput" name="descripcion" placeholder="Ingrese una descripción...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+       </div>
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Detalles del Vuelo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Aquí se mostrarán dinámicamente los detalles del vuelo -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Detalles del Vuelo</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Aquí se mostrarán dinámicamente los detalles del vuelo -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer id="footer"></footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencia/ObtenerReportes';
 
-            const fetchEmergencyData = async () => {
-                try {
-                    const response = await fetch(apiUrl);
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching emergency data:', error);
-                    return [];
-                }
-            };
 
-            const renderEmergencyCards = async () => {
-                const container = document.getElementById('cardreportdinamicContainer');
-                const emergencies = await fetchEmergencyData();
+        <footer id="footer"></footer>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                crossorigin="anonymous"></script>
+        <script src="/usr/common.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const apiUrl = "http://localhost:59769/api/Emergencia/ObtenerReportes";
 
-                emergencies.forEach(emergency => {
-                    const card = document.createElement('div');
-                    card.classList.add('card', 'm-1');
-                    card.style.width = '10rem';
+                // Obtener datos de la API
+                fetch(apiUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const flightButtonsContainer = document.getElementById("flightButtonsContainer");
 
-                    const cardBody = document.createElement('div');
-                    cardBody.classList.add('card-body');
+                        // Recorrer los datos y crear botones
+                        data.forEach(emergencia => {
+                            const flightButton = document.createElement("button");
+                            flightButton.textContent = emergencia.DatoVuelo;
+                            flightButton.classList.add("flight-button");
 
-                    const button = document.createElement('button');
-                    button.classList.add('btn', 'btn-primary', 'btn-vuelo');
-                    button.textContent = `Vuelo ${emergency.DatoVuelo}`;
-                    button.dataset.emergencyId = emergency.IdEmergencia;
+                            // Agregar evento al botón para mostrar más detalles
+                            flightButton.addEventListener("click", () => {
+                                // Aquí puedes agregar la lógica para mostrar más detalles de la emergencia
+                                console.log(`Mostrar detalles de la emergencia para vuelo ${emergencia.DatoVuelo}`);
+                            });
 
-                    button.addEventListener('click', () => {
-                        openFlightDetailsModal(emergency);
+                            // Agregar el botón al contenedor
+                            flightButtonsContainer.appendChild(flightButton);
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error al obtener los datos de la API:", error);
                     });
-
-                    cardBody.appendChild(button);
-                    card.appendChild(cardBody);
-                    container.appendChild(card);
-                });
-            };
-
-            const openFlightDetailsModal = (emergency) => {
-                const modalTitle = document.getElementById('staticBackdropLabel');
-                modalTitle.textContent = `Detalles del Vuelo ${emergency.DatoVuelo}`;
-
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido previo del modal
-
-                // Crear elementos para mostrar todos los detalles del vuelo
-                const detailsList = document.createElement('ul');
-                detailsList.classList.add('list-group');
-
-                const flightDetails = Object.entries(emergency);
-
-                flightDetails.forEach(([key, value]) => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('list-group-item');
-                    listItem.innerHTML = `<strong>${key}:</strong> ${value}`;
-                    detailsList.appendChild(listItem);
-                });
-
-                // Agregar la lista de detalles al modal body
-                modalBody.appendChild(detailsList);
-
-                // Mostrar el modal de Detalles del Vuelo
-                const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-                flightModal.show();
-            };
-
-            const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-
-            // Limpiar el modal cuando se cierra
-            flightModal._element.addEventListener('hidden.bs.modal', () => {
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido del modal al cerrarlo
             });
 
-            renderEmergencyCards();
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+        </script>
+
 </body>
+
 </html>
