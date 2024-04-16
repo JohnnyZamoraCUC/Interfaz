@@ -7,107 +7,8 @@
     <title>Reportes</title>
     <link rel="stylesheet" type="text/css" href="/Bootstrap/css/bootstrap.css" />
     <link href="/CSS/Emergencia.css" rel="stylesheet">
+    <link href="/CSS/ReportesEmergencia.css" rel="stylesheet">
     <style>
-        /* Estilos para el contenedor de botones */
-        #flightButtonsContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 10px; /* Espacio entre cada botón */
-        }
-
-        .card {
-            width: 240px;
-            height: 354px;
-            border-radius: 20px;
-            background: #f5f5f5;
-            position: relative;
-            padding: 1.8rem;
-            border: 2px solid #c3c6ce;
-            transition: 0.5s ease-out;
-            overflow: visible;
-        }
-
-        .text-body {
-            color: rgb(134, 134, 134);
-        }
-
-        /* Texto */
-        .text-title {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        /* Efecto de hover */
-        .card:hover {
-            border-color: #ff4f5a;
-            box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
-        }
-
-            .card:hover .card-button {
-                transform: translate(-50%, 50%);
-                opacity: 1;
-            }
-        .flight-button {
-            padding: 10px 20px;
-            background-color: #ff4f5a;
-            color: white;
-            border: none;
-            border-radius: 25px; /* Radio de borde para hacer los botones redondeados */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-            .flight-button:hover {
-                background-color: #0099BE; /* Color de fondo al hacer hover sobre el botón */
-            }
-        .text-title {
-            font-size: 16px; /* Tamaño de fuente más pequeño */
-            
-            font-family: Arial, sans-serif; /* Fuente específica (cambia según tus preferencias) */
-            color: #333; /* Color del texto */
-            margin-bottom: 10px; /* Espacio inferior */
-        }
-        .long-card {
-     
-           
-            background-color: #fff;
-            
-        
-            box-sizing: border-box;
-           
-            flex-direction: column;
-           
-            
-        }
-
-
-        #containerDetails {
-            display: flex;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            justify-content: center;
-          
-            background-color: #fff; /* Color de fondo rojo */
-            position: absolute; /* Posicionamiento absoluto */
-            top: 55px; /* Espacio desde la parte superior */
-            left: 330px; /* Ancho del menú lateral */
-            right: 90px; /* Extiende hasta el borde derecho */
-            bottom: 50px; /* Extiende hasta el borde inferior */
-            border-radius: 10px 10px 10px 10px;
-        }
-        #camposemergencia {
-         
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            justify-content: center;
-            background-color: #fff; /* Color de fondo rojo */
-            position: absolute; /* Posicionamiento absoluto */
-            top: 55px; /* Espacio desde la parte superior */
-            left: 50px; /* Ancho del menú lateral */
-            right: 66%; /* Extiende hasta el borde derecho */
-            bottom: 50px; /* Extiende hasta el borde inferior */
-            border-radius: 10px 10px 10px 10px;
-        }
     </style>
 
 </head>
@@ -206,34 +107,168 @@
         <script src="/usr/common.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const apiUrl = "http://localhost:59769/api/Emergencia/ObtenerReportes";
+                const apiUrl = "http://localhost:59769/api/Emergencias/ObtenerReportes";
+                const prioridadesAterrizajeUrl = "http://localhost:59769/api/Emergencias/PrioridadAterizaje";
+                const altitudemergencia = "http://localhost:59769/api/Emergencias/AltitudEmergencia";
+                const tiposEquiposProcedimientosUrl = "http://localhost:59769/api/Emergencias/ObtenerTiposEquiposProcedimientos";
+                const fechaHoraInicioInput = document.getElementById("fechaHoraInicioInput");
+                const fechaHoraFinInput = document.getElementById("fechaHoraFinInput");
+                const tipoEmergenciaSelect = document.getElementById("tipoEmergenciaSelect");
+                const equipoEmergenciaSelect = document.getElementById("equipoEmergenciaSelect");
+                const procedimientoSelect = document.getElementById("procedimientoSelect");
+                const prioridadSelect = document.getElementById("prioridadSelect");
+                const altitudemerge = document.getElementById("altitudEmergenciaSelect"); 
 
-                // Obtener datos de la API
-                fetch(apiUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        const flightButtonsContainer = document.getElementById("flightButtonsContainer");
+                // Función para realizar una solicitud a una URL y devolver los datos JSON
+                async function fetchData(url) {
+                    try {
+                        const response = await fetch(url);
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return await response.json();
+                    } catch (error) {
+                        console.error("Error al obtener los datos:", error);
+                        return null;
+                    }
+                }
 
-                        // Recorrer los datos y crear botones
-                        data.forEach(emergencia => {
-                            const flightButton = document.createElement("button");
-                            flightButton.textContent = emergencia.DatoVuelo;
-                            flightButton.classList.add("flight-button");
+                // Evento clic para los botones de vuelo
+                const flightButtonsContainer = document.getElementById("flightButtonsContainer");
+                flightButtonsContainer.addEventListener("click", async (event) => {
+                    if (event.target.classList.contains("flight-button")) {
+                        const flightId = event.target.textContent;
 
-                            // Agregar evento al botón para mostrar más detalles
-                            flightButton.addEventListener("click", () => {
-                                // Aquí puedes agregar la lógica para mostrar más detalles de la emergencia
-                                console.log(`Mostrar detalles de la emergencia para vuelo ${emergencia.DatoVuelo}`);
+                        try {
+                            // Realizar todas las solicitudes de datos necesarias en paralelo
+                            const [emergenciaDetails, tiposEquiposProcedimientos] = await Promise.all([
+                                fetchData(`http://localhost:59769/api/Emergencias/EmergenciasPorNumeroVuelo?numeroVuelo=${flightId}`),
+                                fetchData(tiposEquiposProcedimientosUrl)
+
+                            ]);
+                            
+                            // Mostrar cada respuesta por separado en la consola
+                            console.log("Detalles de la emergencia:", emergenciaDetails);
+                            console.log("Tipos de Equipos y Procedimientos:", tiposEquiposProcedimientos);
+
+                            // Obtener el ID de procedimiento de los detalles de la emergencia
+                            const idProcedimiento = emergenciaDetails[0].IdTipoProcedimiento;
+
+                            console.log("IDPROCEDIMIENTO:", idProcedimiento);
+                            // Encontrar el procedimiento correspondiente en los tipos de equipos y procedimientos
+                            const procedimientoEncontrado = tiposEquiposProcedimientos
+                                .flatMap(tipo => tipo.Equipos)
+                                .flatMap(equipo => equipo.Procedimientos)
+                                .find(procedimiento => procedimiento.IdProcedimiento === idProcedimiento);
+
+                            // Actualizar el select de procedimientos con la descripción del procedimiento encontrado
+                            if (procedimientoEncontrado) {
+                                procedimientoSelect.innerHTML = "";
+                                const option = document.createElement("option");
+                                option.value = procedimientoEncontrado.IdProcedimiento;
+                                option.textContent = procedimientoEncontrado.Pasos;
+                                procedimientoSelect.appendChild(option);
+                            } else {
+                                console.error("No se encontró el procedimiento con ID:", idProcedimiento);
+                            }
+
+                            // Buscar el nombre del equipo de emergencia utilizando el ID de procedimiento
+                            const equipoEmergenciaEncontrado = tiposEquiposProcedimientos
+                                .flatMap(tipo => tipo.Equipos)
+                                .find(equipo => equipo.Procedimientos.some(procedimiento => procedimiento.IdProcedimiento === idProcedimiento));
+
+                            // Actualizar el select de equipo de emergencia con el nombre del equipo encontrado
+                            if (equipoEmergenciaEncontrado) {
+                                equipoEmergenciaSelect.innerHTML = "";
+                                const optionEquipo = document.createElement("option");
+                                optionEquipo.value = equipoEmergenciaEncontrado.IdEquipoEmergencia;
+                                optionEquipo.textContent = equipoEmergenciaEncontrado.NombreEquipo;
+                                equipoEmergenciaSelect.appendChild(optionEquipo);
+                            } else {
+                                console.error("No se encontró el equipo de emergencia para el procedimiento con ID:", idProcedimiento);
+                            }
+                            // Encontrar el tipo de emergencia correspondiente al procedimiento buscado
+                            const tipoEmergenciaEncontrado = tiposEquiposProcedimientos.find(tipo => {
+                                return tipo.Equipos.some(equipo => {
+                                    return equipo.Procedimientos.some(procedimiento => procedimiento.IdProcedimiento === idProcedimiento);
+                                });
                             });
 
-                            // Agregar el botón al contenedor
-                            flightButtonsContainer.appendChild(flightButton);
-                        });
+                            // Actualizar el select de tipo de emergencia con el tipo encontrado
+                            if (tipoEmergenciaEncontrado) {
+                                tipoEmergenciaSelect.innerHTML = "";
+                                const optionTipo = document.createElement("option");
+                                optionTipo.value = tipoEmergenciaEncontrado.IdTipoEmergencia;
+                                optionTipo.textContent = tipoEmergenciaEncontrado.Tipo;
+                                tipoEmergenciaSelect.appendChild(optionTipo);
+                            } else {
+                                console.error("No se encontró el tipo de emergencia para el procedimiento con ID:", idProcedimiento);
+                            }
+
+                            if (emergenciaDetails && emergenciaDetails.length > 0) {
+                                const firstEmergencia = emergenciaDetails[0]; // Tomamos el primer elemento si es un arreglo
+                                fechaHoraInicioInput.value = firstEmergencia.FechaHoraInicio;
+                                fechaHoraFinInput.value = firstEmergencia.FechaHoraFin;
+                            } else {
+                                console.error("No se encontraron detalles de emergencia para el vuelo:", flightId);
+                            }
+
+                            // Obtener la descripción de la prioridad de aterrizaje
+                            const prioridadesAterrizaje = await fetchData(prioridadesAterrizajeUrl);
+                            const idPrioridadAterrizaje = emergenciaDetails[0].idprioridadaterrizaje;
+                            const prioridadEncontrada = prioridadesAterrizaje.find(prioridad => prioridad.IdPrioridadAterrizaje === idPrioridadAterrizaje);
+                            if (prioridadEncontrada) {
+                                prioridadSelect.innerHTML = "";
+                                const optionPrioridad = document.createElement("option");
+                                optionPrioridad.value = prioridadEncontrada.IdPrioridadAterrizaje;
+                                optionPrioridad.textContent = prioridadEncontrada.Descripcion;
+                                prioridadSelect.appendChild(optionPrioridad);
+                            } else {
+                                console.error("No se encontró la prioridad de aterrizaje para el ID:", idPrioridadAterrizaje);
+                            }
+
+                            const altituddata = await fetchData(altitudemergencia);
+                            const idAltitudEmergencia = emergenciaDetails[0].idaltitudemergencia;
+                            const altitudEncontrada = altituddata.find(altitud => altitud.IdAltitudEmergencia === idAltitudEmergencia);
+                            if (altitudEncontrada) {
+                                altitudEmergenciaSelect.innerHTML = "";
+                                const optionAltitud = document.createElement("option");
+                                optionAltitud.value = altitudEncontrada.IdAltitudEmergencia;
+                                optionAltitud.textContent = altitudEncontrada.Altitud;
+                                altitudemerge.appendChild(optionAltitud);
+                            } else {
+                                console.error("No se encontró la altitud de emergencia para el ID:", idAltitudEmergencia);
+                            }
+
+
+                        } catch (error) {
+                            console.error("Error al obtener los detalles:", error);
+                        }
+                    }
+                });
+
+                // Obtener datos de la API y crear botones dinámicamente
+                fetchData(apiUrl)
+                    .then(data => {
+                        if (data && Array.isArray(data)) {
+                            const flightButtonsContainer = document.getElementById("flightButtonsContainer");
+
+                            // Recorrer los datos y crear botones
+                            data.forEach(emergencia => {
+                                const flightButton = document.createElement("button");
+                                flightButton.textContent = emergencia.DatoVuelo;
+                                flightButton.classList.add("flight-button");
+                                flightButtonsContainer.appendChild(flightButton);
+                            });
+                        } else {
+                            console.error("La respuesta de la API no es un arreglo válido:", data);
+                        }
                     })
                     .catch(error => {
                         console.error("Error al obtener los datos de la API:", error);
                     });
             });
+
 
         </script>
 

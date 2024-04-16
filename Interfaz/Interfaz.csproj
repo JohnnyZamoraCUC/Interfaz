@@ -151,6 +151,7 @@
     <Content Include="CSS\index.css" />
     <Content Include="CSS\LAterrizaje.css" />
     <Content Include="CSS\navusr.css" />
+    <Content Include="CSS\ReportesEmergencia.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Aterrizado.jpg" />
