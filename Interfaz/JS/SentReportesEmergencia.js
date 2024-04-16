@@ -49,7 +49,7 @@
             })
             .then(data => {
                 console.log('La emergencia ha sido creada exitosamente:', data);
-                mostrarNotificacion();
+                
 
             })
             .catch(error => {
@@ -87,3 +87,5 @@ function ocultarNotificacion() {
         window.location.reload();
     }, 500);
 }
+
+

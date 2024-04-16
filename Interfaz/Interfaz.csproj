@@ -151,6 +151,7 @@
     <Content Include="CSS\index.css" />
     <Content Include="CSS\Aterrizaj.css" />
     <Content Include="CSS\navusr.css" />
+    <Content Include="CSS\ReportesEmergencia.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\Aterrizado.jpg" />
@@ -159,6 +160,7 @@
     <Content Include="Imagenes\Logo.PNG" />
     <Content Include="Imagenes\Pista.jpg" />
     <Content Include="JS\auth.js" />
+    <Content Include="JS\AvionData.js" />
     <Content Include="JS\Emergencia.js" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="JS\Labels.js" />
@@ -204,7 +206,6 @@
     <Content Include="Bootstrap\js\bootstrap.esm.min.js.map" />
     <Content Include="Bootstrap\js\bootstrap.js.map" />
     <Content Include="Bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="pub\about.html" />
     <Content Include="pub\contact.html" />
     <Content Include="pub\index.html" />
     <Content Include="pub\service.html" />
@@ -222,7 +223,6 @@
     <Content Include="usr\General\Reportes.html" />
     <Content Include="usr\header.html" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="pub\index2.html" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />

@@ -4,24 +4,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Principal</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/usr/common.js"></script>
+    <title>Reportes</title>
+    <link rel="stylesheet" type="text/css" href="/Bootstrap/css/bootstrap.css" />
+    <link href="/CSS/Emergencia.css" rel="stylesheet">
+    <link href="/CSS/ReportesEmergencia.css" rel="stylesheet">
+    <style>
+        #modificarButton {
+            background-color: yellow; /* Color de fondo amarillo */
+            border-radius: 10px; /* Borde redondeado */
+            padding: 10px 20px; /* Espaciado interno (opcional) */
+            border: none; /* Sin borde */
+            cursor: pointer; /* Cambia el cursor al pasar el ratón */
+        }
+        /* Estilo específico para los select */
+        select {
+            width: 100%; /* Ancho completo del contenedor */
+            padding: 2px; /* Espaciado interno */
+            border: 1px solid #ccc; /* Borde */
+            border-radius: 5px; /* Borde redondeado */
+            background-color: #f9f9f9; /* Color de fondo */
+            font-size: 14px; /* Tamaño de fuente */
+            color: #333; /* Color de texto */
+            box-sizing: border-box; /* Incluir borde y relleno en el tamaño */
+        }
+        input {
+            width: 70%; /* Utiliza el 100% del ancho disponible */
+            padding: 1px; /* Reducción del espacio interno */
+            border-radius: 3px; /* Bordes más suaves */
+            border: 1px solid #ccc;
+            font-size: 0.75rem;
+        }
+        .modal-header {
+            text-align: center; /* Centrar el contenido del encabezado */
+        }
+
+        .modal-title {
+            margin-right: 40%; /* Eliminar márgenes para mayor limpieza */
+        }
+        .form-group {
+            margin-bottom:1px;
+        }
+        .modal-body .form-group:last-child {
+            margin-top: 10px; /* Espacio (margen) superior entre el último form-group y el footer */
+        }
+    </style>
 
 </head>
-
 <body>
     <header id="header"></header>
+
     <div id="divreport">
         <div id="lbltitulo">
             <div class="modal-header-little">
                 <h5 class="modal-title-lbltitulo">Reporte de Incidencia</h5>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
-            <div class="card" id="cardreportdinamicContainer" style="width: 15rem; margin-top: 10px; margin-left: 20px;">
-                <div class="card-body">
-                    <h5 class="card-title">Reporte Detalles</h5>
+        <div class="card" id="emergenciasCard">
+            <div class="card-details">
+                <p class="text-title">Emergencias Activas</p>
+                <div id="flightButtonsContainer"></div>
+            </div>
+        </div>
+
+        <div id="containerDetails">
+            <div id="lbltitulo">
+                <div class="card-details">
+                    <p class="text-title">Detalles Emergencia</p>
+                </div>
+                <div id="camposemergencia">
+
+                    <h5 class="card-title">Crear Emergencia</h5>
+                    <div class="card" style="max-width: 900px; margin: 10px auto; padding: 20px; margin-left: 0px; margin-right: 10px; height:38rem; width:30rem">
+
+
+                        <div class="form-group">
+                            <h6>Tipo de Emergencia:</h6>
+                            <select id="tipoEmergenciaSelect"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Equipo de Emergencia:</h6>
+                            <select id="equipoEmergenciaSelect"></select>
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Procedimiento:</h6>
+                            <select id="procedimientoSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Proridad de Aterrizaje:</h6>
+                            <select id="prioridadSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Altitud de Emergencia:</h6>
+                            <select id="altitudEmergenciaSelect"></select>
+                        </div>
+                        <div class="form-group">
+                            <h6>Fecha y Hora de Inicio:</h6>
+                            <input type="datetime-local" id="fechaHoraInicioInput" name="fechaHoraInicio">
+                        </div>
+
+                        <div class="form-group">
+                            <h6>Fecha y Hora de Fin:</h6>
+                            <input type="datetime-local" id="fechaHoraFinInput" name="fechaHoraFin">
+                        </div>
+                        <div class="form-group">
+                            <h6>Descripción:</h6>
+                            <input type="text" id="descripcionInput" name="descripcion" placeholder="Ingrese una descripción...">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-warning">Modificar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalmodificar" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 id="lbltitulovuelo" class="modal-title">lbltitulovuelo</h5>
+                            </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <h6>Tipo de Emergencia:</h6>
+                                <select id="modaltipoEmergenciaSelect"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <h6>Equipo de Emergencia:</h6>
+                                <select id="modalequipoEmergenciaSelect"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <h6>Procedimiento:</h6>
+                                <select id="modalprocedimientoSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Proridad de Aterrizaje:</h6>
+                                <select id="modalprioridadSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Altitud de Emergencia:</h6>
+                                <select id="modalaltitudEmergenciaSelect"></select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Fecha y Hora de Inicio:</h6>
+                                <input type="datetime-local" id="modalfechaHoraInicioInput" name="fechaHoraInicio">
+                            </div>
+
+                            <div class="form-group">
+                                <h6>Fecha y Hora de Fin:</h6>
+                                <input type="datetime-local" id="modalfechaHoraFinInput" name="fechaHoraFin">
+                            </div>
+                            <div class="form-group">
+                                <h6>Descripción:</h6>
+                                <input type="text" id="descripcionInput" name="modaldescripcion" placeholder="Ingrese una descripción...">
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" id="guardarDescripcion">Guardar</button>
+                            </div>
+                            <!-- Tarjeta de notificación de emergencia creada -->
+                            <div class="notification-card" id="notificationCard">
+                                La emergencia se ha actualizado exitosamente.
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,90 +192,251 @@
             </div>
         </div>
     </div>
+
+
     <footer id="footer"></footer>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const apiUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencia/ObtenerReportes';
-
-            const fetchEmergencyData = async () => {
-                try {
-                    const response = await fetch(apiUrl);
-                    const data = await response.json();
-                    return data;
-                } catch (error) {
-                    console.error('Error fetching emergency data:', error);
-                    return [];
-                }
-            };
-
-            const renderEmergencyCards = async () => {
-                const container = document.getElementById('cardreportdinamicContainer');
-                const emergencies = await fetchEmergencyData();
-
-                emergencies.forEach(emergency => {
-                    const card = document.createElement('div');
-                    card.classList.add('card', 'm-1');
-                    card.style.width = '10rem';
-
-                    const cardBody = document.createElement('div');
-                    cardBody.classList.add('card-body');
-
-                    const button = document.createElement('button');
-                    button.classList.add('btn', 'btn-primary', 'btn-vuelo');
-                    button.textContent = `Vuelo ${emergency.DatoVuelo}`;
-                    button.dataset.emergencyId = emergency.IdEmergencia;
-
-                    button.addEventListener('click', () => {
-                        openFlightDetailsModal(emergency);
-                    });
-
-                    cardBody.appendChild(button);
-                    card.appendChild(cardBody);
-                    container.appendChild(card);
-                });
-            };
-
-            const openFlightDetailsModal = (emergency) => {
-                const modalTitle = document.getElementById('staticBackdropLabel');
-                modalTitle.textContent = `Detalles del Vuelo ${emergency.DatoVuelo}`;
-
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido previo del modal
-
-                // Crear elementos para mostrar todos los detalles del vuelo
-                const detailsList = document.createElement('ul');
-                detailsList.classList.add('list-group');
-
-                const flightDetails = Object.entries(emergency);
-
-                flightDetails.forEach(([key, value]) => {
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('list-group-item');
-                    listItem.innerHTML = `<strong>${key}:</strong> ${value}`;
-                    detailsList.appendChild(listItem);
-                });
-
-                // Agregar la lista de detalles al modal body
-                modalBody.appendChild(detailsList);
-
-                // Mostrar el modal de Detalles del Vuelo
-                const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-                flightModal.show();
-            };
-
-            const flightModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-
-            // Limpiar el modal cuando se cierra
-            flightModal._element.addEventListener('hidden.bs.modal', () => {
-                const modalBody = document.querySelector('#staticBackdrop .modal-body');
-                modalBody.innerHTML = ''; // Limpiar el contenido del modal al cerrarlo
-            });
-
-            renderEmergencyCards();
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="/usr/common.js"></script>
+    <script src="/JS//ReportesEmergencia.js"></script>
+    <script>
+
+        // Seleccionar todos los elementos de formulario
+        const formElements = document.querySelectorAll('select, input[type="datetime-local"], input[type="text"]');
+
+        // Desactivar todos los elementos de formulario al cargar la página
+        formElements.forEach(element => {
+            element.disabled = true;
+        });
+        // Obtener el botón "Modificar" por su clase
+        const modificarButton = document.querySelector('.btn-warning');
+
+        // Agregar un evento clic al botón "Modificar"
+        modificarButton.addEventListener('click', () => {
+            // Habilitar todos los elementos de formulario al hacer clic en el botón
+            formElements.forEach(element => {
+                element.disabled = false;
+            });
+        });
+
+        // Obtener el modal por su ID
+        const modalModificar = document.getElementById('modalmodificar');
+
+        // Agregar un evento clic al botón "Modificar"
+        modificarButton.addEventListener('click', () => {
+            // Mostrar el modal al hacer clic en el botón "Modificar"
+            const modal = new bootstrap.Modal(modalModificar);
+
+            modal.show();
+            cargarTiposEmergencia();
+        });
+
+
+       
+           
+      
+        const ApiUrlEmergencia = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/ObtenerTiposEquiposProcedimientos';
+        const prioridadesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/PrioridadAterizaje';
+        const altitudesUrl = 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/AltitudEmergencia';
+
+        const cargarTiposEmergencia = async () => {
+            try {
+                const response = await fetch(ApiUrlEmergencia);
+                const data = await response.json();
+
+                const tipoEmergenciaSelect = document.getElementById('modaltipoEmergenciaSelect');
+                data.forEach(tipo => {
+                    const option = document.createElement('option');
+                    option.value = tipo.IdTipoEmergencia;
+                    option.text = tipo.Tipo;
+                    tipoEmergenciaSelect.appendChild(option);
+                });
+                cargarEquiposEmergencia();
+            } catch (error) {
+                console.error('Error al cargar tipos de emergencia:', error);
+            }
+        };
+
+        const cargarEquiposEmergencia = async () => {
+            const tipoEmergenciaSelect = document.getElementById('modaltipoEmergenciaSelect');
+            const selectedTipoId = tipoEmergenciaSelect.value;
+
+            const response = await fetch(ApiUrlEmergencia);
+            const data = await response.json();
+
+            const equiposEmergenciaSelect = document.getElementById('modalequipoEmergenciaSelect');
+            equiposEmergenciaSelect.innerHTML = '';
+
+            const tipoSeleccionado = data.find(tipo => tipo.IdTipoEmergencia === parseInt(selectedTipoId));
+
+            if (tipoSeleccionado) {
+                tipoSeleccionado.Equipos.forEach(equipo => {
+                    const option = document.createElement('option');
+                    option.value = equipo.IdEquipoEmergencia;
+                    option.text = equipo.NombreEquipo;
+                    equiposEmergenciaSelect.appendChild(option);
+                });
+            }
+
+
+            cargarProcedimientos();
+        };
+        // Event listener para cargar equipos al cambiar el tipo de emergencia seleccionado
+        document.getElementById('modaltipoEmergenciaSelect').addEventListener('change', cargarEquiposEmergencia);
+
+        // Event listener para cargar procedimientos al cambiar el equipo seleccionado
+       
+        const cargarProcedimientos = async () => {
+            const equipoEmergenciaSelect = document.getElementById('modalequipoEmergenciaSelect');
+            const selectedEquipoId = equipoEmergenciaSelect.value;
+
+            const response = await fetch(ApiUrlEmergencia);
+            const data = await response.json();
+
+            const procedimientoSelect = document.getElementById('modalprocedimientoSelect');
+            procedimientoSelect.innerHTML = '';
+
+            const equipoSeleccionado = data.flatMap(tipo => tipo.Equipos).find(equipo => equipo.IdEquipoEmergencia === parseInt(selectedEquipoId));
+
+            if (equipoSeleccionado) {
+                equipoSeleccionado.Procedimientos.forEach(procedimiento => {
+                    const option = document.createElement('option');
+                    option.value = procedimiento.IdProcedimiento;
+                    option.text = procedimiento.Pasos;
+                    procedimientoSelect.appendChild(option);
+                });
+            }
+            cargarPrioridadesAterrizaje();
+        };
+        document.getElementById('modalequipoEmergenciaSelect').addEventListener('change', cargarProcedimientos);
+
+        const cargarPrioridadesAterrizaje = async () => {
+            try {
+                const response = await fetch(prioridadesUrl);
+                const prioridadesData = await response.json();
+
+                const prioridadSelect = document.getElementById('modalprioridadSelect');
+                prioridadesData.forEach(prioridad => {
+                    const option = document.createElement('option');
+                    option.value = prioridad.IdPrioridadAterrizaje;
+                    option.textContent = prioridad.Descripcion;
+                    prioridadSelect.appendChild(option);
+                });
+                cargarAltitudesEmergencia();
+            } catch (error) {
+                console.error('Error al cargar las prioridades de aterrizaje:', error);
+            }
+        };
+
+        const cargarAltitudesEmergencia = async () => {
+            try {
+                const response = await fetch(altitudesUrl);
+                const altitudesData = await response.json();
+
+                const altitudSelect = document.getElementById('modalaltitudEmergenciaSelect');
+                altitudesData.forEach(altitud => {
+                    const option = document.createElement('option');
+                    option.value = altitud.IdAltitudEmergencia;
+                    option.textContent = `${altitud.Altitud} Metros`;
+                    altitudSelect.appendChild(option);
+                });
+               
+            } catch (error) {
+                console.error('Error al cargar las altitudes de emergencia:', error);
+            }
+          
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const guardarDescripcionButton = document.getElementById('guardarDescripcion');
+
+            guardarDescripcionButton.addEventListener('click', async () => {
+                try {
+                    // Obtener los valores de los elementos HTML
+                    const tipoEmergenciaSelect = document.getElementById('modaltipoEmergenciaSelect');
+                    const equipoEmergenciaSelect = document.getElementById('modalequipoEmergenciaSelect');
+                    const procedimientoSelect = document.getElementById('modalprocedimientoSelect');
+                    const prioridadSelect = document.getElementById('modalprioridadSelect');
+                    const altitudEmergenciaSelect = document.getElementById('modalaltitudEmergenciaSelect');
+                    const fechaHoraInicioInput = document.getElementById('modalfechaHoraInicioInput');
+                    const fechaHoraFinInput = document.getElementById('modalfechaHoraFinInput');
+                    const descripcionInput = document.getElementById('descripcionInput');
+                    const numerovueloElement = document.getElementById('lbltitulovuelo');
+                    const numerovuelo = numerovueloElement.textContent.trim(); // Obtener el texto y eliminar espacios alrededor
+
+                    // Obtener los valores seleccionados o introducidos
+                    const idTipoProcedimiento = parseInt(procedimientoSelect.value);
+               
+                    const idaltitudemergencia = parseInt(altitudEmergenciaSelect.value);
+                    const idprioridadaterrizaje = prioridadSelect.value;
+                    const descripcionReportada = descripcionInput.value;
+                    const fechaHoraInicio = fechaHoraInicioInput.value;
+                    const fechaHoraFin = fechaHoraFinInput.value;
+
+                    // Crear el objeto con los datos a enviar al API
+                    const datosEmergencia = {
+                        FechaHoraInicio: fechaHoraInicio,
+                        FechaHoraFin: fechaHoraFin,
+                        idTipoProcedimiento: idTipoProcedimiento,
+                        idaltitudemergencia: idaltitudemergencia,
+                        idprioridadaterrizaje: idprioridadaterrizaje,
+                        DescripcionReportada: descripcionReportada,
+                        IDUsuario: 1 // Aquí debes definir el ID del usuario adecuado
+                    };
+
+
+                    // Realizar la petición HTTP PUT al API
+                    const response = await fetch(`http://localhost:59769/api/Emergencias/ActualizarEmergenciaPorNumeroVuelo/${numerovuelo}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(datosEmergencia)
+                    });
+
+                    if (response.ok) {
+                        mostrarNotificacion();
+                    } else { 
+                        throw new Error('No se pudo actualizar la emergencia.');
+                       
+                    }
+
+                    
+                } catch (error) {
+                    console.error('Error al actualizar emergencia:', error);
+                }
+            });
+        });
+
+
+        function mostrarNotificacion() {
+            const notificationCard = document.getElementById('notificationCard');
+            notificationCard.style.display = 'block';
+
+
+            notificationCard.style.animationName = 'slideIn';
+
+
+            setTimeout(function () {
+                ocultarNotificacion();
+            }, 3000);
+        }
+
+        // Función para ocultar la tarjeta de notificación
+        function ocultarNotificacion() {
+            const notificationCard = document.getElementById('notificationCard');
+            notificationCard.style.animationName = 'slideOut'; // Agregar animación de salida
+            setTimeout(function () {
+                notificationCard.style.display = 'none';
+                window.location.reload();
+            }, 500);
+        }
+
+
+    </script>
+
 </body>
+
 </html>
