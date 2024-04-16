@@ -107,10 +107,10 @@
         <script src="/usr/common.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
-                const apiUrl = "http://localhost:59769/api/Emergencias/ObtenerReportes";
-                const prioridadesAterrizajeUrl = "http://localhost:59769/api/Emergencias/PrioridadAterizaje";
-                const altitudemergencia = "http://localhost:59769/api/Emergencias/AltitudEmergencia";
-                const tiposEquiposProcedimientosUrl = "http://localhost:59769/api/Emergencias/ObtenerTiposEquiposProcedimientos";
+                const apiUrl = "https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST//api/Emergencias/ObtenerReportes";
+                const prioridadesAterrizajeUrl = "https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/PrioridadAterizaje";
+                const altitudemergencia = "https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/AltitudEmergencia";
+                const tiposEquiposProcedimientosUrl = "https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/ObtenerTiposEquiposProcedimientos";
                 const fechaHoraInicioInput = document.getElementById("fechaHoraInicioInput");
                 const fechaHoraFinInput = document.getElementById("fechaHoraFinInput");
                 const tipoEmergenciaSelect = document.getElementById("tipoEmergenciaSelect");
@@ -142,7 +142,7 @@
                         try {
                             // Realizar todas las solicitudes de datos necesarias en paralelo
                             const [emergenciaDetails, tiposEquiposProcedimientos] = await Promise.all([
-                                fetchData(`http://localhost:59769/api/Emergencias/EmergenciasPorNumeroVuelo?numeroVuelo=${flightId}`),
+                                fetchData(`https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Emergencias/EmergenciasPorNumeroVuelo?numeroVuelo=${flightId}`),
                                 fetchData(tiposEquiposProcedimientosUrl)
 
                             ]);
