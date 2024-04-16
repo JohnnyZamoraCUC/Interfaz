@@ -6,13 +6,15 @@ body, html {
 /*CSS de flip card*/
 .flip-card {
     background-color: transparent;
-    width: 300px;
+    width: 95%;
     height: 200px;
     margin: 0 auto;
     margin-top: 5px;
     margin-bottom: 5px;
-    border: 1px solid #f1f1f1;
-    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    perspective: 1000px; 
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
 }
 /* This container is needed to position the front and back side */
 .flip-card-inner {
@@ -34,6 +36,8 @@ body, html {
     height: 100%;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
+    justify-content: center;
+    border-radius: 10px;
 }
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
@@ -42,7 +46,7 @@ body, html {
 }
 /* Style the back side */
 .flip-card-back {
-    background-color: dodgerblue;
+    background-color: #252440;
     color: white;
     transform: rotateY(180deg);
 }
@@ -50,20 +54,32 @@ body, html {
 
 /*Contenedor de aterrizajes*/
 .ListaAterrizajes {
-    width: 340px;
-    height: 840px;
+    width: 20%;
+    height: 650px;
     position: relative;
     overflow: scroll;
     float: left;
+    background-color: #5e5e5e;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
 }
 
+.ListaAterrizajes::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
 
 /*Contenedor Principal*/
 .ContenedorPrin {
     float: right;
-    width: 1550px;
-    height: 840px;
+    width: 77%;
+    height: 650px;
     position: relative;
+    background-color: #5e5e5e;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
 }
 
 

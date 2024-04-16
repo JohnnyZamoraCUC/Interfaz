@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Interfaz/CSS/LAterrizaje.css" rel="stylesheet" />
-    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet" />
-    <link href="/CSS/LAterrizaje.css" rel="stylesheet" />
+    <link href="/CSS/Aterrizaj.css" rel="stylesheet" />
     <link href="/CSS/navusr.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Aterrizaje</title>
@@ -46,17 +44,31 @@
         .DivInformacion {
             display: flex;
             justify-content: center;
-            width: 500px;
-            height: 500px;
+            width: 30%;
+            height: 80%;
+            background-color: white;
+            border-radius: 10px;
+            margin-left: 30px;
         }
 
         .topcorner {
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 500px;
-            height: 250px;
+            width: 37%;
+            height: 30%;
         }
+
+        .Bottomcorner {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 37%;
+            height: 10%;
+            background-color: #b5b5b5;
+            border-radius: 5px;
+        }
+
 
         .pAlign {
             display: flex;
@@ -166,9 +178,10 @@
             </div>
         </div>
     </div>
-
+    
     <!-- Contenedor de Aterrizajes-->
     <div class="ListaAterrizajes" id="ListaAterrizajes">
+
 
     </div>
 
@@ -182,27 +195,73 @@
             </select>
         </div>
 
-        <div class="DivInformacion" id="DivInformacion" style="display: none;">
-            <p style="display: flex; justify-content: center;"><strong>Vuelo: </strong><i id="InfVuelo"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Piloto: </strong> <i id="InfPiloto"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Aeronave: </strong> <i id="InfAeronave"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Aerolinea: </strong> <i id="InfAerolinea"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Estado vuelo: </strong> <i id="InfEstVuelo"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Prioridad: </strong> <i id="InfPrioridad"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Tipo de vuelo: </strong> <i id="InfTipoVuelo"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Origen: </strong> <i id="InfOrigen"></i></p>
-            <p style="display: flex; justify-content: center;"><strong>Destino: </strong>  <i id="InfDestino"></i></p>
 
-            <button  type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="BTMenu" style="display: flex; justify-content: center;">
-                Continuar
-            </button>
+
+        <div class="DivInformacion" id="DivInformacion" style="display: block;">
+            <h3 style="display: flex; justify-content: center;">Informacion del vuelo</h3>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Dato</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Vuelo: </strong></td>
+                        <td id="InfVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Piloto: </strong></td>
+                        <td id="InfPiloto"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aeronave: </strong></td>
+                        <td id="InfAeronave"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aerolinea: </strong></td>
+                        <td id="InfAerolinea"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado vuelo: </strong></td>
+                        <td id="InfEstVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prioridad: </strong></td>
+                        <td id="InfPrioridad"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de vuelo: </strong></td>
+                        <td id="InfTipoVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Origen: </strong></td>
+                        <td id="InfOrigen"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Destino: </strong></td>
+                        <td id="InfDestino"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: flex; justify-content: center;">
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop" id="BTMenu">
+                    Continuar
+                </button>
+            </div>
         </div>
 
-        <!-- Modal -->
+        <div id="Acorner" class="Bottomcorner">
+            <label style="display: flex; justify-content: center;">Alertas</label>
+            <h3 id="Alerta" style="display: flex; justify-content: center;"></h3>
+        </div>
+        
+    <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header" style="background-color: #b5b5b5;">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Aterrizaje</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -211,7 +270,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary" id="BTContinuar">Continuar</button>
+                        <button type="button" class="btn btn-success" id="BTContinuar">Continuar</button>
                     </div>
                 </div>
             </div>
@@ -237,42 +296,54 @@
             if (div.style.display === "none") {
 
             } else {
-                div.style.display = "none";
+                document.getElementById('InfVuelo').textContent = "";
+                document.getElementById('InfPiloto').textContent = "";
+                document.getElementById('InfAeronave').textContent = "";
+                document.getElementById('InfAerolinea').textContent = "";
+                document.getElementById('InfEstVuelo').textContent = "";
+                document.getElementById('InfPrioridad').textContent = "";
+                document.getElementById('InfTipoVuelo').textContent = "";
+                document.getElementById('InfOrigen').textContent = "";
+                document.getElementById('InfDestino').textContent = "";
             }
 
             var div = document.getElementById('ListaAterrizajes');
             while (div.firstChild) {
                 div.removeChild(div.firstChild);
             }
-
             fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/ObtenerAproximacion?Aeroport=' + seleccionAero)
                 .then(response => response.json())
                 .then(data => {
-                    for (let i = 0; i < data.length; i++) {
-                        nombreAerolinea = data[i].Aerolinea;
-                        numeroVuelo = data[i].Vuelo;
-                        nombrePiloto = data[i].NombrePiloto;
-                        nombrePiloto = nombrePiloto + " " + data[i].ApellidoPiloto;
-                        Aeronave = data[i].Aeronave;
-                        prioridad = data[i].Prioridad;
-                        Imagen = data[i].AeronaveImagen;
-                        const codigoHTML = `
-                                    <div class="flip-card">
-                                        <div class="flip-card-inner">
-                                            <div class="flip-card-front">
-                                                <img src="${Imagen}" alt="Aeronave" style="width:300px;height:200px;">
-                                            </div>
-                                            <div class="flip-card-back" onclick='Info("${numeroVuelo}")'">
-                                                <p>${nombreAerolinea}</p>
-                                                <p>Vuelo: ${numeroVuelo}</p>
-                                                <p>Piloto: ${nombrePiloto}</p>
-                                                <p>Aeronave: ${Aeronave}</p>
-                                                <p>Prioridad: ${prioridad}</p>
+                    if (data.length === 0) {
+                        document.getElementById("Alerta").textContent = "No hay vuelos aterrizando.";
+                    } else {
+                        document.getElementById("Alerta").textContent = "";
+                        for (let i = 0; i < data.length; i++) {
+                            nombreAerolinea = data[i].Aerolinea;
+                            numeroVuelo = data[i].Vuelo;
+                            nombrePiloto = data[i].NombrePiloto;
+                            nombrePiloto = nombrePiloto + " " + data[i].ApellidoPiloto;
+                            Aeronave = data[i].Aeronave;
+                            prioridad = data[i].Prioridad;
+                            Imagen = data[i].AeronaveImagen;
+                            const codigoHTML = `
+                                        <div class="flip-card">
+                                            <div class="flip-card-inner">
+                                                <div class="flip-card-front">
+                                                    <img src="${Imagen}" alt="Aeronave" style="width:100%;height:100%; display:flex; justify-content: center; border-radius: 10px;">
+                                                </div>
+                                                <div class="flip-card-back" onclick='Info("${numeroVuelo}")'">
+                                                    <p>${nombreAerolinea}</p>
+                                                    <p>Vuelo: ${numeroVuelo}</p>
+                                                    <p>Piloto: ${nombrePiloto}</p>
+                                                    <p>Aeronave: ${Aeronave}</p>
+                                                    <p>Prioridad: ${prioridad}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    `;
-                        document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
+                                        `;
+                            document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
+                        }
                     }
                 })
                 .catch(error => console.error('Error al cargar los vuelos:', error));
@@ -288,8 +359,8 @@
                 for (let i = 0; i < data.length; i++) {
                     dato = data[i].Aeropuerto;
                     const codigoHTML = `
-                                            <option>${dato}</option>
-                                            `;
+                                                        <option>${dato}</option>
+                                                        `;
                     document.getElementById("Aeropuertos").innerHTML += codigoHTML;
                 }
             })
@@ -317,12 +388,17 @@
 
                 })
                 .catch(error => console.error('Error al cargar la informacion:', error));
+
         }
 
         document.getElementById('BTContinuar').addEventListener('click', function () {
-            var elementselect = document.getElementById("Aeropuertos");
-            var seleccionAero = elementselect.value;
-            window.location.href = '/Interfaz/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL;
+            if (VueloURL === "" || document.getElementById('InfVuelo').textContent === "") {
+                alert("No hay un vuelo seleccionado");
+            } else {
+                var elementselect = document.getElementById("Aeropuertos");
+                var seleccionAero = elementselect.value;
+                window.location.href = '/Interfaz/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL;
+            }
         });
     </script>
     <script src="/JS/Labels.js"></script>
@@ -332,5 +408,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+            font-size: 1px;
+        }
+    </style>
+    <footer>
+        <div class="footer">
+            <h6> © 2024 SkyGuardian Todos los derechos reservados</h6>
+        </div>
+    </footer>
 </body>
 </html>

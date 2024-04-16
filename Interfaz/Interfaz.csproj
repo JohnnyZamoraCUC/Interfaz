@@ -149,7 +149,7 @@
     <Content Include="CSS\Emergencia.css" />
     <Content Include="CSS\footer.css" />
     <Content Include="CSS\index.css" />
-    <Content Include="CSS\LAterrizaje.css" />
+    <Content Include="CSS\Aterrizaj.css" />
     <Content Include="CSS\navusr.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -210,7 +210,7 @@
     <Content Include="pub\service.html" />
     <Content Include="Site.Master" />
     <Content Include="usr\Aproximacion\Vuelos.html" />
-    <Content Include="usr\Aterrizaje\ListaAterrizaje.html" />
+    <Content Include="usr\Aterrizaje\Aterrizajes.html" />
     <Content Include="usr\Aterrizaje\MenuAterrizaje.html" />
     <Content Include="usr\Aproximacion\Aproximacion.html" />
     <Content Include="usr\common.js" />

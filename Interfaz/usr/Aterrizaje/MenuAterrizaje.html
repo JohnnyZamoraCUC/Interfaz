@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/Interfaz/CSS/LAterrizaje.css" rel="stylesheet" />
-    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet" />
-    <link href="/CSS/LAterrizaje.css" rel="stylesheet" />
+    <link href="/CSS/Aterrizaj.css" rel="stylesheet" />
     <link href="/CSS/navusr.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Aterrizaje</title>
@@ -43,6 +41,13 @@
             }
         }
     </style>
+
+    <script type="text/javascript">window.$crisp = []; window.CRISP_WEBSITE_ID = "8cce2550-faba-46b6-814e-b2153ff23957";
+        (function () {
+            d = document; s = d.createElement("script"); s.src = "https://client.crisp.chat/l.js"; s.async = 1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+    </script>
 </head>
 <body>
     <div class="contenedor-header">
@@ -163,123 +168,100 @@
         }
 
         .ContenedorSecuencia {
-            height: 650px;
-            width: 50%;
-            margin: 0 auto;
-            position: relative;
+            height: 75%;
+            width: 30%;
+            position: absolute;
+            right: 50px;
+            background-color: #b5b5b5;
+            border-radius: 10px;
+            margin-top: 40px;
         }
 
-        .ContenedorInfo {
-            width: 20%;
-            height: 650px;
-            margin: 10px;
-            margin-right: auto;
-            margin-left: 10px;
+        .DivInformacion {
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            height: 70%;
+            background-color: white;
+            border-radius: 10px;
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+
+        #checkboxInput {
+            display: none;
+        }
+
+        .toggleSwitch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 80px;
+            height: 40px;
+            background-color: rgb(199, 199, 199);
+            border-radius: 20px;
+            cursor: pointer;
+            transition-duration: .3s;
+        }
+
+        .toggleSwitch::after {
+            content: "";
             position: absolute;
+            height: 40px;
+            width: 40px;
+            left: 0px;
+            background: conic-gradient(rgb(104, 104, 104),white,rgb(104, 104, 104),white,rgb(104, 104, 104));
+            border-radius: 50%;
+            transition-duration: .3s;
+            box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.308);
+        }
+
+        #checkboxInput:checked + .toggleSwitch::after {
+            transform: translateX(100%);
+            transition-duration: .3s;
+        }
+
+        #checkboxInput:checked + .toggleSwitch {
+            background-color: rgb(153, 197, 151);
+            transition-duration: .3s;
         }
     </style>
 
 
-    <div class="Menu">
+    <div class="ListaAterrizajes">
 
-        <div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarPistas()">
-            <img src="/Interfaz/Imagenes/Pista.jpg" class="card-img">
+        <div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarPistas()" style="margin-top: 10px;">
+            <!--cambiar direccion-->
+            <img src="/Imagenes/Pista.jpg" class="card-img">
             <div class="card-img-overlay">
-                <h5 class="card-title">Pistas</h5>
-                <p class="card-text">Presione para abrir las pistas disponibles</p>
+                <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Pistas</h5>
+                <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione para abrir las pistas disponibles</p>
             </div>
         </div>
         <br />
         <div class="card bg-dark text-white" onclick="AutorizarAterrizaje()">
-            <img src="/Interfaz/Imagenes/Autorizar.jpeg" class="card-img">
+            <!--cambiar direccion-->
+            <img src="/Imagenes/Autorizar.jpeg" class="card-img">
             <div class="card-img-overlay">
-                <h5 class="card-title">Autorizar aterrizaje</h5>
-                <p class="card-text">Presione para autorizar aterrizaje</p>
+                <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Autorizar aterrizaje</h5>
+                <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione para autorizar aterrizaje</p>
             </div>
         </div>
         <br />
         <div class="card bg-dark text-white" onclick="TerminarProceso()">
-            <img src="/Interfaz/Imagenes/Aterrizado.jpg" class="card-img">
+            <!--cambiar direccion-->
+            <img src="/Imagenes/Aterrizado.jpg" class="card-img">
             <div class="card-img-overlay">
-                <h5 class="card-title" style="color: black;">Aeronave aterrizada</h5>
-                <p class="card-text" style="color: black;">Presione cuando la aeronave haya aterrizado para terminar el proceso</p>
+                <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Aeronave aterrizada</h5>
+                <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione cuando la aeronave haya aterrizado para terminar el proceso</p>
             </div>
         </div>
     </div>
 
     <div class="ContenedorPrin" id="ContenedorPrin">
         <!--Modal Pistas-->
-        <h1 class="pAlign">Secuencia de aterrizaje</h1>
-
-        <div class="ContenedorInfo">
-            <h3>Informacion de vuelo</h3>
-            <div class="container">
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Vuelo</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfVuelo"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Aeronave</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfAeronave"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Estado de vuelo</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfEstVuelo"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Piloto</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfPiloto"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Prioridad</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfPrioridad"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Tipo de vuelo</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfTipoVuelo"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Latitud</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfLat"></p>
-                    </div>
-                </div>
-                <div class="row" style="border: 2px solid black;">
-                    <div class="col">
-                        <strong>Longitud</strong>
-                    </div>
-                    <div class="col">
-                        <p id="InfLon"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h2 class="pAlign" style="color:white;">Secuencia de aterrizaje</h2>
 
         <div class="ContenedorSecuencia">
             <form>
@@ -287,60 +269,92 @@
                     <p><strong> Pista asignada:</strong> <i id="PistSelect"></i></p>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label">ETA</label>
-
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Identificador de aeronave</label>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Datos minimos</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Emergencia</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-                <div class="mb-3">
                     <label class="form-label">Prioridad</label>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">A</option>
-                        <option value="2">B</option>
-                        <option value="3">M</option>
+                    <select class="form-select" aria-label="Default select example" id="Prioridad">
+                        <option selected>Seleccione una opcion</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Clima</label> <button type="button" class="btn btn-outline-success" id="BTClima" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarClima()">Mostrar</button>
+                    <select class="form-select" aria-label="Default select example" id="Clima">
+                        <option selected>Seleccione una opcion</option>
+                        <option>Seguro</option>
+                        <option>Inseguro</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Verificaicon</label> <button type="button" class="btn btn-outline-success" id="BTminimos" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarDatosMin()">Mostrar</button>
+                    <select class="form-select" aria-label="Default select example" id="DatosMinimos">
+                        <option selected>Seleccione una opcion</option>
+                        <option>Cumple</option>
+                        <option>No cumple</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlTextarea1" class="form-label">Instrucciones especiales</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" id="InstruccionesEspeciales" rows="3"></textarea>
                 </div>
-                <div class="mb-3">
-
-                </div>
-                <div class="mb-3">
-
-                </div>
-                <div class="mb-3 form-check">
-
+                <div class="form-check" style="display: flex; justify-content: center;">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Autorizar aterrizaje
+                    </label>
                 </div>
             </form>
+        </div>
+
+
+        <div class="DivInformacion" id="DivInformacion" style="display: block;">
+            <h3 style="display: flex; justify-content: center;">Informacion del vuelo</h3>
+            <table class="table table-dark table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Dato</th>
+                        <th scope="col">Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Vuelo: </strong></td>
+                        <td id="InfVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Piloto: </strong></td>
+                        <td id="InfPiloto"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aeronave: </strong></td>
+                        <td id="InfAeronave"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Estado vuelo: </strong></td>
+                        <td id="InfEstVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prioridad: </strong></td>
+                        <td id="InfPrioridad"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tipo de vuelo: </strong></td>
+                        <td id="InfTipoVuelo"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Latitud: </strong></td>
+                        <td id="InfLat"></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Longitud: </strong></td>
+                        <td id="InfLon"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Pistas</h1>
+                    <div class="modal-header" style="background-color: #b5b5b5">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="LimpiarPistas()"></button>
                     </div>
                     <div class="modal-body" id="BodyPistas">
@@ -361,6 +375,30 @@
         var Aeropuerto = urlParams.get('aeropuerto');
         var Vuelo = urlParams.get('vuelo');
         var PistaSelect = "";
+
+        var VarIdSecuencia;
+        var VarIdAeronave;
+        var VarIdClima = 1;
+
+        var VarIdAterrizaje;
+        var VarIdDatosMinimos = 1;
+        var VarIdEstPista;
+        var VarIdEmergencia = null;
+
+        fetch('http://localhost:59769/api/Aterrizaje/Aterrizajes')
+            .then(response => response.json())
+            .then(data => {
+                VarIdAterrizaje = data.length + 1;
+            })
+            .catch(error => console.error('Error al cargar las pistas:', error));
+
+        fetch('http://localhost:59769/api/Aterrizaje/Secuencia')
+            .then(response => response.json())
+            .then(data => {
+                VarIdSecuencia = data.length + 1;
+            })
+            .catch(error => console.error('Error al cargar las pistas:', error));
+
         function CargarPistas() {
             fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoPistas?CodAeropuerto=' + Aeropuerto)
                 .then(response => response.json())
@@ -398,7 +436,7 @@
         fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
             .then(response => response.json())
             .then(data => {
-                console.error(data);
+                VarIdAeronave = data[0].idaero;
                 document.getElementById('InfVuelo').textContent = data[0].NumVuelo;
                 document.getElementById('InfPiloto').textContent = data[0].PilotoNombre + " " + data[0].PilotoApellido;
                 document.getElementById('InfAeronave').textContent = data[0].Aeronave;
@@ -410,6 +448,117 @@
 
             })
             .catch(error => console.error('Error al cargar las pistas:', error));
+
+        function CargarClima() {
+            var div = document.getElementById('BodyPistas');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            fetch('http://localhost:59769/api/Aterrizaje/Clima')
+            .then(response => response.json())
+            .then(data => {
+                
+                const codigoHTML = `
+                    <div class="card">
+                        <h5 class="card-header">Clima</h5>
+                        <div class="card-body">
+                            <p class="card-text">Temperatura: ${data[0].InfTemperatura}</p>
+                            <p class="card-text">Direccion de viento: ${data[0].InfVientoDir}</p>
+                            <p class="card-text">Velocidad de viento: ${data[0].InfVientoVel}</p>
+                            <p class="card-text">Visibilidad: ${data[0].InfVisible}</p>
+                            <p class="card-text">Lluvia: ${data[0].InfLluvia}</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById("BodyPistas").innerHTML += codigoHTML;
+            })
+            .catch(error => console.error('Error al cargar las pistas:', error));
+        }
+
+        function CargarDatosMin() {
+            var div = document.getElementById('BodyPistas');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
+            fetch('http://localhost:59769/api/Aterrizaje/DatosMinimos')
+                .then(response => response.json())
+                .then(data => {
+                    const codigoHTML = `
+                        <div class="card">
+                            <h5 class="card-header">Datos minimos de aterrizaje</h5>
+                            <div class="card-body">
+                                <p class="card-text">Velocidad minima: ${data[0].VelocidadMin}</p>
+                                <p class="card-text">Altitud minima: ${data[0].AltitudMin}</p>
+                                <p class="card-text">Combustible minimo: ${data[0].CombustibleMin}</p>
+                                <p class="card-text">Angulo de descenso: ${data[0].AngDescenso}</p>
+                                <p class="card-text">Permiso aproximacion: ${data[0].PermisoAproximacion}</p>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById("BodyPistas").innerHTML += codigoHTML;
+                })
+                .catch(error => console.error('Error al cargar las pistas:', error));
+        }
+
+        fetch('http://localhost:59769/api/Aterrizaje/Prioridad')
+        .then(response => response.json())
+        .then(data => {
+            console.error(data);
+            for (let i = 0; i < data.length; i++) {
+                var IdPrioridad = data[i].IdPrioridad;
+                var PNombre = data[i].Nombre;
+
+                const codigoHTML = `
+                            <option value="${IdPrioridad}">${PNombre}</option>
+                        `;
+                document.getElementById("Prioridad").innerHTML += codigoHTML;
+
+            }
+        })
+        .catch(error => console.error('Error al cargar las pistas:', error));
+
+        /*function AutorizarAterrizaje() {
+            //Crea el aterrizaje
+
+            if (document.getElementById('flexCheckDefault'.c)) {
+
+            }
+
+            const postDataAterrizaje = {
+                IdAterrizaje: VarIdAterrizaje,
+                IdSecuencia: VarIdSecuencia,
+                IdDatosMinimos: VarIdDatosMinimos,
+                IdEstadoPista: VarIdEstPista,
+                idemergencia: VarIdEmergencia,
+                IDSecuencia: VarIdSecuencia,
+                PermisoAterrizaje: 
+            };
+
+            const response = await fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aproximacion/CrearAproximacion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postData)
+            });
+             //Crea secuencia de aterrizaje
+            const postDataSecuencia = {
+                IDSecuencia: VarIdSecuencia.toString(),
+                IdAeronave: VarIdAeronave,
+                ETA: "",
+                IDClima: VarIdClima,
+                Instrucciones_especiales: document.getElementById('InstruccionesEspeciales').value,
+                Prioridad: document.getElementById('Prioridad').value
+            };
+
+            const response = await fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aproximacion/CrearAproximacion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(postDataSecuencia)
+            });
+        }*/
 
         function LimpiarPistas() {
             var div = document.getElementById('BodyPistas');
