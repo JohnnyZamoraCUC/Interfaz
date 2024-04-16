@@ -161,6 +161,7 @@
     <Content Include="Imagenes\Pista.jpg" />
     <Content Include="JS\auth.js" />
     <Content Include="JS\Emergencia.js" />
+    <Content Include="JS\EmergenciaModal.js" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="JS\Labels.js" />
     <Content Include="JS\Menulateral.js" />
@@ -223,7 +224,6 @@
     <Content Include="usr\General\Reportes.html" />
     <Content Include="usr\header.html" />
     <Content Include="ViewSwitcher.ascx" />
-    <Content Include="pub\index2.html" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
