@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const procedimientoSelect = document.getElementById("procedimientoSelect");
     const prioridadSelect = document.getElementById("prioridadSelect");
     const altitudemerge = document.getElementById("altitudEmergenciaSelect");
+    const vuelotitulo = document.getElementById("lbltitulovuelo");
 
     // Función para realizar una solicitud a una URL y devolver los datos JSON
     async function fetchData(url) {
@@ -139,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-
+  
     // Obtener datos de la API y crear botones dinámicamente
     fetchData(apiUrl)
         .then(data => {
@@ -152,7 +153,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     flightButton.textContent = emergencia.DatoVuelo;
                     flightButton.classList.add("flight-button");
                     flightButtonsContainer.appendChild(flightButton);
+                    vuelotitulo.textContent = emergencia.DatoVuelo;
                 });
+                
             } else {
                 console.error("La respuesta de la API no es un arreglo válido:", data);
             }
@@ -160,4 +163,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(error => {
             console.error("Error al obtener los datos de la API:", error);
         });
+  
 });
+
+
+

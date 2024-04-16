@@ -122,9 +122,8 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Actualizar</h5>
-
-                        </div>
+                            <h5 id="lbltitulovuelo" class="modal-title">lbltitulovuelo</h5>
+                            </div>
                         <div class="modal-body">
                             <div class="form-group">
                                 <h6>Tipo de Emergencia:</h6>
@@ -166,6 +165,11 @@
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-primary" id="guardarDescripcion">Guardar</button>
                             </div>
+                            <!-- Tarjeta de notificación de emergencia creada -->
+                            <div class="notification-card" id="notificationCard">
+                                La emergencia se ha actualizado exitosamente.
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -345,7 +349,90 @@
           
         };
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const guardarDescripcionButton = document.getElementById('guardarDescripcion');
 
+            guardarDescripcionButton.addEventListener('click', async () => {
+                try {
+                    // Obtener los valores de los elementos HTML
+                    const tipoEmergenciaSelect = document.getElementById('modaltipoEmergenciaSelect');
+                    const equipoEmergenciaSelect = document.getElementById('modalequipoEmergenciaSelect');
+                    const procedimientoSelect = document.getElementById('modalprocedimientoSelect');
+                    const prioridadSelect = document.getElementById('modalprioridadSelect');
+                    const altitudEmergenciaSelect = document.getElementById('modalaltitudEmergenciaSelect');
+                    const fechaHoraInicioInput = document.getElementById('modalfechaHoraInicioInput');
+                    const fechaHoraFinInput = document.getElementById('modalfechaHoraFinInput');
+                    const descripcionInput = document.getElementById('descripcionInput');
+                    const numerovueloElement = document.getElementById('lbltitulovuelo');
+                    const numerovuelo = numerovueloElement.textContent.trim(); // Obtener el texto y eliminar espacios alrededor
+
+                    // Obtener los valores seleccionados o introducidos
+                    const idTipoProcedimiento = parseInt(procedimientoSelect.value);
+               
+                    const idaltitudemergencia = parseInt(altitudEmergenciaSelect.value);
+                    const idprioridadaterrizaje = prioridadSelect.value;
+                    const descripcionReportada = descripcionInput.value;
+                    const fechaHoraInicio = fechaHoraInicioInput.value;
+                    const fechaHoraFin = fechaHoraFinInput.value;
+
+                    // Crear el objeto con los datos a enviar al API
+                    const datosEmergencia = {
+                        FechaHoraInicio: fechaHoraInicio,
+                        FechaHoraFin: fechaHoraFin,
+                        idTipoProcedimiento: idTipoProcedimiento,
+                        idaltitudemergencia: idaltitudemergencia,
+                        idprioridadaterrizaje: idprioridadaterrizaje,
+                        DescripcionReportada: descripcionReportada,
+                        IDUsuario: 1 // Aquí debes definir el ID del usuario adecuado
+                    };
+
+
+                    // Realizar la petición HTTP PUT al API
+                    const response = await fetch(`http://localhost:59769/api/Emergencias/ActualizarEmergenciaPorNumeroVuelo/${numerovuelo}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(datosEmergencia)
+                    });
+
+                    if (response.ok) {
+                        mostrarNotificacion();
+                    } else { 
+                        throw new Error('No se pudo actualizar la emergencia.');
+                       
+                    }
+
+                    
+                } catch (error) {
+                    console.error('Error al actualizar emergencia:', error);
+                }
+            });
+        });
+
+
+        function mostrarNotificacion() {
+            const notificationCard = document.getElementById('notificationCard');
+            notificationCard.style.display = 'block';
+
+
+            notificationCard.style.animationName = 'slideIn';
+
+
+            setTimeout(function () {
+                ocultarNotificacion();
+            }, 3000);
+        }
+
+        // Función para ocultar la tarjeta de notificación
+        function ocultarNotificacion() {
+            const notificationCard = document.getElementById('notificationCard');
+            notificationCard.style.animationName = 'slideOut'; // Agregar animación de salida
+            setTimeout(function () {
+                notificationCard.style.display = 'none';
+                window.location.reload();
+            }, 500);
+        }
 
 
     </script>

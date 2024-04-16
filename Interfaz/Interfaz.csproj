@@ -160,8 +160,8 @@
     <Content Include="Imagenes\Logo.PNG" />
     <Content Include="Imagenes\Pista.jpg" />
     <Content Include="JS\auth.js" />
+    <Content Include="JS\AvionData.js" />
     <Content Include="JS\Emergencia.js" />
-    <Content Include="JS\EmergenciaModal.js" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="JS\Labels.js" />
     <Content Include="JS\Menulateral.js" />
@@ -206,7 +206,6 @@
     <Content Include="Bootstrap\js\bootstrap.esm.min.js.map" />
     <Content Include="Bootstrap\js\bootstrap.js.map" />
     <Content Include="Bootstrap\js\bootstrap.min.js.map" />
-    <Content Include="pub\about.html" />
     <Content Include="pub\contact.html" />
     <Content Include="pub\index.html" />
     <Content Include="pub\service.html" />
