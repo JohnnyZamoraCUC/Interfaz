@@ -1,0 +1,111 @@
+﻿#map {
+    height: 700px;
+    width: 800px;
+    border: 2px solid black;
+    border-radius: 50%; /* Forma de radar */
+    overflow: hidden; /* Ocultar el exceso del mapa fuera del radio */
+    position: absolute; /* Cambia a posición absoluta */
+    top: 80px; /* Ajusta la posición desde la parte superior */
+    left: 950px; /* Ajusta la posición desde la izquierda */
+  
+}
+
+
+/* Estilos CSS para el clima */
+#weather-info {
+    background-color: rgba(146, 146, 146, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    border-radius: 5%; /* Forma de radar */
+    margin-right: 20px; /* Agrega un margen a la derecha */
+    margin-left: 280px; /* Agrega un margen a la izquierda */
+    width: 570px;
+    height: 700px; /* Ajustar la altura */
+}
+
+
+.weather-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif; /* Fuente */
+    border: 1px solid #dddddd; /* Borde */
+}
+
+    .weather-table th,
+    .weather-table td {
+        border: 1px solid rgba(146, 146, 146, 0.8);
+        text-align: left;
+        padding: 23px; /* Aumentar el padding */
+       
+    }
+
+    .weather-table th {
+        background-color: #f2f2f280;
+        color: #333333;
+        width: 200px;
+    }
+
+    .weather-table td {
+        background-color: #f9f9f91e; /* Cambiar el color de fondo */
+        color: #555555; /* Cambiar el color del texto */
+        width: 350px;
+    }
+
+    .weather-table tr:nth-child(even) {
+        background-color: #f2f2f275; /* Alternar color de fondo para filas pares */
+
+    }
+
+    .weather-table th:first-child,
+    .weather-table td:first-child {
+        border-left: none; /* Eliminar el borde izquierdo para la primera columna */
+    }
+
+    .weather-table th:last-child,
+    .weather-table td:last-child {
+        border-right: none; /* Eliminar el borde derecho para la última columna */
+    }
+
+
+/*Navbar Izquierdo*/
+
+.menu {
+    position: fixed;
+    top: 60px;
+    /*left: -250px;*/ /* Oculta el menú por defecto */
+    width: 250px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: left 0.3s ease; /* Agrega transición para suavizar el desplazamiento */
+    overflow-y: auto; /* Agrega desplazamiento vertical */
+    margin-top: 0px; /* Agrega margen superior */
+}
+
+
+    .menu.show {
+        left: 0; /* Muestra el menú cuando la clase 'show' está activa */
+    }
+
+    .menu h2 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+.card {
+    background-color: #CECECE;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 200px; /* Ajustar la altura de las cartas */
+    width: 190px; /* Reducir la anchura de las cartas al 90% del contenedor */
+    margin-left: 5px; /* Agregar un pequeño margen a la izquierda */
+    transition: transform 0.5s ease; /* Agregar transición */
+}
+
+    .card:hover {
+        transform: scale(1.1); /* Escalar la carta al 110% cuando el cursor esté sobre ella */
+    }

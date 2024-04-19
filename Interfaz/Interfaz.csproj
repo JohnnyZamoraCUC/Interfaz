@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CSS\Cards.css" />
+    <Content Include="CSS\Clima.css" />
     <Content Include="CSS\Emergencia.css" />
     <Content Include="CSS\footer.css" />
     <Content Include="CSS\index.css" />
@@ -158,9 +159,11 @@
     <Content Include="Imagenes\Autorizar.jpeg" />
     <Content Include="Imagenes\Avianca.jpg" />
     <Content Include="Imagenes\Logo.PNG" />
+    <Content Include="Imagenes\modo-avion.png" />
     <Content Include="Imagenes\Pista.jpg" />
     <Content Include="JS\auth.js" />
     <Content Include="JS\AvionData.js" />
+    <Content Include="JS\Clima.js" />
     <Content Include="JS\Emergencia.js" />
     <Content Include="JS\JavaScript.js" />
     <Content Include="JS\Labels.js" />
