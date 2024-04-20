@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/CSS/Aterrizaj.css" rel="stylesheet" />
-    <link href="/CSS/navusr.css" rel="stylesheet" />
+    <link href="/CSS/Aterr.css" rel="stylesheet" />
+    <link href="/CSS/navusr.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Aterrizaje</title>
     <style>
@@ -41,39 +41,7 @@
             }
         }
 
-        .DivInformacion {
-            display: flex;
-            justify-content: center;
-            width: 30%;
-            height: 80%;
-            background-color: white;
-            border-radius: 10px;
-            margin-left: 30px;
-        }
-
-        .topcorner {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 37%;
-            height: 30%;
-        }
-
-        .Bottomcorner {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 37%;
-            height: 10%;
-            background-color: #b5b5b5;
-            border-radius: 5px;
-        }
-
-
-        .pAlign {
-            display: flex;
-            justify-content: center;
-        }
+        
     </style>
 </head>
 <body>
@@ -94,7 +62,6 @@
                             Emergencia
                         </button>
                     </li>
-                    <li>
                     <li>
                         <a id="lblDashboard" class="navbar-brand" href="/Interfaz/usr/General/Home.html">Dashboard</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -132,72 +99,27 @@
             </nav>
         </header>
     </div>
-    <div class="modal fade" id="modalEmergencia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Reporte de Incidencia</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card mx-auto" style="width: 50rem;">
-                        <div class="card-body">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="95" height="40" fill="currentColor"
-                                     class="bi bi-exclamation-triangle-fill" viewBox="10 0 16 16"
-                                     style="margin-left: 360px;">
-                                    <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
-                                </svg>
-                            </div>
-                            <h5 class="card-title">Vuelos Activos</h5>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Aerolinea</th>
-                                        <th scope="col">Vuelo</th>
-                                        <th scope="col">Prioridad</th>
-                                        <th scope="col">Seleccion</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="vuelosTableBody">
-                                    <tr id="spinnerRow" style="display: none;">
-                                        <td colspan="4" style="text-align: center;">
-                                            <div class="spinner-border" role="status">
-                                                <span class="visually-hidden">Loading...</span>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Contenedor de Aterrizajes-->
+
+    <!-- Contenedor de lista de aterrizajes-->
     <div class="ListaAterrizajes" id="ListaAterrizajes">
 
 
     </div>
 
+    <!-- Contenedor principal-->
     <div class="ContenedorPrin" id="ContenedorPrin">
         <h2 class="pAlign">Aterrizaje</h2>
 
+        <!--Contenedor de aeropuertos-->
         <div class="topcorner">
             <h3 class="pAlign">Aeropuertos</h3>
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Aeropuertos">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Aeropuertos" style="box-shadow: 2px 2px 4px #515151;">
                 <option>Seleccione un aeropuerto</option>
             </select>
         </div>
 
-
-
-        <div class="DivInformacion" id="DivInformacion" style="display: block;">
+        <!--Contenedor de informacion de vuelo-->
+        <div class="DivInformacion" id="DivInformacion" style="display: block; margin-left: 200px;">
             <h3 style="display: flex; justify-content: center;">Informacion del vuelo</h3>
             <table class="table table-dark table-striped">
                 <thead>
@@ -252,12 +174,13 @@
             </div>
         </div>
 
+        <!--Contenedor de alertas-->
         <div id="Acorner" class="Bottomcorner">
             <label style="display: flex; justify-content: center;">Alertas</label>
             <h3 id="Alerta" style="display: flex; justify-content: center;"></h3>
         </div>
-        
-    <!-- Modal -->
+
+        <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -327,21 +250,21 @@
                             prioridad = data[i].Prioridad;
                             Imagen = data[i].AeronaveImagen;
                             const codigoHTML = `
-                                        <div class="flip-card">
-                                            <div class="flip-card-inner">
-                                                <div class="flip-card-front">
-                                                    <img src="${Imagen}" alt="Aeronave" style="width:100%;height:100%; display:flex; justify-content: center; border-radius: 10px;">
-                                                </div>
-                                                <div class="flip-card-back" onclick='Info("${numeroVuelo}")'">
-                                                    <p>${nombreAerolinea}</p>
-                                                    <p>Vuelo: ${numeroVuelo}</p>
-                                                    <p>Piloto: ${nombrePiloto}</p>
-                                                    <p>Aeronave: ${Aeronave}</p>
-                                                    <p>Prioridad: ${prioridad}</p>
+                                            <div class="flip-card">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <img src="${Imagen}" alt="Aeronave" style="width:100%;height:100%; display:flex; justify-content: center; border-radius: 10px;">
+                                                    </div>
+                                                    <div class="flip-card-back" onclick='Info("${numeroVuelo}")'">
+                                                        <p>${nombreAerolinea}</p>
+                                                        <p>Vuelo: ${numeroVuelo}</p>
+                                                        <p>Piloto: ${nombrePiloto}</p>
+                                                        <p>Aeronave: ${Aeronave}</p>
+                                                        <p>Prioridad: ${prioridad}</p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        `;
+                                            `;
                             document.getElementById("ListaAterrizajes").innerHTML += codigoHTML;
                         }
                     }
@@ -359,8 +282,8 @@
                 for (let i = 0; i < data.length; i++) {
                     dato = data[i].Aeropuerto;
                     const codigoHTML = `
-                                                        <option>${dato}</option>
-                                                        `;
+                                                            <option>${dato}</option>
+                                                            `;
                     document.getElementById("Aeropuertos").innerHTML += codigoHTML;
                 }
             })

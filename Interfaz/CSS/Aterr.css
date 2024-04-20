@@ -1,0 +1,205 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/*CSS de flip card*/
+.flip-card {
+    background-color: transparent;
+    width: 95%;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    perspective: 1000px; 
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+/* This container is needed to position the front and back side */
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+/* Position the front and back side */
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    justify-content: center;
+    border-radius: 10px;
+}
+/* Style the front side (fallback if image is missing) */
+.flip-card-front {
+    background-color: #bbb;
+    color: black;
+}
+/* Style the back side */
+.flip-card-back {
+    background-color: #252440;
+    color: white;
+    transform: rotateY(180deg);
+}
+
+
+/*Contenedor de aterrizajes*/
+.ListaAterrizajes {
+    width: 20%;
+    height: 800px;
+    position: relative;
+    overflow: scroll;
+    float: left;
+    background-color: #a7a7a7;
+    border-radius: 20px;
+    padding: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 4px #515151;
+}
+
+.ListaAterrizajes::-webkit-scrollbar {
+    display: none; /* Oculta la barra de desplazamiento */
+}
+
+/*Contenedor Principal*/
+.ContenedorPrin {
+    float: right;
+    width: 77%;
+    height: 800px;
+    position: relative;
+    background-color: #a7a7a7;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 4px #515151;
+}
+
+
+
+/*CSS de scrollbar*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.DivInformacion {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    height: 70%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #515151;
+    margin-top: 50px;
+}
+
+.topcorner {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 37%;
+    height: 30%;
+}
+
+.Bottomcorner {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 37%;
+    height: 10%;
+    background-color: #c9c9c9;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px #515151;
+}
+
+
+.pAlign {
+    display: flex;
+    justify-content: center;
+}
+
+.ContenedorSecuencia {
+    height: 75%;
+    width: 30%;
+    position: absolute;
+    right: 30px;
+    background-color: #b5b5b5;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 4px #515151;
+}
+
+
+
+#checkboxInput {
+    display: none;
+}
+
+.toggleSwitch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 80px;
+    height: 40px;
+    background-color: rgb(199, 199, 199);
+    border-radius: 20px;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+
+.toggleSwitch::after {
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    left: 0px;
+    background: conic-gradient(rgb(104, 104, 104),white,rgb(104, 104, 104),white,rgb(104, 104, 104));
+    border-radius: 50%;
+    transition-duration: .3s;
+    box-shadow: 5px 2px 7px rgba(8, 8, 8, 0.308);
+}
+
+#checkboxInput:checked + .toggleSwitch::after {
+    transform: translateX(100%);
+    transition-duration: .3s;
+}
+
+#checkboxInput:checked + .toggleSwitch {
+    background-color: rgb(153, 197, 151);
+    transition-duration: .3s;
+}
+
+.verificacion {
+    width: 250px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex; 
+    justify-content: center;
+}
