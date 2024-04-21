@@ -153,8 +153,6 @@
     <!--fin nav-->
 
     <style>
-
-
     </style>
 
 
@@ -297,7 +295,7 @@
     <script src="/JS/Labels.js"></script>
     <script src="/Interfaz/JS/Labels.js"></script>
     <script>
-        
+
         var url = window.location.search;
         var urlParams = new URLSearchParams(url);
         var Aeropuerto = urlParams.get('aeropuerto');
@@ -334,7 +332,7 @@
                 VarIdSecuencia = data.length + 1;
             })
             .catch(error => console.error('Error al cargar:', error));
-        
+
         function CargarPistas() {
             var div = document.getElementById('BodyPistas');
             while (div.firstChild) {
@@ -359,19 +357,19 @@
                         }
 
                         const codigoHTML = `
-                                            <div class="card">
-                                                <h5 class="card-header">Pista</h5>
-                                                <div class="card-body">
-                                                    <p class="card-text">Pista: ${NumPista}</p>
-                                                    <p class="card-text">Estado de Pista: ${EstadoPsita}</p>
-                                                    <p class="card-text">Disponibilidad: ${Dispon}</p>
-                                                    <p class="card-text">Longitud: ${Longitud} m</p>
-                                                    <p class="card-text">Ancho de la pista: ${Ancho} m</p>
-                                                    <p class="card-text">Obsevaciones: ${Comentarios}</p>
-                                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="SelectPista(${NumPista})">Seleccionar</a>
-                                                </div> 
-                                            </div>
-                                        `;
+                                                <div class="card">
+                                                    <h5 class="card-header">Pista</h5>
+                                                    <div class="card-body">
+                                                        <p class="card-text">Pista: ${NumPista}</p>
+                                                        <p class="card-text">Estado de Pista: ${EstadoPsita}</p>
+                                                        <p class="card-text">Disponibilidad: ${Dispon}</p>
+                                                        <p class="card-text">Longitud: ${Longitud} m</p>
+                                                        <p class="card-text">Ancho de la pista: ${Ancho} m</p>
+                                                        <p class="card-text">Obsevaciones: ${Comentarios}</p>
+                                                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="SelectPista(${NumPista})">Seleccionar</a>
+                                                    </div>
+                                                </div>
+                                            `;
                         document.getElementById("BodyPistas").innerHTML += codigoHTML;
 
                     }
@@ -403,41 +401,41 @@
             var verificacion = "#4DA768";
             var Aprovacion = "";
             fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Clima')
-            .then(response => response.json())
-            .then(data => {
-                if (data[0].InfLluvia == 0) {
-                    Aprovacion = "Sin lluvia";
-                } else {
-                    Aprovacion = "Con lluvia";
-                }
-                const codigoHTML = `
-                    <div class="card">
-                        <h5 class="card-header">Datos minimos de aterrizaje</h5>
-                        <div class="card-body">
-                            <div class="verificacion" style="background-color: ${verificacion};">
-                                <p style="display: flex; justify-content: center;" class="card-text">Temperatura: ${data[0].InfTemperatura} C°</p>
-                            </div>
-        
-                            <div class="verificacion" style="background-color: ${verificacion};"> 
-                                <p style="display: flex; justify-content: center;" class="card-text">Direccion de viento: ${data[0].InfVientoDir} °</p>
-                            </div>
-        
-                            <div class="verificacion" style="background-color: ${verificacion};"> 
-                                <p style="display: flex; justify-content: center;" class="card-text">Velocidad de viento: ${data[0].InfVientoVel} nudos</p>
-                            </div>
+                .then(response => response.json())
+                .then(data => {
+                    if (data[0].InfLluvia == 0) {
+                        Aprovacion = "Sin lluvia";
+                    } else {
+                        Aprovacion = "Con lluvia";
+                    }
+                    const codigoHTML = `
+                        <div class="card">
+                            <h5 class="card-header">Datos minimos de aterrizaje</h5>
+                            <div class="card-body">
+                                <div class="verificacion" style="background-color: ${verificacion};">
+                                    <p style="display: flex; justify-content: center;" class="card-text">Temperatura: ${data[0].InfTemperatura} C°</p>
+                                </div>
 
-                            <div class="verificacion" style="background-color: ${verificacion};"> 
-                                <p style="display: flex; justify-content: center;" class="card-text">Visibilidad: ${data[0].InfVisible} Km</p>
-                            </div>
+                                <div class="verificacion" style="background-color: ${verificacion};">
+                                    <p style="display: flex; justify-content: center;" class="card-text">Direccion de viento: ${data[0].InfVientoDir} °</p>
+                                </div>
 
-                            <div class="verificacion" style="background-color: ${verificacion};"> 
-                                <p style="display: flex; justify-content: center;" class="card-text">Lluvia: ${Aprovacion}</p>
+                                <div class="verificacion" style="background-color: ${verificacion};">
+                                    <p style="display: flex; justify-content: center;" class="card-text">Velocidad de viento: ${data[0].InfVientoVel} nudos</p>
+                                </div>
+
+                                <div class="verificacion" style="background-color: ${verificacion};">
+                                    <p style="display: flex; justify-content: center;" class="card-text">Visibilidad: ${data[0].InfVisible} Km</p>
+                                </div>
+
+                                <div class="verificacion" style="background-color: ${verificacion};">
+                                    <p style="display: flex; justify-content: center;" class="card-text">Lluvia: ${Aprovacion}</p>
+                                </div>
                             </div>
-                        </div>
-                `;
-                document.getElementById("BodyPistas").innerHTML += codigoHTML;
-            })
-            .catch(error => console.error('Error al cargar:', error));
+                    `;
+                    document.getElementById("BodyPistas").innerHTML += codigoHTML;
+                })
+                .catch(error => console.error('Error al cargar:', error));
         }
 
         function CargarDatosMin() {
@@ -456,52 +454,52 @@
                         Aprovacion = "Desaprobado";
                     }
                     const codigoHTML = `
-                        <div class="card">
-                            <h5 class="card-header">Datos minimos de aterrizaje</h5>
-                            <div class="card-body">
-                                <div class="verificacion" style="background-color: ${verificacion};">
-                                    <p style="display: flex; justify-content: center;" class="card-text">Velocidad minima: ${data[0].VelocidadMin} nudos</p>
-                                </div>
-                                
-                                <div class="verificacion" style="background-color: ${verificacion};"> 
-                                    <p style="display: flex; justify-content: center;" class="card-text">Altitud minima: ${data[0].AltitudMin} ft</p>
-                                </div>
-                                
-                                <div class="verificacion" style="background-color: ${verificacion};"> 
-                                    <p style="display: flex; justify-content: center;" class="card-text">Combustible minimo: ${data[0].CombustibleMin} L</p>
-                                </div>
+                            <div class="card">
+                                <h5 class="card-header">Datos minimos de aterrizaje</h5>
+                                <div class="card-body">
+                                    <div class="verificacion" style="background-color: ${verificacion};">
+                                        <p style="display: flex; justify-content: center;" class="card-text">Velocidad minima: ${data[0].VelocidadMin} nudos</p>
+                                    </div>
 
-                                <div class="verificacion" style="background-color: ${verificacion};"> 
-                                    <p style="display: flex; justify-content: center;" class="card-text">Angulo de descenso: ${data[0].AngDescenso}°</p>
-                                </div>
+                                    <div class="verificacion" style="background-color: ${verificacion};">
+                                        <p style="display: flex; justify-content: center;" class="card-text">Altitud minima: ${data[0].AltitudMin} ft</p>
+                                    </div>
 
-                                <div class="verificacion" style="background-color: ${verificacion};"> 
-                                    <p style="display: flex; justify-content: center;" class="card-text">Permiso aproximacion: ${Aprovacion} </p>
+                                    <div class="verificacion" style="background-color: ${verificacion};">
+                                        <p style="display: flex; justify-content: center;" class="card-text">Combustible minimo: ${data[0].CombustibleMin} L</p>
+                                    </div>
+
+                                    <div class="verificacion" style="background-color: ${verificacion};">
+                                        <p style="display: flex; justify-content: center;" class="card-text">Angulo de descenso: ${data[0].AngDescenso}°</p>
+                                    </div>
+
+                                    <div class="verificacion" style="background-color: ${verificacion};">
+                                        <p style="display: flex; justify-content: center;" class="card-text">Permiso aproximacion: ${Aprovacion} </p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        `;
                     document.getElementById("BodyPistas").innerHTML += codigoHTML;
                 })
                 .catch(error => console.error('Error al cargar:', error));
         }
 
         fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Prioridad')
-        .then(response => response.json())
-        .then(data => {
-            console.error(data);
-            for (let i = 0; i < data.length; i++) {
-                var IdPrioridad = data[i].IdPrioridad;
-                var PNombre = data[i].Nombre;
+            .then(response => response.json())
+            .then(data => {
+                console.error(data);
+                for (let i = 0; i < data.length; i++) {
+                    var IdPrioridad = data[i].IdPrioridad;
+                    var PNombre = data[i].Nombre;
 
-                const codigoHTML = `
-                            <option value="${IdPrioridad}">${PNombre}</option>
-                        `;
-                document.getElementById("Prioridad").innerHTML += codigoHTML;
+                    const codigoHTML = `
+                                <option value="${IdPrioridad}">${PNombre}</option>
+                            `;
+                    document.getElementById("Prioridad").innerHTML += codigoHTML;
 
-            }
-        })
-        .catch(error => console.error('Error al cargar:', error));
+                }
+            })
+            .catch(error => console.error('Error al cargar:', error));
 
         function AutorizarAterrizaje() {
             var div = document.getElementById('BodyPistas');
@@ -512,27 +510,27 @@
             var checkBox = document.getElementById("AutorizarAterrizajeCheck");
             if (checkBox.checked) {
                 const codigoHTML = `
-                    <div class="card">
-                        <h5 class="card-header" style="color: #008F39;">Aterrizaje autorizado</h5>
-                        <div class="card-body">
-                            <p>Esta seguro que desea continuar?</br>
-                            Si acepta no podra hacer cambios y el vuelo procedera a aterrizar.</p>
+                        <div class="card">
+                            <h5 class="card-header" style="color: #008F39;">Aterrizaje autorizado</h5>
+                            <div class="card-body">
+                                <p>Esta seguro que desea continuar?</br>
+                                Si acepta no podra hacer cambios y el vuelo procedera a aterrizar.</p>
+                            </div>
+                            <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(true)">Aceptar</button>
                         </div>
-                        <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(true)">Aceptar</button>
-                    </div>
-                `;
+                    `;
                 document.getElementById("BodyPistas").innerHTML += codigoHTML;
             } else {
                 const codigoHTML = `
-                    <div class="card">
-                        <h5 class="card-header" style="color: #E40033;">Aterrizaje no autorizado</h5>
-                        <div class="card-body">
-                            <p>Esta seguro que desea continuar?</br>
-                            Si acepta no podra hacer cambios y el vuelo no va a aterrizar ya que no esta autorizado.</p>
+                        <div class="card">
+                            <h5 class="card-header" style="color: #E40033;">Aterrizaje no autorizado</h5>
+                            <div class="card-body">
+                                <p>Esta seguro que desea continuar?</br>
+                                Si acepta no podra hacer cambios y el vuelo no va a aterrizar ya que no esta autorizado.</p>
+                            </div>
+                            <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(false)">Aceptar</button>
                         </div>
-                        <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(false)">Aceptar</button>
-                    </div>
-                `;
+                    `;
                 document.getElementById("BodyPistas").innerHTML += codigoHTML;
             }
         }
@@ -599,17 +597,17 @@
                 } else {
                     alert("No hay una pista seleccionada.");
                 }
-                
+
             } catch (error) {
                 console.error('Error en la solicitud POST:', error);
                 alert('Por favor, inténtalo de nuevo.');
             }
-            
+
         }
 
         function TerminarProceso() {
             if (AterizajeAutorizado) {
-                fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/EliminarAproximacion?id='+ idAproxim /*variable de aproximacion*/, {
+                fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/EliminarAproximacion?id=' + idAproxim /*variable de aproximacion*/, {
                     method: 'DELETE',
                     headers: {
                         'Content-Type': 'application/json'
@@ -626,10 +624,6 @@
                 alert("Aun no se ha autorizado el aterrizaje.");
             }
         }
-
-        function LimpiarPistas() {
-            
-        }
         function SelectPista(IDPista) {
             PistaSelect = IDPista;
             VarIdEstPista = PistaSelect;
@@ -645,5 +639,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <footer>
+        <div class="footer">
+            <h6> © 2024 SkyGuardian Todos los derechos reservados</h6>
+        </div>
+    </footer>
 </body>
 </html>
