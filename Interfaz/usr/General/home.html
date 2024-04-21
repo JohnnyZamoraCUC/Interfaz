@@ -33,9 +33,9 @@
         </div>
         <div id="map"></div>
         <div id="idpanel">
-    
+
         </div>
-        
+
     </div>
 
     <footer id="footer"></footer>
@@ -44,7 +44,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="/usr/common.js"></script>
+    <script src="/Interfaz/usr/common.js"></script>
     <script>
         var map = L.map('map').setView([9.9281, -84.0907], 8); // Centrar el mapa en San José
 
@@ -76,18 +76,18 @@
                     data.forEach(function (plane) {
                         var aircraftLatLng = [plane.AeronaveLat, plane.AeronaveLon];
                         var popupContent = `
-                            <b>Número de Vuelo:</b> ${plane.NumeroVuelo}<br>
-                            <b>Aerolínea:</b> ${plane.Aerolinea}<br>
-                            <b>Aeronave:</b> ${plane.Aeronave}<br>
-                            <b>Estado:</b> ${plane.EstadoVuelo}<br>
-                            <b>Piloto:</b> ${plane.PilotoNombre} ${plane.PilotoApellido}<br>
-                            <b>Origen:</b> ${plane.Origen}<br>
-                            <b>Destino:</b> ${plane.Destino}<br>
-                            <b>Ruta:</b> ${plane.Ruta}<br>
-                            <b>Hora de Salida:</b> ${plane.HoraSalida}<br>
-                            <b>Hora de Llegada:</b> ${plane.HoraLlegada}<br>
-                            <b>Duración Estimada:</b> ${plane.DuracionEstimada} minutos
-                        `;
+                                    <b>Número de Vuelo:</b> ${plane.NumeroVuelo}<br>
+                                    <b>Aerolínea:</b> ${plane.Aerolinea}<br>
+                                    <b>Aeronave:</b> ${plane.Aeronave}<br>
+                                    <b>Estado:</b> ${plane.EstadoVuelo}<br>
+                                    <b>Piloto:</b> ${plane.PilotoNombre} ${plane.PilotoApellido}<br>
+                                    <b>Origen:</b> ${plane.Origen}<br>
+                                    <b>Destino:</b> ${plane.Destino}<br>
+                                    <b>Ruta:</b> ${plane.Ruta}<br>
+                                    <b>Hora de Salida:</b> ${plane.HoraSalida}<br>
+                                    <b>Hora de Llegada:</b> ${plane.HoraLlegada}<br>
+                                    <b>Duración Estimada:</b> ${plane.DuracionEstimada} minutos
+                                `;
                         var marker = L.marker(aircraftLatLng, { icon: airplaneIcon }).addTo(map);
                         marker.bindPopup(popupContent);
 
@@ -105,6 +105,7 @@
 
         // Llamar a la función para cargar los aviones al cargar la página
         loadPlanes();
+
     </script>
 </body>
 </html>
