@@ -1,12 +1,26 @@
 ﻿<!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emergencia</title>
-    <link rel="stylesheet" type="text/css" href="/Interfaz/Bootstrap/css/bootstrap.css" />
-    <link href="/Interfaz/CSS/Emergencia.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/Bootstrap/css/bootstrap.css" />
+    <link href="/CSS/Emergencia.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-curve"></script>
+    <style>
+        #map {
+            height: 600px;
+            width: 98%;
+            border-radius: 15px;
+            float: right;
+            margin-top: 20px;
+            margin-right: 20px;
+            margin-left: 20px;                                       
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
     <header id="header"></header>
@@ -14,19 +28,83 @@
     <div id="divreport">
         <div id="lbltitulo">
             <div class="modal-header-little">
-                <h5 class="modal-title-lbltitulo">Reporte de Incidencia</h5>
+                <h5 class="modal-title-lbltitulo">DASHBOARD</h5>
             </div>
         </div>
-        <h1>Contenido</h1>
-    </div>
+        <div id="map"></div>
+        <div id="idpanel">
     
+        </div>
+        
+    </div>
 
     <footer id="footer"></footer>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="/Interfaz/usr/common.js"></script>
-</body>
+    <script src="/usr/common.js"></script>
+    <script>
+        var map = L.map('map').setView([9.9281, -84.0907], 8); // Centrar el mapa en San José
 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var airplaneIcon = L.icon({
+            iconUrl: 'https://tiusr26pl.cuc-carrera-ti.ac.cr/Imagenes/Airplane.svg',
+            iconSize: [38, 38],
+            iconAnchor: [22, 94],
+            popupAnchor: [-3, -76]
+        });
+        var centroSanJose = L.latLng(9.9281, -84.0907);
+
+        // Añadir el círculo al mapa
+        var radio = L.circle(centroSanJose, {
+            color: 'green',       // Color del borde del círculo
+            fillColor: 'green',  // Color de relleno del círculo
+            fillOpacity: 0.5,   // Opacidad del relleno
+            radius: 100000        // Radio en metros (ejemplo: 5000 metros = 5 kilómetros)
+        }).addTo(map);
+        // Función para cargar y mostrar los aviones en el mapa
+        function loadPlanes() {
+            $.ajax({
+                url: 'https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/Obtener',
+                method: 'GET',
+                success: function (data) {
+                    data.forEach(function (plane) {
+                        var aircraftLatLng = [plane.AeronaveLat, plane.AeronaveLon];
+                        var popupContent = `
+                            <b>Número de Vuelo:</b> ${plane.NumeroVuelo}<br>
+                            <b>Aerolínea:</b> ${plane.Aerolinea}<br>
+                            <b>Aeronave:</b> ${plane.Aeronave}<br>
+                            <b>Estado:</b> ${plane.EstadoVuelo}<br>
+                            <b>Piloto:</b> ${plane.PilotoNombre} ${plane.PilotoApellido}<br>
+                            <b>Origen:</b> ${plane.Origen}<br>
+                            <b>Destino:</b> ${plane.Destino}<br>
+                            <b>Ruta:</b> ${plane.Ruta}<br>
+                            <b>Hora de Salida:</b> ${plane.HoraSalida}<br>
+                            <b>Hora de Llegada:</b> ${plane.HoraLlegada}<br>
+                            <b>Duración Estimada:</b> ${plane.DuracionEstimada} minutos
+                        `;
+                        var marker = L.marker(aircraftLatLng, { icon: airplaneIcon }).addTo(map);
+                        marker.bindPopup(popupContent);
+
+                        // Agregar evento de clic al marcador para hacer zoom
+                        marker.on('click', function (e) {
+                            map.setView(aircraftLatLng, 15); // Centrar y hacer zoom en la ubicación del avión
+                        });
+                    });
+                },
+                error: function (err) {
+                    console.log('Error al cargar los datos de los vuelos.');
+                }
+            });
+        }
+
+        // Llamar a la función para cargar los aviones al cargar la página
+        loadPlanes();
+    </script>
+</body>
 </html>

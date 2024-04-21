@@ -142,28 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   
     // Obtener datos de la API y crear botones dinámicamente
-    fetchData(apiUrl)
-        .then(data => {
-            if (data && Array.isArray(data)) {
-                const flightButtonsContainer = document.getElementById("flightButtonsContainer");
 
-                // Recorrer los datos y crear botones
-                data.forEach(emergencia => {
-                    const flightButton = document.createElement("button");
-                    flightButton.textContent = emergencia.DatoVuelo;
-                    flightButton.classList.add("flight-button");
-                    flightButtonsContainer.appendChild(flightButton);
-                    vuelotitulo.textContent = emergencia.DatoVuelo;
-                });
-                
-            } else {
-                console.error("La respuesta de la API no es un arreglo válido:", data);
-            }
-        })
-        .catch(error => {
-            console.error("Error al obtener los datos de la API:", error);
-        });
-  
 });
 
 
