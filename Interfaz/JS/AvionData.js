@@ -202,7 +202,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 function consultarApi(codigoVuelo) {
-    var apiUrl = `https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/CalcularPuntosIntermedios?codigoVuel=${codigoVuelo}`;
+    var apiUrl = `https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Vuelos/CalcularPuntosIntermedios?codigoVuelo=${codigoVuelo}`;
 
     fetch(apiUrl)
         .then(response => {
