@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/CSS/Aterr.css" rel="stylesheet" />
-    <link href="/CSS/navusr.css" rel="stylesheet">
+    <link href="/Interfaz/CSS/Aterrizaje.css" rel="stylesheet" />
+    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Aterrizaje</title>
     <style>
@@ -71,7 +71,7 @@
                         </button>
                     </li>
                     <li>
-                        <a id="lblAirplaneLanding" class="navbar-brand" href="/Interfaz/usr/Aterrizaje/ListaAterrizaje.html">lblAirplaneLanding</a>
+                        <a id="lblAirplaneLanding" class="navbar-brand" href="/Interfaz/usr/Aterrizaje/Aterrizajes.html">lblAirplaneLanding</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -211,6 +211,7 @@
         var prioridad = "";
         var Imagen = "";
         var VueloURL = "";
+        var idAprox;
 
         document.getElementById('Aeropuertos').onchange = function () {
             var elementselect = document.getElementById("Aeropuertos");
@@ -270,9 +271,7 @@
                     }
                 })
                 .catch(error => console.error('Error al cargar los vuelos:', error));
-
         };
-
 
         //llena las opciones de aeropuertos existentes
         var dato = "";
@@ -289,9 +288,9 @@
             })
             .catch(error => console.error('Error al cargar los aeropuertos:', error));
 
-
         function Info(Vuelo) {
             VueloURL = Vuelo;
+            
             var div = document.getElementById("DivInformacion");
             if (div.style.display === "none") {
                 div.style.display = "block";
@@ -299,6 +298,7 @@
             fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + VueloURL)
                 .then(response => response.json())
                 .then(data => {
+                    idAprox = data[0].idaero;
                     document.getElementById('InfVuelo').textContent = data[0].NumVuelo;
                     document.getElementById('InfPiloto').textContent = data[0].PilotoNombre + " " + data[0].PilotoApellido;
                     document.getElementById('InfAeronave').textContent = data[0].Aeronave;
@@ -311,7 +311,6 @@
 
                 })
                 .catch(error => console.error('Error al cargar la informacion:', error));
-
         }
 
         document.getElementById('BTContinuar').addEventListener('click', function () {
@@ -320,7 +319,7 @@
             } else {
                 var elementselect = document.getElementById("Aeropuertos");
                 var seleccionAero = elementselect.value;
-                window.location.href = '/Interfaz/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL;
+                window.location.href = '/Interfaz/usr/Aterrizaje/MenuAterrizaje.html?aeropuerto=' + seleccionAero + '&vuelo=' + VueloURL + '&Aprox=' + idAprox;
             }
         });
     </script>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/CSS/Aterr.css" rel="stylesheet" />
-    <link href="/CSS/navusr.css" rel="stylesheet" />
+    <link href="/Interfaz/CSS/Aterrizaje.css" rel="stylesheet" />
+    <link href="/Interfaz/CSS/navusr.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Aterrizaje</title>
     <style>
@@ -76,7 +76,7 @@
                         </button>
                     </li>
                     <li>
-                        <a id="lblAirplaneLanding" class="navbar-brand" href="/Interfaz/usr/Aterrizaje/ListaAterrizaje.html">lblAirplaneLanding</a>
+                        <a id="lblAirplaneLanding" class="navbar-brand" href="/Interfaz/usr/Aterrizaje/Aterrizajes.html">lblAirplaneLanding</a>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -162,16 +162,16 @@
 
         <div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarPistas()" style="margin-top: 10px;">
             <!--cambiar direccion-->
-            <img src="/Imagenes/Pista.jpg" class="card-img">
+            <img src="/Interfaz/Imagenes/Pista.jpg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Pistas</h5>
                 <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione para abrir las pistas disponibles</p>
             </div>
         </div>
         <br />
-        <div class="card bg-dark text-white" onclick="AutorizarSecuencia()">
+        <div class="card bg-dark text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarAterrizaje()" id="cardAutoriza">
             <!--cambiar direccion-->
-            <img src="/Imagenes/Autorizar.jpeg" class="card-img">
+            <img src="/Interfaz/Imagenes/Autorizar.jpeg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Autorizar aterrizaje</h5>
                 <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione para autorizar aterrizaje</p>
@@ -180,7 +180,7 @@
         <br />
         <div class="card bg-dark text-white" onclick="TerminarProceso()">
             <!--cambiar direccion-->
-            <img src="/Imagenes/Aterrizado.jpg" class="card-img">
+            <img src="/Interfaz/Imagenes/Aterrizado.jpg" class="card-img">
             <div class="card-img-overlay">
                 <h5 class="card-title" style="text-shadow: 2px 2px 3px black;">Aeronave aterrizada</h5>
                 <p class="card-text" style="text-shadow: 2px 2px 3px black;">Presione cuando la aeronave haya aterrizado para terminar el proceso</p>
@@ -190,7 +190,7 @@
 
     <div class="ContenedorPrin" id="ContenedorPrin">
         <!--Modal Pistas-->
-        <h2 class="pAlign"">Secuencia de aterrizaje</h2>
+        <h2 class="pAlign">Aterrizaje</h2>
 
         <div class="ContenedorSecuencia" style="margin-right: 100px;">
             <form>
@@ -200,13 +200,11 @@
                 <div class="mb-3">
                     <label class="form-label">Prioridad</label>
                     <select class="form-select" aria-label="Default select example" id="Prioridad">
-                        <option selected>Seleccione una opcion</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Clima</label> <button type="button" class="btn btn-outline-success" id="BTClima" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarClima()">Mostrar</button>
                     <select class="form-select" aria-label="Default select example" id="Clima">
-                        <option selected>Seleccione una opcion</option>
                         <option>Seguro</option>
                         <option>Inseguro</option>
                     </select>
@@ -214,7 +212,6 @@
                 <div class="mb-3">
                     <label class="form-label">Verificaicon</label> <button type="button" class="btn btn-outline-success" id="BTminimos" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="CargarDatosMin()">Mostrar</button>
                     <select class="form-select" aria-label="Default select example" id="DatosMinimos">
-                        <option selected>Seleccione una opcion</option>
                         <option>Cumple</option>
                         <option>No cumple</option>
                     </select>
@@ -224,7 +221,7 @@
                     <textarea class="form-control" id="InstruccionesEspeciales" rows="3"></textarea>
                 </div>
                 <div class="form-check" style="display: flex; justify-content: center;">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <input class="form-check-input" type="checkbox" value="" id="AutorizarAterrizajeCheck">
                     <label class="form-check-label" for="flexCheckDefault">
                         Autorizar aterrizaje
                     </label>
@@ -279,18 +276,19 @@
             </table>
         </div>
 
+        <!-- modal-->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #b5b5b5">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel"></h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="LimpiarPistas()"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body" id="BodyPistas">
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="LimpiarPistas()">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
             </div>
@@ -299,11 +297,16 @@
     <script src="/JS/Labels.js"></script>
     <script src="/Interfaz/JS/Labels.js"></script>
     <script>
+        
         var url = window.location.search;
         var urlParams = new URLSearchParams(url);
         var Aeropuerto = urlParams.get('aeropuerto');
         var Vuelo = urlParams.get('vuelo');
+        var idAproxim = urlParams.get('Aprox');
         var PistaSelect = "";
+        var VarSelectPista = false;
+
+        var AterizajeAutorizado = false;
 
         //Secuencia de aterrizaje
         var VarIdSecuencia;
@@ -317,21 +320,26 @@
         var VarIdEmergencia = 1;
 
 
-        fetch('http://localhost:59769/api/Aterrizaje/Aterrizajes')
+
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Aterrizajes')
             .then(response => response.json())
             .then(data => {
                 VarIdAterrizaje = data.length + 1;
             })
-            .catch(error => console.error('Error al cargar las pistas:', error));
+            .catch(error => console.error('Error al cargar:', error));
 
-        fetch('http://localhost:59769/api/Aterrizaje/Secuencia')
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Secuencia')
             .then(response => response.json())
             .then(data => {
                 VarIdSecuencia = data.length + 1;
             })
-            .catch(error => console.error('Error al cargar las pistas:', error));
-
+            .catch(error => console.error('Error al cargar:', error));
+        
         function CargarPistas() {
+            var div = document.getElementById('BodyPistas');
+            while (div.firstChild) {
+                div.removeChild(div.firstChild);
+            }
             fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoPistas?CodAeropuerto=' + Aeropuerto)
                 .then(response => response.json())
                 .then(data => {
@@ -360,18 +368,18 @@
                                                     <p class="card-text">Longitud: ${Longitud}</p>
                                                     <p class="card-text">Ancho de la pista: ${Ancho}</p>
                                                     <p class="card-text">Obsevaciones: ${Comentarios}</p>
-                                                    <a href="#" class="btn btn-primary" onclick="SelectPista(${NumPista})">Seleccionar</a>
-                                                </div>
+                                                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="SelectPista(${NumPista})">Seleccionar</a>
+                                                </div> 
                                             </div>
                                         `;
                         document.getElementById("BodyPistas").innerHTML += codigoHTML;
 
                     }
                 })
-                .catch(error => console.error('Error al cargar las pistas:', error));
+                .catch(error => console.error('Error al cargar:', error));
         }
 
-        fetch('http://localhost:59769/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/InfoVuelo?codigoVuelo=' + Vuelo)
             .then(response => response.json())
             .then(data => {
                 VarIdAeronave = data[0].idaero;
@@ -385,7 +393,7 @@
                 document.getElementById('InfLat').textContent = data[0].Lat;
 
             })
-            .catch(error => console.error('Error al cargar las pistas:', error));
+            .catch(error => console.error('Error al cargar:', error));
 
         function CargarClima() {
             var div = document.getElementById('BodyPistas');
@@ -394,7 +402,7 @@
             }
             var verificacion = "#4DA768";
             var Aprovacion = "";
-            fetch('http://localhost:59769/api/Aterrizaje/Clima')
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Clima')
             .then(response => response.json())
             .then(data => {
                 if (data[0].InfLluvia == 0) {
@@ -429,7 +437,7 @@
                 `;
                 document.getElementById("BodyPistas").innerHTML += codigoHTML;
             })
-            .catch(error => console.error('Error al cargar las pistas:', error));
+            .catch(error => console.error('Error al cargar:', error));
         }
 
         function CargarDatosMin() {
@@ -439,7 +447,7 @@
             }
             var verificacion = "#4DA768";
             var Aprovacion = "";
-            fetch('http://localhost:59769/api/Aterrizaje/DatosMinimos')
+            fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/DatosMinimos')
                 .then(response => response.json())
                 .then(data => {
                     if (data[0].PermisoAproximacion) {
@@ -475,10 +483,10 @@
                     `;
                     document.getElementById("BodyPistas").innerHTML += codigoHTML;
                 })
-                .catch(error => console.error('Error al cargar las pistas:', error));
+                .catch(error => console.error('Error al cargar:', error));
         }
 
-        fetch('http://localhost:59769/api/Aterrizaje/Prioridad')
+        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/Prioridad')
         .then(response => response.json())
         .then(data => {
             console.error(data);
@@ -493,59 +501,139 @@
 
             }
         })
-        .catch(error => console.error('Error al cargar las pistas:', error));
+        .catch(error => console.error('Error al cargar:', error));
 
-        function AutorizarSecuencia() {
-
-            try {
-                // Objeto con los datos a enviar en el POST
-                var postDataSecuencia = {
-                    IDSecuencia: VarIdSecuencia.toString(),
-                    IdAeronave: VarIdAeronave,
-                    ETA: "",
-                    IDClima: VarIdClima,
-                    Instrucciones_especiales: "",
-                    Prioridad: document.getElementById('Prioridad').value
-                };
-                fetch('http://localhost:59769/api/Aterrizaje/CrearSecuencia', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postDataSecuencia)
-                });
-                const postDataAterrizaje = {
-                    IdAterrizaje: VarIdAterrizaje,
-                    IdDatosMinimos: VarIdDatosMinimos,
-                    IdEstadoPista: VarIdEstPista,
-                    idemergencia: VarIdEmergencia,
-                    IDSecuencia: VarIdSecuencia,
-                    PermisoAterrizaje: "True"
-                };
-
-                fetch('http://localhost:59769/api/Aterrizaje/CrearAterrizaje', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(postDataAterrizaje)
-                });
-            } catch (error) {
-                console.error('Error en la solicitud POST:', error);
-                alert('Error en la solicitud POST. Por favor, inténtalo de nuevo.');
-            }
-            
-        }
-
-        function LimpiarPistas() {
+        function AutorizarAterrizaje() {
             var div = document.getElementById('BodyPistas');
             while (div.firstChild) {
                 div.removeChild(div.firstChild);
             }
+
+            var checkBox = document.getElementById("AutorizarAterrizajeCheck");
+            if (checkBox.checked) {
+                const codigoHTML = `
+                    <div class="card">
+                        <h5 class="card-header" style="color: #008F39;">Aterrizaje autorizado</h5>
+                        <div class="card-body">
+                            <p>Esta seguro que desea continuar?</br>
+                            Si acepta no podra hacer cambios y el vuelo procedera a aterrizar.</p>
+                        </div>
+                        <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(true)">Aceptar</button>
+                    </div>
+                `;
+                document.getElementById("BodyPistas").innerHTML += codigoHTML;
+            } else {
+                const codigoHTML = `
+                    <div class="card">
+                        <h5 class="card-header" style="color: #E40033;">Aterrizaje no autorizado</h5>
+                        <div class="card-body">
+                            <p>Esta seguro que desea continuar?</br>
+                            Si acepta no podra hacer cambios y el vuelo no va a aterrizar ya que no esta autorizado.</p>
+                        </div>
+                        <button type="button" class="btn btn-success" id="BTContinuar" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="AutorizarSecuencia(false)">Aceptar</button>
+                    </div>
+                `;
+                document.getElementById("BodyPistas").innerHTML += codigoHTML;
+            }
         }
-        function SelectPista(IDPista) {VarIdEstPista
+
+        function AutorizarSecuencia(Autoriza) {
+            try {
+                // Objeto con los datos a enviar en el POST
+                if (VarSelectPista) {
+                    var postDataSecuencia = {
+                        IDSecuencia: VarIdSecuencia.toString(),
+                        IdAeronave: VarIdAeronave,
+                        ETA: "",
+                        IDClima: VarIdClima,
+                        Instrucciones_especiales: "",
+                        Prioridad: document.getElementById('Prioridad').value
+                    };
+                    fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/CrearSecuencia', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(postDataSecuencia)
+                    });
+
+                    if (Autoriza) {
+                        var parrafo = document.getElementById("cardAutoriza");
+                        parrafo.style.display = "none";
+                        AterizajeAutorizado = true;
+                        const postDataAterrizaje = {
+                            IdAterrizaje: VarIdAterrizaje,
+                            IdDatosMinimos: VarIdDatosMinimos,
+                            IdEstadoPista: VarIdEstPista,
+                            idemergencia: VarIdEmergencia,
+                            IDSecuencia: VarIdSecuencia,
+                            PermisoAterrizaje: "true"
+                        };
+
+                        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/CrearAterrizaje', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(postDataAterrizaje)
+                        });
+                    } else {
+                        const postDataAterrizaje = {
+                            IdAterrizaje: VarIdAterrizaje,
+                            IdDatosMinimos: VarIdDatosMinimos,
+                            IdEstadoPista: VarIdEstPista,
+                            idemergencia: VarIdEmergencia,
+                            IDSecuencia: VarIdSecuencia,
+                            PermisoAterrizaje: "false"
+                        };
+
+                        fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/CrearAterrizaje', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(postDataAterrizaje)
+                        });
+                        window.location.href = '/Interfaz/usr/Aterrizaje/Aterrizaje.html';
+                    }
+                } else {
+                    alert("No hay una pista seleccionada.");
+                }
+                
+            } catch (error) {
+                console.error('Error en la solicitud POST:', error);
+                alert('Por favor, inténtalo de nuevo.');
+            }
+            
+        }
+
+        function TerminarProceso() {
+            if (AterizajeAutorizado) {
+                fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/EliminarAproximacion?id='+ idAproxim /*variable de aproximacion*/, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                fetch('https://tiusr26pl.cuc-carrera-ti.ac.cr/BackendST/api/Aterrizaje/AterrizarVuelo?id=' + VarIdAeronave /*variable de aproximacion*/, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                window.location.href = '/Interfaz/usr/Aterrizaje/Aterrizaje.html';
+            } else {
+                alert("Aun no se ha autorizado el aterrizaje.");
+            }
+        }
+
+        function LimpiarPistas() {
+            
+        }
+        function SelectPista(IDPista) {
             PistaSelect = IDPista;
             VarIdEstPista = PistaSelect;
+            VarSelectPista = true;
             document.getElementById('PistSelect').textContent = PistaSelect;
         }
     </script>
